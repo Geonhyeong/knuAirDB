@@ -68,12 +68,11 @@ public class knuAirDBTest {
 			switch (sc.nextLine()) {
 			case "1":
 				Account account = user.Login(id);
-				System.out.print("[로그인 성공 : ");
 				if (account == Account.Admin) {
-					System.out.println("you are admin]");
+					System.out.println("[로그인 성공 : you are admin]");
 					Admin admin = new Admin(conn, stmt, id);
 				} else if (account == Account.Passenger) {
-					System.out.println("you are passenger]");
+					System.out.println("[로그인 성공 : you are passenger]");
 					Passenger passenger = new Passenger(conn, stmt, id);
 				} else {
 					System.out.println("[로그인 실패 : There is no such user!]");

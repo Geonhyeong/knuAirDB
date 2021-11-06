@@ -2,6 +2,7 @@ package knuAirDB;
 
 import java.io.*;
 import java.sql.*;
+import java.text.SimpleDateFormat;
 import java.util.Scanner;
 
 public class Passenger {
@@ -58,11 +59,87 @@ public class Passenger {
 	}
 
 	public void search() {
-
+		System.out.print("출발 도시를 입력하세요>> ");
+		String dep_port = sc.nextLine();
+		System.out.print("도착 도시를 입력하세요>> ");
+		String arr_port = sc.nextLine();
+		System.out.print("출발 날짜를 입력하세요(yyyy-mm-dd)>> ");
+		String date = sc.nextLine();
+		
+		String sql = "(select legid, dep_airportid as dep, arr_airportid as arr, dep_gate as gate, scheduled_dep_time as dep_time, scheduled_arr_time as arr_time, price from leg, airport where city = '" + dep_port + "' and airportid=dep_airportid)\r\n"
+				+ "intersect\r\n"
+				+ "(select legid, dep_airportid as dep, arr_airportid as arr, dep_gate as gate, scheduled_dep_time as dep_time, scheduled_arr_time as arr_time, price from leg, airport where city = '" + arr_port + "' and airportid=arr_airportid)\r\n"
+				+ "intersect\r\n"
+				+ "(select legid, dep_airportid as dep, arr_airportid as arr, dep_gate as gate, scheduled_dep_time as dep_time, scheduled_arr_time as arr_time, price from leg, airport where scheduled_dep_time like to_date('"+ date +"', 'yyyy-mm-dd'))";
+		
+		System.out.println("======================================================================================================================");
+		try {
+			ResultSet rs = stmt.executeQuery(sql);
+			ResultSetMetaData rsmd = rs.getMetaData();
+			int cnt = rsmd.getColumnCount();
+			for(int i = 1; i<= cnt; i++) {
+				System.out.print(rsmd.getColumnName(i) + "\t\t");
+			}
+			System.out.print('\n');
+			while(rs.next()) {
+				System.out.print(rs.getString(1) + "\t");
+				System.out.print(rs.getString(2) + "\t\t");
+				System.out.print(rs.getString(3) + "\t\t");
+				System.out.print(rs.getInt(4) + "\t\t");
+				SimpleDateFormat sdfDate = new SimpleDateFormat("YYYY-MM-DD HH:MM:SS");
+				Date depDate = rs.getDate(5);
+				String strDepDate = sdfDate.format(depDate);
+				System.out.print(strDepDate + "\t");
+				Date arrDate = rs.getDate(6);
+				String strArrDate = sdfDate.format(arrDate);
+				System.out.print(strArrDate + "\t");
+				System.out.print(rs.getInt(7) + "\r\n");
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println("======================================================================================================================");
+		
+		
 	}
 
 	public void reservation() {
-
+		System.out.print("예약하고 자 하는 LEGID를 입력하세요>> ");
+		String legid = sc.nextLine();
+		
+		String sql = "select economy_avail_seats, business_avail_seats, first_avail_seats from assigned_by where legid = '" + legid + "'";
+		try {
+			ResultSet rs = stmt.executeQuery(sql);
+			if (rs.next()) {				
+				int eco = rs.getInt(1);
+				int bus = rs.getInt(2);
+				int fir = rs.getInt(3);
+				System.out.println("[ 해당 비행기의 남은 좌석은 다음과 같습니다. ]");
+				System.out.println("[Economy] : " + eco);
+				System.out.println("[Business] : " + bus);
+				System.out.println("[First] : " + fir);
+			}
+			else
+				System.out.println("해당 LEG는 존재하지 않습니다.");
+			
+			System.out.println("예약할 좌석의 수를 입력해주세요.");
+			System.out.print("Economy >> ");
+			int res_eco = sc.nextInt();
+			System.out.print("Business >> ");
+			int res_bus = sc.nextInt();
+			System.out.print("First >> ");
+			int res_fir = sc.nextInt();
+			
+			// 금액 계산하는 부분이 문제가 있음 상의해봐야 할 듯.
+			//sql = "INSERT INTO ETICKET VALUES ('" 
+			//		+ 1175572235 + "', '" 
+			//		+ LEG00042 + "', 55, 8353800, 8465600, 405100, 0, 3, 2, 1)";
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public void myPage() {
