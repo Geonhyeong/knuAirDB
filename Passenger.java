@@ -235,6 +235,7 @@ public class Passenger {
 				stmt.executeUpdate(sql);
 
 				conn.commit();
+				System.out.println("구매를 완료했습니다.");
 			} else {
 				return;
 			}
