@@ -9,14 +9,14 @@ public class Passenger {
 	Connection conn = null;
 	Statement stmt = null;
 	String id = null;
-	
+
 	Scanner sc = new Scanner(System.in);
 
 	public Passenger(Connection _conn, Statement _stmt, Identification _id) {
 		conn = _conn;
 		stmt = _stmt;
 		id = _id.id;
-		
+
 		menu();
 	}
 
@@ -59,29 +59,31 @@ public class Passenger {
 	}
 
 	public void search() {
-		System.out.print("출발 도시를 입력하세요>> ");
+		System.out.print("출발 도시를 입력하세요 >> ");
 		String dep_port = sc.nextLine();
-		System.out.print("도착 도시를 입력하세요>> ");
+		System.out.print("도착 도시를 입력하세요 >> ");
 		String arr_port = sc.nextLine();
-		System.out.print("출발 날짜를 입력하세요(yyyy-mm-dd)>> ");
+		System.out.print("출발 날짜를 입력하세요(yyyy-mm-dd) >> ");
 		String date = sc.nextLine();
-		
-		String sql = "(select legid, dep_airportid as dep, arr_airportid as arr, dep_gate as gate, scheduled_dep_time as dep_time, scheduled_arr_time as arr_time, price from leg, airport where city = '" + dep_port + "' and airportid=dep_airportid)\r\n"
-				+ "intersect\r\n"
-				+ "(select legid, dep_airportid as dep, arr_airportid as arr, dep_gate as gate, scheduled_dep_time as dep_time, scheduled_arr_time as arr_time, price from leg, airport where city = '" + arr_port + "' and airportid=arr_airportid)\r\n"
-				+ "intersect\r\n"
-				+ "(select legid, dep_airportid as dep, arr_airportid as arr, dep_gate as gate, scheduled_dep_time as dep_time, scheduled_arr_time as arr_time, price from leg, airport where scheduled_dep_time like to_date('"+ date +"', 'yyyy-mm-dd'))";
-		
-		System.out.println("======================================================================================================================");
+
+		String sql = "(select legid, dep_airportid as dep, arr_airportid as arr, dep_gate as gate, scheduled_dep_time as dep_time, scheduled_arr_time as arr_time, price from leg, airport where city = '"
+				+ dep_port + "' and airportid=dep_airportid)\r\n" + "intersect\r\n"
+				+ "(select legid, dep_airportid as dep, arr_airportid as arr, dep_gate as gate, scheduled_dep_time as dep_time, scheduled_arr_time as arr_time, price from leg, airport where city = '"
+				+ arr_port + "' and airportid=arr_airportid)\r\n" + "intersect\r\n"
+				+ "(select legid, dep_airportid as dep, arr_airportid as arr, dep_gate as gate, scheduled_dep_time as dep_time, scheduled_arr_time as arr_time, price from leg, airport where scheduled_dep_time like to_date('"
+				+ date + "', 'yyyy-mm-dd'))";
+
+		System.out.println(
+				"======================================================================================================================");
 		try {
 			ResultSet rs = stmt.executeQuery(sql);
 			ResultSetMetaData rsmd = rs.getMetaData();
 			int cnt = rsmd.getColumnCount();
-			for(int i = 1; i<= cnt; i++) {
+			for (int i = 1; i <= cnt; i++) {
 				System.out.print(rsmd.getColumnName(i) + "\t\t");
 			}
 			System.out.print('\n');
-			while(rs.next()) {
+			while (rs.next()) {
 				System.out.print(rs.getString(1) + "\t");
 				System.out.print(rs.getString(2) + "\t\t");
 				System.out.print(rs.getString(3) + "\t\t");
@@ -95,24 +97,25 @@ public class Passenger {
 				System.out.print(strArrDate + "\t");
 				System.out.print(rs.getInt(7) + "\r\n");
 			}
-			
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println("======================================================================================================================");
-		
-		
+		System.out.println(
+				"======================================================================================================================");
+
 	}
 
 	public void reservation() {
-		System.out.print("예약하고 자 하는 LEGID를 입력하세요>> ");
+		System.out.print("예약하고자 하는 LEGID를 입력하세요 >> ");
 		String legid = sc.nextLine();
-		
-		String sql = "select economy_avail_seats, business_avail_seats, first_avail_seats from assigned_by where legid = '" + legid + "'";
+
+		String sql = "select economy_avail_seats, business_avail_seats, first_avail_seats from assigned_by where legid = '"
+				+ legid + "'";
 		try {
 			ResultSet rs = stmt.executeQuery(sql);
-			if (rs.next()) {				
+			if (rs.next()) {
 				int eco = rs.getInt(1);
 				int bus = rs.getInt(2);
 				int fir = rs.getInt(3);
@@ -120,10 +123,9 @@ public class Passenger {
 				System.out.println("[Economy] : " + eco);
 				System.out.println("[Business] : " + bus);
 				System.out.println("[First] : " + fir);
-			}
-			else
+			} else
 				System.out.println("해당 LEG는 존재하지 않습니다.");
-			
+
 			System.out.println("예약할 좌석의 수를 입력해주세요.");
 			System.out.print("Economy >> ");
 			int res_eco = sc.nextInt();
@@ -131,11 +133,54 @@ public class Passenger {
 			int res_bus = sc.nextInt();
 			System.out.print("First >> ");
 			int res_fir = sc.nextInt();
+
+			sc.nextLine(); // fflush()
+
+			sql = "select airplaneid from assigned_by where legid = '" + legid + "'";
+			rs = stmt.executeQuery(sql);
+			String airplaneid = "";
+
+			if (rs.next()) {
+				airplaneid = rs.getString(1);
+			}
+
+			sql = "select diff_seat, diff_beggage from airline al, airplane ap where airplaneid = '" + airplaneid
+					+ "' and al.airlineid = ap.airlineid";
+			rs = stmt.executeQuery(sql);
+			float diff_seat = 0;
+			float diff_beggage = 0;
+
+			if (rs.next()) {
+				diff_seat = rs.getFloat(1);
+				diff_beggage = rs.getFloat(2);
+			}
+			System.out.println(airplaneid + " : " + diff_seat + ", " + diff_beggage);
+			System.out.println();
 			
-			// 금액 계산하는 부분이 문제가 있음 상의해봐야 할 듯.
-			//sql = "INSERT INTO ETICKET VALUES ('" 
-			//		+ 1175572235 + "', '" 
-			//		+ LEG00042 + "', 55, 8353800, 8465600, 405100, 0, 3, 2, 1)";
+			sql = "select price from leg where legid = '" + legid + "'";
+			rs = stmt.executeQuery(sql);
+			int price_eco = 0;
+			if(rs.next()) {
+				price_eco = rs.getInt(1);
+			}
+			
+			int price_bus = (int) (price_eco * diff_seat);
+			int price_fir = (int) (price_bus * diff_seat);
+			int price_all = price_eco * res_eco + price_bus * res_bus + price_fir * res_fir;
+			System.out.println("economy 좌석 수 : " + res_eco);
+			System.out.println("economy 좌석 당 가격 : " + price_eco);
+			System.out.println("business 좌석 수 : " + res_bus);
+			System.out.println("business 좌석 당 가격 : " + price_bus);
+			System.out.println("first 좌석 수 : " + res_fir);
+			System.out.println("first 좌석 당 가격 : " + price_fir);
+			System.out.println("티켓 가격 : " + price_all);
+			
+			// 금액 계산하는 부분이 문제가 있음 상의해봐야 할 듯. - lee
+			// airline이랑 leg 연결해서 좌석 가격은 다 구했음 - ryu
+			// 수하물은 기본 price * diff_beggage로 해야하나? 이걸 안정해놔서 모르겠네 - ryu
+			// sql = "INSERT INTO ETICKET VALUES ('"
+			// + 1175572235 + "', '"
+			// + LEG00042 + "', 55, 8353800, 8465600, 405100, 0, 3, 2, 1)";
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -228,7 +273,7 @@ public class Passenger {
 
 	public void deleteAccount() {
 		int accountNo = -1;
-		
+
 		try {
 			String sql = "select accountno from account where accountid ='" + id + "'";
 			ResultSet rs = stmt.executeQuery(sql);
@@ -253,10 +298,10 @@ public class Passenger {
 		}
 		System.out.println("[계정이 삭제되었습니다.]");
 	}
-	
+
 	public void changeInformation(int cmd) {
 		String sql = "";
-		switch(cmd) {
+		switch (cmd) {
 		case 1:
 			System.out.print("변경할 패스워드[최대 15자] : ");
 			String newPassword = sc.nextLine();
@@ -300,8 +345,8 @@ public class Passenger {
 		case 9:
 			return;
 		default:
-				System.out.println("Wrong input!!");
-				System.exit(1);
+			System.out.println("Wrong input!!");
+			System.exit(1);
 		}
 		try {
 			int result = stmt.executeUpdate(sql);
