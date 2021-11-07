@@ -115,10 +115,13 @@ public class Passenger {
 				+ legid + "'";
 		try {
 			ResultSet rs = stmt.executeQuery(sql);
+			int eco = 0;
+			int bus = 0;
+			int fir = 0;
 			if (rs.next()) {
-				int eco = rs.getInt(1);
-				int bus = rs.getInt(2);
-				int fir = rs.getInt(3);
+				eco = rs.getInt(1);
+				bus = rs.getInt(2);
+				fir = rs.getInt(3);
 				System.out.println("[ 해당 비행기의 남은 좌석은 다음과 같습니다. ]");
 				System.out.println("[Economy] : " + eco);
 				System.out.println("[Business] : " + bus);
@@ -180,14 +183,18 @@ public class Passenger {
 			System.out.println("티켓 가격 : " + price_all);
 			System.out.println("수하물 가격 : " + price_beg);
 
-			sql = "select title, account.accountno from account, membership where account.accountno = membership.accountno and accountid = '"
+			sql = "select title, account.accountno, membershipid, travel_count from account, membership where account.accountno = membership.accountno and accountid = '"
 					+ id + "'";
 			rs = stmt.executeQuery(sql);
 			String membership_title = "";
 			int accountNo = 0;
+			String membershipId = "";
+			int travel_count = 0;
 			if (rs.next()) {
 				membership_title = rs.getString(1);
 				accountNo = rs.getInt(2);
+				membershipId = rs.getString(3);
+				travel_count = rs.getInt(4);
 			}
 
 			int disc = 0;
@@ -207,11 +214,26 @@ public class Passenger {
 			String isReserve = sc.nextLine();
 
 			if (isReserve.compareTo("y") == 0) {
-				sql = "INSERT INTO ETICKET VALUES ('"
-						+ (1000000000 + accountNo) + "', '"
-						+ legid + "', " + accountNo + ", " + price_eco + ", " + price_all + ", " + price_beg + ", "
-						+ disc + ", " + res_eco + ", " + res_bus + ", " + res_fir + ")";
+				sql = "INSERT INTO ETICKET VALUES ('" + (1000000000 + accountNo) + "', '" + legid + "', " + accountNo
+						+ ", " + price_eco + ", " + price_all + ", " + price_beg + ", " + disc + ", " + res_eco + ", "
+						+ res_bus + ", " + res_fir + ")";
 				stmt.executeUpdate(sql);
+
+				sql = "update assigned_by set economy_avail_seats=" + (eco - res_eco) + ", business_avail_seats = " + (bus - res_bus) + ", first_avail_seats=" + (fir - res_fir) + " where legid = '" + legid + "'";
+				stmt.executeUpdate(sql);
+				
+				travel_count += 1;
+				if (travel_count == 11) {
+					membership_title = "Gold";
+				} else if (travel_count == 21) {
+					membership_title = "Diamond";
+				} else if (travel_count == 36) {
+					membership_title = "Rubi";
+				}
+				
+				sql = "update membership set travel_count=" + travel_count + ", title='" + membership_title + "' where membershipid='" + membershipId + "'";
+				stmt.executeUpdate(sql);
+
 				conn.commit();
 			} else {
 				return;
