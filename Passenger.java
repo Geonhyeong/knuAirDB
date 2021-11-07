@@ -247,8 +247,75 @@ public class Passenger {
 			e.printStackTrace();
 		}
 	}
-
+	
 	public void myPage() {
+		while(true)
+		{
+			System.out.println("+---------------------------------------------+");
+			System.out.println("|                                             |");
+			System.out.println("|                   My Page                   |");
+			System.out.println("|                                             |");
+			System.out.println("|                                             |");
+			System.out.println("|       1. My Reservation                     |");
+			System.out.println("|                                             |");
+			System.out.println("|       2. Show My Information                |");
+			System.out.println("|                                             |");
+			System.out.println("|       3. Change My Information              |");
+			System.out.println("|                                             |");
+			System.out.println("|       4. Back                               |");
+			System.out.println("|                                             |");
+			System.out.println("+---------------------------------------------+");
+			System.out.print(">> ");
+			switch (sc.nextLine()) {
+			case "1":
+				showReservation();
+				break;
+			case "2":
+				showInfo();
+				break;
+			case "3":
+				myPageChangeMode();
+				break;
+			case "4":
+				return;
+			}
+		}
+	}
+	
+	public void showReservation()
+	{
+		int accountNo = 0;
+		
+		try {
+			String sql ="select accountno from account where accountid='" + id + "'";
+			ResultSet rs = stmt.executeQuery(sql);
+			if (rs.next()) {
+				accountNo = rs.getInt(1);
+			}
+			sql = "select * from eticket where passengerno=" + accountNo;
+			rs = stmt.executeQuery(sql);
+			
+			System.out.println("LegID\t\tPassengerNo\t\tTotal_Price\t\tNum_of_Economy\tNum_of_Business\tNum_of_First");
+			
+			while (rs.next()) {
+				System.out.print(rs.getString(2) + "\t\t");
+				System.out.print(rs.getInt(3) + "\t\t");
+				int total_price = rs.getInt(5) + rs.getInt(6) - rs.getInt(7);
+				System.out.print(total_price + "\t\t");
+				System.out.print(rs.getInt(8) + "\t\t");
+				System.out.print(rs.getInt(9) + "\t\t");
+				System.out.print(rs.getInt(10) + "\r\n");
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	public void showInfo()
+	{
 		String sql = "select fname, lname, age, phone, email, sex, address, type, title, travel_count from account a, membership m where a.AccountID = '"
 				+ id + "' and a.AccountNo = m.AccountNo";
 		try {
@@ -282,6 +349,9 @@ public class Passenger {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	public void myPageChangeMode() {
 		System.out.println("+---------------------------------------------+");
 		System.out.println("|                                             |");
 		System.out.println("|            My Page - ChangeMode             |");
