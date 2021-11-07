@@ -403,25 +403,9 @@ public class Passenger {
 	}
 
 	public void deleteAccount() {
-		int accountNo = -1;
-
 		try {
-			String sql = "select accountno from account where accountid ='" + id + "'";
-			ResultSet rs = stmt.executeQuery(sql);
-			if (rs.next()) {
-				accountNo = rs.getInt(1);
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		try {
-			String sql = "delete from membership where AccountNo = " + accountNo;
-			stmt.addBatch(sql);
-			sql = "delete from account where AccountNo = " + accountNo;
-			stmt.addBatch(sql);
-			int count[] = stmt.executeBatch();
+			String sql = "delete from account where AccountId = '" + id + "'";
+			int result = stmt.executeUpdate(sql);
 			conn.commit();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
