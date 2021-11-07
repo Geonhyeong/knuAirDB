@@ -240,9 +240,6 @@ public class Passenger {
 				return;
 			}
 
-			// 금액 계산하는 부분이 문제가 있음 상의해봐야 할 듯. - lee
-			// airline이랑 leg 연결해서 좌석 가격은 다 구했음 - ryu
-			// 수하물은 기본 price * diff_beggage로 해야하나? 이걸 안정해놔서 모르겠네 - ryu
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
