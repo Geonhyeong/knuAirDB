@@ -433,10 +433,11 @@ public class Admin {
 				break;
 				
 			case "3": // Delete
-				System.out.println("[ Delete할 AirlineID 정보를 입력하시오 ]");
-				System.out.print("삭제할 Airline ID : ");
-				airlineid = sc.nextLine();
 				try {
+					System.out.println("[ Delete할 AirlineID 정보를 입력하시오 ]");
+					System.out.print("삭제할 Airline ID : ");
+					airlineid = sc.nextLine();
+					
 					sql = "delete from airline where airlineid = '" + airlineid + "'";
 					int result = stmt.executeUpdate(sql);
 					conn.commit();
@@ -598,10 +599,11 @@ public class Admin {
 				break;
 				
 			case "3": // Delete
-				System.out.println("[ Delete할 AirportID 정보를 입력하시오 ]");
-				System.out.print("삭제할 Airport ID : ");
-				airportid = sc.nextLine();
 				try {
+					System.out.println("[ Delete할 AirportID 정보를 입력하시오 ]");
+					System.out.print("삭제할 Airport ID : ");
+					airportid = sc.nextLine();
+
 					sql = "delete from airport where airportid = '" + airportid + "'";
 					int result = stmt.executeUpdate(sql);
 					conn.commit();
@@ -811,10 +813,11 @@ public class Admin {
 				break;
 				
 			case "3": // Delete
-				System.out.println("[ Delete할 LegID 정보를 입력하시오 ]");
-				System.out.print("삭제할 Leg ID : ");
-				legid = sc.nextLine();
 				try {
+					System.out.println("[ Delete할 LegID 정보를 입력하시오 ]");
+					System.out.print("삭제할 Leg ID : ");
+					legid = sc.nextLine();
+					
 					sql = "delete from leg where legid = '" + legid + "'";
 					int result = stmt.executeUpdate(sql);
 					conn.commit();
