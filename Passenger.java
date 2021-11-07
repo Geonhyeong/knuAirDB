@@ -126,15 +126,16 @@ public class Passenger {
 			} else
 				System.out.println("해당 LEG는 존재하지 않습니다.");
 
-			System.out.println("예약할 좌석의 수를 입력해주세요.");
+			System.out.println("예약할 좌석의 수와 짐의 유무를 입력해주세요.");
 			System.out.print("Economy >> ");
 			int res_eco = sc.nextInt();
 			System.out.print("Business >> ");
 			int res_bus = sc.nextInt();
 			System.out.print("First >> ");
 			int res_fir = sc.nextInt();
-
 			sc.nextLine(); // fflush()
+			System.out.print("짐이 있습니까?(yes/no) >> ");
+			String isBeggage = sc.nextLine();
 
 			sql = "select airplaneid from assigned_by where legid = '" + legid + "'";
 			rs = stmt.executeQuery(sql);
@@ -154,19 +155,22 @@ public class Passenger {
 				diff_seat = rs.getFloat(1);
 				diff_beggage = rs.getFloat(2);
 			}
-			System.out.println(airplaneid + " : " + diff_seat + ", " + diff_beggage);
+			// System.out.println(airplaneid + " : " + diff_seat + ", " + diff_beggage);
 			System.out.println();
-			
+
 			sql = "select price from leg where legid = '" + legid + "'";
 			rs = stmt.executeQuery(sql);
 			int price_eco = 0;
-			if(rs.next()) {
+			if (rs.next()) {
 				price_eco = rs.getInt(1);
 			}
-			
+
 			int price_bus = (int) (price_eco * diff_seat);
 			int price_fir = (int) (price_bus * diff_seat);
 			int price_all = price_eco * res_eco + price_bus * res_bus + price_fir * res_fir;
+			int price_beg = 0;
+			if (isBeggage.compareTo("yes") == 0)
+				price_beg = (int) (price_eco * diff_beggage);
 			System.out.println("economy 좌석 수 : " + res_eco);
 			System.out.println("economy 좌석 당 가격 : " + price_eco);
 			System.out.println("business 좌석 수 : " + res_bus);
@@ -174,13 +178,48 @@ public class Passenger {
 			System.out.println("first 좌석 수 : " + res_fir);
 			System.out.println("first 좌석 당 가격 : " + price_fir);
 			System.out.println("티켓 가격 : " + price_all);
-			
+			System.out.println("수하물 가격 : " + price_beg);
+
+			sql = "select title, account.accountno from account, membership where account.accountno = membership.accountno and accountid = '"
+					+ id + "'";
+			rs = stmt.executeQuery(sql);
+			String membership_title = "";
+			int accountNo = 0;
+			if (rs.next()) {
+				membership_title = rs.getString(1);
+				accountNo = rs.getInt(2);
+			}
+
+			int disc = 0;
+			if (membership_title.compareTo("Silver") == 0) {
+				disc = (int) (price_all * 0.05);
+			} else if (membership_title.compareTo("Gold") == 0) {
+				disc = (int) (price_all * 0.1);
+			} else if (membership_title.compareTo("Diamond") == 0) {
+				disc = (int) (price_all * 0.15);
+			} else if (membership_title.compareTo("Rubi") == 0) {
+				disc = (int) (price_all * 0.2);
+			}
+
+			System.out.println("할인받는 가격 : " + disc);
+			System.out.println("총 결제금액 : " + (price_all + price_beg - disc));
+			System.out.print("결제하시겠습니까? (y/n) >> ");
+			String isReserve = sc.nextLine();
+
+			if (isReserve.compareTo("y") == 0) {
+				sql = "INSERT INTO ETICKET VALUES ('"
+						+ (1000000000 + accountNo) + "', '"
+						+ legid + "', " + accountNo + ", " + price_eco + ", " + price_all + ", " + price_beg + ", "
+						+ disc + ", " + res_eco + ", " + res_bus + ", " + res_fir + ")";
+				stmt.executeUpdate(sql);
+				conn.commit();
+			} else {
+				return;
+			}
+
 			// 금액 계산하는 부분이 문제가 있음 상의해봐야 할 듯. - lee
 			// airline이랑 leg 연결해서 좌석 가격은 다 구했음 - ryu
 			// 수하물은 기본 price * diff_beggage로 해야하나? 이걸 안정해놔서 모르겠네 - ryu
-			// sql = "INSERT INTO ETICKET VALUES ('"
-			// + 1175572235 + "', '"
-			// + LEG00042 + "', 55, 8353800, 8465600, 405100, 0, 3, 2, 1)";
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
