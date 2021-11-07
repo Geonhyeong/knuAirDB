@@ -58,11 +58,11 @@ public class Admin {
 		System.out.println("|               Admin - Manage                |");
 		System.out.println("|                                             |");
 		System.out.println("|                                             |");
-		System.out.println("|  1. Airplane          2. Airline            |");
+		System.out.println("|       1. Airplane         2. Airline        |");
 		System.out.println("|                                             |");
-		System.out.println("|  3. Airport           4. Leg                |");
+		System.out.println("|       3. Airport          4. Leg            |");
 		System.out.println("|                                             |");
-		System.out.println("|  5. Back                                    |");
+		System.out.println("|       5. Back                               |");
 		System.out.println("|                                             |");
 		System.out.println("+---------------------------------------------+");
 		System.out.print(">> ");
@@ -105,9 +105,9 @@ public class Admin {
 			System.out.println("|              Manage - Airplane              |");
 			System.out.println("|                                             |");
 			System.out.println("|                                             |");
-			System.out.println("|  1. Insert            2. Update             |");
+			System.out.println("|        1. Insert           2. Update        |");
 			System.out.println("|                                             |");
-			System.out.println("|  3. Delete            4. Back               |");
+			System.out.println("|        3. Delete           4. Back          |");
 			System.out.println("|                                             |");
 			System.out.println("+---------------------------------------------+");
 			System.out.print(">> ");
@@ -195,15 +195,15 @@ public class Admin {
 					System.out.println("|              Update - Airplane              |");
 					System.out.println("|                                             |");
 					System.out.println("|                                             |");
-					System.out.println("|  1. Airline ID        2. Type               |");
+					System.out.println("|      1. Airline ID        2. Type           |");
 					System.out.println("|                                             |");
-					System.out.println("|  3. Number of Economy Seats                 |");
+					System.out.println("|      3. Number of Economy Seats             |");
 					System.out.println("|                                             |");
-					System.out.println("|  4. Number of Business Seats                |");
+					System.out.println("|      4. Number of Business Seats            |");
 					System.out.println("|                                             |");
-					System.out.println("|  5. Number of First Seats                   |");
+					System.out.println("|      5. Number of First Seats               |");
 					System.out.println("|                                             |");
-					System.out.println("|  6. Back                                    |");
+					System.out.println("|      6. Back                                |");
 					System.out.println("|                                             |");
 					System.out.println("+---------------------------------------------+");
 					System.out.print(">> ");
@@ -298,9 +298,9 @@ public class Admin {
 			System.out.println("|              Manage - Airline               |");
 			System.out.println("|                                             |");
 			System.out.println("|                                             |");
-			System.out.println("|  1. Insert            2. Update             |");
+			System.out.println("|        1. Insert          2. Update         |");
 			System.out.println("|                                             |");
-			System.out.println("|  3. Delete            4. Back               |");
+			System.out.println("|        3. Delete          4. Back           |");
 			System.out.println("|                                             |");
 			System.out.println("+---------------------------------------------+");
 			System.out.print(">> ");
@@ -328,9 +328,7 @@ public class Admin {
 				diff_seat = sc.nextLine();
 				System.out.print("Price ratio difference of beggage: ");
 				diff_beggage = sc.nextLine();
-				
-				
-				
+					
 				try {
 					sql = "INSERT INTO AIRLINE VALUES ('" + airlineid + "','" + name + "', '" + diff_seat + "', '" + diff_beggage + "')";
 					int result = stmt.executeUpdate(sql);
@@ -475,9 +473,9 @@ public class Admin {
 			System.out.println("|              Manage - Airport               |");
 			System.out.println("|                                             |");
 			System.out.println("|                                             |");
-			System.out.println("|  1. Insert            2. Update             |");
+			System.out.println("|        1. Insert          2. Update         |");
 			System.out.println("|                                             |");
-			System.out.println("|  3. Delete            4. Back               |");
+			System.out.println("|        3. Delete          4. Back           |");
 			System.out.println("|                                             |");
 			System.out.println("+---------------------------------------------+");
 			System.out.print(">> ");
@@ -550,11 +548,11 @@ public class Admin {
 					System.out.println("|              Update - Airport               |");
 					System.out.println("|                                             |");
 					System.out.println("|                                             |");
-					System.out.println("|  1. Name              2. City               |");
+					System.out.println("|          1. Name            2. City         |");
 					System.out.println("|                                             |");
-					System.out.println("|  3. Number of total gates                   |");
+					System.out.println("|          3. Number of total gates           |");
 					System.out.println("|                                             |");
-					System.out.println("|  4. Back                                    |");
+					System.out.println("|          4. Back                            |");
 					System.out.println("|                                             |");
 					System.out.println("+---------------------------------------------+");
 					System.out.print(">> ");
@@ -642,9 +640,9 @@ public class Admin {
 			System.out.println("|              Manage - Leg                   |");
 			System.out.println("|                                             |");
 			System.out.println("|                                             |");
-			System.out.println("|  1. Insert            2. Update             |");
+			System.out.println("|        1. Insert          2. Update         |");
 			System.out.println("|                                             |");
-			System.out.println("|  3. Delete            4. Back               |");
+			System.out.println("|        3. Delete          4. Back           |");
 			System.out.println("|                                             |");
 			System.out.println("+---------------------------------------------+");
 			System.out.print(">> ");
