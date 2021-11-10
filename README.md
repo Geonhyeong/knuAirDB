@@ -37,7 +37,7 @@
       1. 해당 사용자의 계정을 DB에서 삭제한다.
       2. 해당 사용자가 참조된 관련 레코드도 foreign key delete constraints에 따라 cascade되어 함께 삭제된다.
 5. Admin view
-* 관리, 내 정보, 로그아웃, 계정삭제의 메뉴가 존재한다.
+* 관리, 분석, 내 정보, 로그아웃, 계정삭제의 메뉴가 존재한다.
    1. 관리
       1. Admin가 관리하는 Airplane, Airline, Airport, Leg, Account를 선택할 수 있는 뷰를 보여준다.
       2. 선택한 Table에 대해 Insert, Update, Delete, Lookup를 할 수 있다.
@@ -59,10 +59,10 @@
       2. 해당 사용자가 참조된 관련 레코드도 foreign key delete constraints에 따라 cascade되어 함께 삭제된다.
    6. 로그아웃
 * 로그아웃하여 메인메뉴로 돌아간다.
-   
+  
 
 
-        
+​        
 * 유의사항
 1. delete 관련 query 진행 시 Phase2-1의 constraints가 잘 들어가있어야함.
    1. Foreign Key Delete Constraints가 CASCADE로 확실히 들어가있는지 확인 필수!!
@@ -80,4 +80,4 @@
 1. Phase2-1의 foreign key constraints 1개 변경 (쿼리 별도 첨부 - “Team4-Phase2-1.sql”)
 * 수정 전 : ALTER TABLE LEG ADD FOREIGN KEY (AdminNO) references ACCOUNT(AccountNo) ON DELETE SET NULL;
 * 수정 후 : ALTER TABLE LEG ADD FOREIGN KEY (AdminNO) references ACCOUNT(AccountNo) ON DELETE CASCADE;
-2. Phase2-3의 query 다수 변경 (쿼리 별도 첨부 - "Team4-Phase2-3.sql", 파일에 수정 부분 )
+2. Phase2-3의 query 다수 변경 (쿼리 별도 첨부 - "Team4-Phase2-3.sql", 파일에 수정 부분 표기)
