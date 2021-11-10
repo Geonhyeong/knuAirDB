@@ -7,8 +7,8 @@
    1. 회원가입 시 아이디, 패스워드, 이름, 나이, 성별, 주소, 전화번호, 이메일, 회원종류(admin or passenger) 등을 입력받는다.
    2.  primary key인 AccountNo는 DB에 존재하는 AccountNo 중 최대값 + 1을 해주어 key integrity constraint를 위반하지 않도록 해주었다.
 3.  로그인
-1. ID와 Password를 입력하여 로그인
-2. 회원의 종류(admin, passenger)에 따라 보이는 뷰가 다름
+   1. ID와 Password를 입력하여 로그인
+   2. 회원의 종류(admin, passenger)에 따라 보이는 뷰가 다름
 4. Passenger view
 * 조회, 예약, 내 정보, 로그아웃, 계정삭제의 메뉴가 존재한다.
    1. 조회
@@ -80,3 +80,4 @@
 1. Phase2-1의 foreign key constraints 1개 변경 (쿼리 별도 첨부 - “Team4-Phase2-1.sql”)
 * 수정 전 : ALTER TABLE LEG ADD FOREIGN KEY (AdminNO) references ACCOUNT(AccountNo) ON DELETE SET NULL;
 * 수정 후 : ALTER TABLE LEG ADD FOREIGN KEY (AdminNO) references ACCOUNT(AccountNo) ON DELETE CASCADE;
+2. Phase2-3의 query 다수 변경 (쿼리 별도 첨부 - "Team4-Phase2-3.sql", 파일에 수정 부분 )
