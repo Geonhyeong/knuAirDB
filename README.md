@@ -39,19 +39,27 @@
 5. Admin view
 * 관리, 내 정보, 로그아웃, 계정삭제의 메뉴가 존재한다.
    1. 관리
-      1. Admin가 관리하는 Airplane, Airline, Airport, Leg를 선택할 수 있는 뷰를 보여준다.
-      2. 선택한 Table에 대해 Insert, Update, Delete를 할 수 있다.
+      1. Admin가 관리하는 Airplane, Airline, Airport, Leg, Account를 선택할 수 있는 뷰를 보여준다.
+      2. 선택한 Table에 대해 Insert, Update, Delete, Lookup를 할 수 있다.
          1. Insert시 Admin은 모든 정보를 입력 한다. 성공적으로 Insert되었을 경우 최종 Insert된 결과를 보여준다.
          2. Update시 먼저 Admin은 Update하려는 레코드의 Primary key값인 ID값을 입력한다. 해당하는 레코드에 대해 원하는 정보를 Update한다.
          3. Delete시 Admin은 Delete하려는 레코드를 식별할 수 있는 ID값을 입력한다. 해당 레코드는 삭제되며 참조된 관련 레코드 또한  foreign key delete constraints에 따라 cascade되어 함께 삭제된다.
-   2. 내 정보
+         4. Lookup시 각 Entity에 대한 검색 메뉴들을 띄워주고 그것을 검색할 수 있다. Airport에는 Lookup이 없다(추후 추가 가능).
+   2. 분석
+      - knuAirDB에 대한 세부 정보를 조회하는 메뉴
+      1. 여행 횟수가 평균보다 적은 계정 정보 조회
+      2. 예약된 티켓 현황을 도시 이름으로 조회
+      3. 특정 날짜 이후에 출발하는 모든 사람을 조회
+      4. N개 이상 예약된 항공권 정보 조회
+   4. 내 정보
       1. ID, 이름, 성, 성별, 주소 등의 내 정보를 출력
       2. 내 정보를 수정할 수 있는 ChangeMode menu가 출력되고 숫자 입력시 해당 모드에 접속, 변경할 내용 입력 시 수정 완료
-   3. 로그아웃
-* 로그아웃하여 메인메뉴로 돌아간다.
-   1. 계정 삭제
+   5. 계정 삭제
       1. 해당 사용자의 계정을 DB에서 삭제한다.
       2. 해당 사용자가 참조된 관련 레코드도 foreign key delete constraints에 따라 cascade되어 함께 삭제된다.
+   6. 로그아웃
+* 로그아웃하여 메인메뉴로 돌아간다.
+   
 
 
         
