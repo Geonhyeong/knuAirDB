@@ -282,16 +282,9 @@ public class Passenger {
 	
 	public void showReservation()
 	{
-		int accountNo = 0;
-		
 		try {
-			String sql ="select accountno from account where accountid='" + id + "'";
+			String sql = "select * from eticket, account where passengerno=accountno and accountid='" + id + "'";
 			ResultSet rs = stmt.executeQuery(sql);
-			if (rs.next()) {
-				accountNo = rs.getInt(1);
-			}
-			sql = "select * from eticket where passengerno=" + accountNo;
-			rs = stmt.executeQuery(sql);
 			
 			System.out.println("LegID\t\tPassengerNo\t\tTotal_Price\t\tNum_of_Economy\tNum_of_Business\tNum_of_First");
 			

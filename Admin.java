@@ -25,9 +25,11 @@ public class Admin {
 			System.out.println("|                    Admin                    |");
 			System.out.println("|                                             |");
 			System.out.println("|                                             |");
-			System.out.println("|        1. Manage        2. MyPage           |");
+			System.out.println("|        1. Manage        2. Analysis         |");
 			System.out.println("|                                             |");
-			System.out.println("|        3. Logout        4. DeleteAccount    |");
+			System.out.println("|        3. My Page       4. DeleteAccount    |");
+			System.out.println("|                                             |");
+			System.out.println("|        5. Logout                            |");
 			System.out.println("|                                             |");
 			System.out.println("+---------------------------------------------+");
 			System.out.print(">> ");
@@ -37,12 +39,15 @@ public class Admin {
 				manage();
 				break;
 			case "2":
-				myPage();
+				analysis();
 				break;
 			case "3":
-				return;
+				myPage();
+				break;
 			case "4":
 				deleteAccount();
+				return;
+			case "5":
 				return;
 			default:
 				System.out.println("Wrong input!!");
@@ -62,7 +67,7 @@ public class Admin {
 		System.out.println("|                                             |");
 		System.out.println("|       3. Airport          4. Leg            |");
 		System.out.println("|                                             |");
-		System.out.println("|       5. Back                               |");
+		System.out.println("|       5. Account          6. Back           |");
 		System.out.println("|                                             |");
 		System.out.println("+---------------------------------------------+");
 		System.out.print(">> ");
@@ -81,6 +86,9 @@ public class Admin {
 			manageLeg();
 			break;
 		case "5":
+			manageAccount();
+			break;
+		case "6":
 			return;
 		default:
 			System.out.println("Wrong input!!");
@@ -107,7 +115,9 @@ public class Admin {
 			System.out.println("|                                             |");
 			System.out.println("|        1. Insert           2. Update        |");
 			System.out.println("|                                             |");
-			System.out.println("|        3. Delete           4. Back          |");
+			System.out.println("|        3. Delete           4. Lookup        |");
+			System.out.println("|                                             |");
+			System.out.println("|        5. Back                              |");
 			System.out.println("|                                             |");
 			System.out.println("+---------------------------------------------+");
 			System.out.print(">> ");
@@ -126,7 +136,7 @@ public class Admin {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				System.out.println("[ InsertÇÒ Airplane Á¤º¸¸¦ ÀÔ·ÂÇÏ½Ã¿À ]");
+				System.out.println("[ Insertí•  Airplane ì •ë³´ë¥¼ ì…ë ¥í•˜ì‹œì˜¤ ]");
 				int airplaneidNo = Integer.parseInt(airplaneid.substring(3,8)) + 1;
 				airplaneid = "APL00"+ airplaneidNo + "";
 				System.out.print("Airline ID: ");
@@ -146,8 +156,8 @@ public class Admin {
 					int result = stmt.executeUpdate(sql);
 					conn.commit();
 					
-					System.out.println("[¼º°øÀûÀ¸·Î Insert µÇ¾ú½À´Ï´Ù]");
-					System.out.println("[ Insert Á¤º¸ ]");
+					System.out.println("[ì„±ê³µì ìœ¼ë¡œ Insert ë˜ì—ˆìŠµë‹ˆë‹¤]");
+					System.out.println("[ Insert ì •ë³´ ]");
 					System.out.println("| Airplane ID : " + airplaneid);
 					System.out.println("| Airline ID : " + airlineid);
 					System.out.println("| Type : " + type);
@@ -165,8 +175,8 @@ public class Admin {
 				
 				String newAirplaneID = "";
 				while(true) {
-					System.out.println("[ UpdateÇÒ AirplaneID Á¤º¸¸¦ ÀÔ·ÂÇÏ½Ã¿À ]");
-					System.out.print("º¯°æÇÒ Airplane ID : ");
+					System.out.println("[ Updateí•  AirplaneID ì •ë³´ë¥¼ ì…ë ¥í•˜ì‹œì˜¤ ]");
+					System.out.print("ë³€ê²½í•  Airplane ID : ");
 					airplaneid = sc.nextLine();
 					try {
 						sql = "select airplaneid from airplane where airplaneid = '" + airplaneid + "'";
@@ -178,7 +188,7 @@ public class Admin {
 							break;
 						}
 						else {
-							System.out.println("[ ÀÔ·ÂÇÑ AirplaneID°¡ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù. ]");
+							System.out.println("[ ì…ë ¥í•œ AirplaneIDê°€ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤. ]");
 						}
 					} catch (SQLException e) {
 						// TODO Auto-generated catch block
@@ -210,27 +220,27 @@ public class Admin {
 				
 					switch(sc.nextLine()) {
 					case "1":
-						System.out.print("º¯°æÇÒ »õ·Î¿î Airline ID : ");
+						System.out.print("ë³€ê²½í•  ìƒˆë¡œìš´ Airline ID : ");
 						String newAirlineid = sc.nextLine();
 						sql = "UPDATE AIRPLANE SET airlineid = '" + newAirlineid + "' where airplaneid = '" + airplaneid + "'";
 						break;
 					case "2":
-						System.out.print("º¯°æÇÒ »õ·Î¿î Type : ");
+						System.out.print("ë³€ê²½í•  ìƒˆë¡œìš´ Type : ");
 						String newType = sc.nextLine();
 						sql = "UPDATE AIRPLANE SET type = '" + newType + "' where airplaneid = '" + airplaneid + "'";
 						break;
 					case "3":
-						System.out.print("º¯°æÇÒ »õ·Î¿î Number of Economy Seats : ");
+						System.out.print("ë³€ê²½í•  ìƒˆë¡œìš´ Number of Economy Seats : ");
 						String newEconomySeats = sc.nextLine();
 						sql = "UPDATE AIRPLANE SET economy_seats = '" + newEconomySeats + "' where airplaneid = '" + airplaneid + "'";
 						break;
 					case "4":
-						System.out.print("º¯°æÇÒ »õ·Î¿î Number of Business Seats : ");
+						System.out.print("ë³€ê²½í•  ìƒˆë¡œìš´ Number of Business Seats : ");
 						String newBusinessSeats = sc.nextLine();
 						sql = "UPDATE AIRPLANE SET business_seats = '" + newBusinessSeats + "' where airplaneid = '" + airplaneid + "'";
 						break;
 					case "5":
-						System.out.print("º¯°æÇÒ »õ·Î¿î Number of First Seats : ");
+						System.out.print("ë³€ê²½í•  ìƒˆë¡œìš´ Number of First Seats : ");
 						String newFirstSeats = sc.nextLine();
 						sql = "UPDATE AIRPLANE SET business_seats = '" + newFirstSeats + "' where airplaneid = '" + airplaneid + "'";
 						break;
@@ -249,7 +259,7 @@ public class Admin {
 					try {
 						int result = stmt.executeUpdate(sql);
 						conn.commit();
-						System.out.println("[¼º°øÀûÀ¸·Î º¯°æµÇ¾ú½À´Ï´Ù.]");
+						System.out.println("[ì„±ê³µì ìœ¼ë¡œ ë³€ê²½ë˜ì—ˆìŠµë‹ˆë‹¤.]");
 					} catch (SQLException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -258,21 +268,59 @@ public class Admin {
 				break;
 				
 			case "3": // Delete
-				System.out.println("[ DeleteÇÒ AirplaneID Á¤º¸¸¦ ÀÔ·ÂÇÏ½Ã¿À ]");
-				System.out.print("»èÁ¦ÇÒ Airplane ID : ");
+				System.out.println("[ Deleteí•  AirplaneID ì •ë³´ë¥¼ ì…ë ¥í•˜ì‹œì˜¤ ]");
+				System.out.print("ì‚­ì œí•  Airplane ID : ");
 				airplaneid = sc.nextLine();
 				try {
 					sql = "delete from airplane where airplaneid = '" + airplaneid + "'";
 					int result = stmt.executeUpdate(sql);
 					conn.commit();
-					System.out.println("[ »èÁ¦µÇ¾ú½À´Ï´Ù. ]");
+					System.out.println("[ ì‚­ì œë˜ì—ˆìŠµë‹ˆë‹¤. ]");
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				break;
 				
-			case "4": // Back
+			case "4": // lookup
+				try {
+					System.out.println("<<<<<<<<<< Airlines Name List >>>>>>>>>>");
+					sql = "SELECT Name FROM Airline";
+					rs = stmt.executeQuery(sql);
+					int count = 0;
+
+					while (rs.next()) {
+						String al_name = rs.getString(1);
+						System.out.print("| " + al_name + " ");
+						count++;
+						if (count % 7 == 0)
+							System.out.println("|");
+					}
+					System.out.println();
+					System.out.print("Please input Airline Name [referencing above list] : ");
+					String al_name = sc.nextLine();
+					sql = " SELECT AP.AIRLINEID, AVG((AP.ECONOMY_SEATS + AP.BUSINESS_SEATS + AP.FIRST_SEATS)) as AVG_SEATSCOUNT "
+							+ "FROM AIRPLANE AP, AIRLINE AL " + "WHERE AL.NAME = '" + al_name
+							+ "' AND AL.AIRLINEID = AP.AIRLINEID GROUP BY AP.AIRLINEID";
+
+					rs = stmt.executeQuery(sql);
+
+					System.out.println("AirlineID | Avg_seats_count");
+					System.out.println("---------------------------");
+
+					while (rs.next()) {
+						String al_id = rs.getString(1);
+						int avg_seats_count = rs.getInt(2);
+						System.out.println(al_id + "  |  " + avg_seats_count);
+					}
+					rs.close();
+					System.out.println();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				break;
+				
+			case "5": // Back
 				return;
 				
 			default:
@@ -300,7 +348,9 @@ public class Admin {
 			System.out.println("|                                             |");
 			System.out.println("|        1. Insert          2. Update         |");
 			System.out.println("|                                             |");
-			System.out.println("|        3. Delete          4. Back           |");
+			System.out.println("|        3. Delete          4. Lookup         |");
+			System.out.println("|                                             |");
+			System.out.println("|        5. Back                              |");
 			System.out.println("|                                             |");
 			System.out.println("+---------------------------------------------+");
 			System.out.print(">> ");
@@ -319,7 +369,7 @@ public class Admin {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				System.out.println("[ InsertÇÒ Airline Á¤º¸¸¦ ÀÔ·ÂÇÏ½Ã¿À ]");
+				System.out.println("[ Insertí•  Airline ì •ë³´ë¥¼ ì…ë ¥í•˜ì‹œì˜¤ ]");
 				int airplaneidNo = Integer.parseInt(airlineid.substring(2,6)) + 1;
 				airlineid = "AL0"+ airplaneidNo + "";
 				System.out.print("Name: ");
@@ -334,8 +384,8 @@ public class Admin {
 					int result = stmt.executeUpdate(sql);
 					conn.commit();
 					
-					System.out.println("[¼º°øÀûÀ¸·Î Insert µÇ¾ú½À´Ï´Ù]");
-					System.out.println("[ Insert Á¤º¸ ]");
+					System.out.println("[ì„±ê³µì ìœ¼ë¡œ Insert ë˜ì—ˆìŠµë‹ˆë‹¤]");
+					System.out.println("[ Insert ì •ë³´ ]");
 					System.out.println("| Airline ID : " + airlineid);
 					System.out.println("| Name : " + name);
 					System.out.println("| Price ratio difference of seat : " + diff_seat);
@@ -351,8 +401,8 @@ public class Admin {
 				
 				String newAirlineID = "";
 				while(true) {
-					System.out.println("[ UpdateÇÒ AirlineID Á¤º¸¸¦ ÀÔ·ÂÇÏ½Ã¿À ]");
-					System.out.print("º¯°æÇÒ Airline ID : ");
+					System.out.println("[ Updateí•  AirlineID ì •ë³´ë¥¼ ì…ë ¥í•˜ì‹œì˜¤ ]");
+					System.out.print("ë³€ê²½í•  Airline ID : ");
 					airlineid = sc.nextLine();
 					try {
 						sql = "select airlineid from airline where airlineid = '" + airlineid + "'";
@@ -364,7 +414,7 @@ public class Admin {
 							break;
 						}
 						else {
-							System.out.println("[ ÀÔ·ÂÇÑ AirlineID°¡ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù. ]");
+							System.out.println("[ ì…ë ¥í•œ AirlineIDê°€ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤. ]");
 						}
 					} catch (SQLException e) {
 						// TODO Auto-generated catch block
@@ -394,21 +444,20 @@ public class Admin {
 				
 					switch(sc.nextLine()) {
 					case "1":
-						System.out.print("º¯°æÇÒ »õ·Î¿î Name : ");
+						System.out.print("ë³€ê²½í•  ìƒˆë¡œìš´ Name : ");
 						String newName = sc.nextLine();
 						sql = "UPDATE AIRLINE SET airlineid = '" + newName + "' where airlineid = '" + airlineid + "'";
 						break;
 					case "2":
-						System.out.print("º¯°æÇÒ »õ·Î¿î Price ratio difference of seat : ");
+						System.out.print("ë³€ê²½í•  ìƒˆë¡œìš´ Price ratio difference of seat : ");
 						String newDiff_Seat = sc.nextLine();
 						sql = "UPDATE AIRLINE SET diff_seat = '" + newDiff_Seat + "' where airlineid = '" + airlineid + "'";
 						break;
 					case "3":
-						System.out.print("º¯°æÇÒ »õ·Î¿î Price ratio difference of beggage : ");
+						System.out.print("ë³€ê²½í•  ìƒˆë¡œìš´ Price ratio difference of beggage : ");
 						String newDiff_Beggage = sc.nextLine();
 						sql = "UPDATE AIRLINE SET diff_beggage = '" + newDiff_Beggage + "' where airlineid = '" + airlineid + "'";
-						break;
-					
+						break;						
 					case "4":
 						outFlag = 1;
 						break;
@@ -424,7 +473,7 @@ public class Admin {
 					try {
 						int result = stmt.executeUpdate(sql);
 						conn.commit();
-						System.out.println("[¼º°øÀûÀ¸·Î º¯°æµÇ¾ú½À´Ï´Ù.]");
+						System.out.println("[ì„±ê³µì ìœ¼ë¡œ ë³€ê²½ë˜ì—ˆìŠµë‹ˆë‹¤.]");
 					} catch (SQLException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -434,23 +483,89 @@ public class Admin {
 				
 			case "3": // Delete
 				try {
-					System.out.println("[ DeleteÇÒ AirlineID Á¤º¸¸¦ ÀÔ·ÂÇÏ½Ã¿À ]");
-					System.out.print("»èÁ¦ÇÒ Airline ID : ");
+					System.out.println("[ Deleteí•  AirlineID ì •ë³´ë¥¼ ì…ë ¥í•˜ì‹œì˜¤ ]");
+					System.out.print("ì‚­ì œí•  Airline ID : ");
 					airlineid = sc.nextLine();
 					
 					sql = "delete from airline where airlineid = '" + airlineid + "'";
 					int result = stmt.executeUpdate(sql);
 					conn.commit();
-					System.out.println("[ »èÁ¦µÇ¾ú½À´Ï´Ù. ]");
+					System.out.println("[ ì‚­ì œë˜ì—ˆìŠµë‹ˆë‹¤. ]");
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				break;
+			case "4":
+				lookupAirline();
+				break;
 				
-			case "4": // Back
+			case "5": // Back
 				return;
 				
+			default:
+				System.out.println("Wrong input!!");
+				System.exit(1);
+			}
+		}
+	}
+
+	public void lookupAirline() {
+		while (true) {
+			System.out.println("+---------------------------------------------+");
+			System.out.println("|                                             |");
+			System.out.println("|              Lookup - Airline               |");
+			System.out.println("|                                             |");
+			System.out.println("|       1. ê³µí•­ IDë¡œ ê²€ìƒ‰í•˜ê¸°                     |");
+			System.out.println("|                                             |");
+			System.out.println("|       2. Back                               |");
+			System.out.println("|                                             |");
+			System.out.println("+---------------------------------------------+");
+			System.out.print(">> ");
+			
+			switch (sc.nextLine()) {
+			case "1":
+				try {
+					String sql = "select airportid from airport";
+					ResultSet rs = stmt.executeQuery(sql);
+					int count = 0;
+
+					System.out.println("<<<<<< AirportID List >>>>>>");
+					while (rs.next()) {
+						String airport_id = rs.getString(1);
+						System.out.print("| " + airport_id + " ");
+						count++;
+						if (count % 10 == 0)
+							System.out.println("|");
+					}
+
+					System.out.print("Please input airport_id [referencing above list] : ");
+					String airport_id = sc.nextLine();
+
+					sql = "SELECT AL.Name " + "FROM AIRLINE AL "
+							+ "WHERE EXISTS( SELECT * FROM LEG L, ASSIGNED_BY AB, AIRPLANE AP " + "WHERE  (L.Dep_airportID = '"
+							+ airport_id + "' OR L.Arr_airportID = '" + airport_id + "' ) "
+							+ "AND L.LegID = AB.LegID  AND AB.AirplaneID = AP.AirplaneID AND AP.AirlineID = AL.AirlineID )";
+					rs = stmt.executeQuery(sql);
+					count = 0;
+
+					System.out.println("<< query 9 result >>");
+					System.out.println("Airline Name");
+					System.out.println("------------");
+
+					while (rs.next()) {
+						String airline_name = rs.getString(1);
+						System.out.println(airline_name);
+						count++;
+					}
+					rs.close();
+					System.out.println();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				break;
+			case "2":
+				return;
 			default:
 				System.out.println("Wrong input!!");
 				System.exit(1);
@@ -485,7 +600,7 @@ public class Admin {
 			case "1": // Insert 
 				
 				
-				System.out.println("[ InsertÇÒ Airport Á¤º¸¸¦ ÀÔ·ÂÇÏ½Ã¿À ]");
+				System.out.println("[ Insertí•  Airport ì •ë³´ë¥¼ ì…ë ¥í•˜ì‹œì˜¤ ]");
 				System.out.print("Airport ID: ");
 				airportid = sc.nextLine();
 				System.out.print("Name: ");
@@ -502,8 +617,8 @@ public class Admin {
 					int result = stmt.executeUpdate(sql);
 					conn.commit();
 					
-					System.out.println("[¼º°øÀûÀ¸·Î Insert µÇ¾ú½À´Ï´Ù]");
-					System.out.println("[ Insert Á¤º¸ ]");
+					System.out.println("[ì„±ê³µì ìœ¼ë¡œ Insert ë˜ì—ˆìŠµë‹ˆë‹¤]");
+					System.out.println("[ Insert ì •ë³´ ]");
 					System.out.println("| Airport ID : " + airportid);
 					System.out.println("| Name : " + name);
 					System.out.println("| City : " + city);
@@ -519,8 +634,8 @@ public class Admin {
 				
 				String newAirportID = "";
 				while(true) {
-					System.out.println("[ UpdateÇÒ AirportID Á¤º¸¸¦ ÀÔ·ÂÇÏ½Ã¿À ]");
-					System.out.print("º¯°æÇÒ Airport ID : ");
+					System.out.println("[ Updateí•  AirportID ì •ë³´ë¥¼ ì…ë ¥í•˜ì‹œì˜¤ ]");
+					System.out.print("ë³€ê²½í•  Airport ID : ");
 					airportid = sc.nextLine();
 					try {
 						sql = "select airportid from airport where airportid = '" + airportid + "'";
@@ -532,7 +647,7 @@ public class Admin {
 							break;
 						}
 						else {
-							System.out.println("[ ÀÔ·ÂÇÑ AirportID°¡ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù. ]");
+							System.out.println("[ ì…ë ¥í•œ AirportIDê°€ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤. ]");
 						}
 					} catch (SQLException e) {
 						// TODO Auto-generated catch block
@@ -560,17 +675,17 @@ public class Admin {
 				
 					switch(sc.nextLine()) {
 					case "1":
-						System.out.print("º¯°æÇÒ »õ·Î¿î Name : ");
+						System.out.print("ë³€ê²½í•  ìƒˆë¡œìš´ Name : ");
 						String newName = sc.nextLine();
 						sql = "UPDATE AIRPORT SET airportid = '" + newName + "' where airportid = '" + airportid + "'";
 						break;
 					case "2":
-						System.out.print("º¯°æÇÒ »õ·Î¿î City : ");
+						System.out.print("ë³€ê²½í•  ìƒˆë¡œìš´ City : ");
 						String newCity = sc.nextLine();
 						sql = "UPDATE AIRPORT SET city = '" + newCity + "' where airportid = '" + airportid + "'";
 						break;
 					case "3":
-						System.out.print("º¯°æÇÒ »õ·Î¿î Number of total gates : ");
+						System.out.print("ë³€ê²½í•  ìƒˆë¡œìš´ Number of total gates : ");
 						String newTotal_Gates = sc.nextLine();
 						sql = "UPDATE AIRPORT SET total_gates = '" + newTotal_Gates + "' where airportid = '" + airportid + "'";
 						break;
@@ -590,7 +705,7 @@ public class Admin {
 					try {
 						int result = stmt.executeUpdate(sql);
 						conn.commit();
-						System.out.println("[¼º°øÀûÀ¸·Î º¯°æµÇ¾ú½À´Ï´Ù.]");
+						System.out.println("[ì„±ê³µì ìœ¼ë¡œ ë³€ê²½ë˜ì—ˆìŠµë‹ˆë‹¤.]");
 					} catch (SQLException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -600,14 +715,14 @@ public class Admin {
 				
 			case "3": // Delete
 				try {
-					System.out.println("[ DeleteÇÒ AirportID Á¤º¸¸¦ ÀÔ·ÂÇÏ½Ã¿À ]");
-					System.out.print("»èÁ¦ÇÒ Airport ID : ");
+					System.out.println("[ Deleteí•  AirportID ì •ë³´ë¥¼ ì…ë ¥í•˜ì‹œì˜¤ ]");
+					System.out.print("ì‚­ì œí•  Airport ID : ");
 					airportid = sc.nextLine();
 
 					sql = "delete from airport where airportid = '" + airportid + "'";
 					int result = stmt.executeUpdate(sql);
 					conn.commit();
-					System.out.println("[ »èÁ¦µÇ¾ú½À´Ï´Ù. ]");
+					System.out.println("[ ì‚­ì œë˜ì—ˆìŠµë‹ˆë‹¤. ]");
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -623,6 +738,7 @@ public class Admin {
 			}
 		}
 	}
+	
 	public void manageLeg() {
 		
 		String legid = "";
@@ -644,7 +760,9 @@ public class Admin {
 			System.out.println("|                                             |");
 			System.out.println("|        1. Insert          2. Update         |");
 			System.out.println("|                                             |");
-			System.out.println("|        3. Delete          4. Back           |");
+			System.out.println("|        3. Delete          4. Lookup         |");
+			System.out.println("|                                             |");
+			System.out.println("|        5. Back                              |");
 			System.out.println("|                                             |");
 			System.out.println("+---------------------------------------------+");
 			System.out.print(">> ");
@@ -663,7 +781,7 @@ public class Admin {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				System.out.println("[ InsertÇÒ Leg Á¤º¸¸¦ ÀÔ·ÂÇÏ½Ã¿À ]");
+				System.out.println("[ Insertí•  Leg ì •ë³´ë¥¼ ì…ë ¥í•˜ì‹œì˜¤ ]");
 				int legidNo = Integer.parseInt(legid.substring(3,8)) + 1;
 				legid = "LEG00"+ legidNo + "";
 				System.out.print("Depart Airport ID: ");
@@ -687,8 +805,8 @@ public class Admin {
 					int result = stmt.executeUpdate(sql);
 					conn.commit();
 					
-					System.out.println("[¼º°øÀûÀ¸·Î Insert µÇ¾ú½À´Ï´Ù]");
-					System.out.println("[ Insert Á¤º¸ ]");
+					System.out.println("[ì„±ê³µì ìœ¼ë¡œ Insert ë˜ì—ˆìŠµë‹ˆë‹¤]");
+					System.out.println("[ Insert ì •ë³´ ]");
 					System.out.println("| Leg ID : " + legid);
 					System.out.println("| Depart Airport ID : " + dep_airportid);
 					System.out.println("| Arrive Airport ID : " + arr_airportid);
@@ -708,8 +826,8 @@ public class Admin {
 				
 				String newLegID = "";
 				while(true) {
-					System.out.println("[ UpdateÇÒ LegID Á¤º¸¸¦ ÀÔ·ÂÇÏ½Ã¿À ]");
-					System.out.print("º¯°æÇÒ Leg ID : ");
+					System.out.println("[ Updateí•  LegID ì •ë³´ë¥¼ ì…ë ¥í•˜ì‹œì˜¤ ]");
+					System.out.print("ë³€ê²½í•  Leg ID : ");
 					legid = sc.nextLine();
 					try {
 						sql = "select legid from leg where legid = '" + legid + "'";
@@ -721,7 +839,7 @@ public class Admin {
 							break;
 						}
 						else {
-							System.out.println("[ ÀÔ·ÂÇÑ LegID°¡ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù. ]");
+							System.out.println("[ ì…ë ¥í•œ LegIDê°€ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤. ]");
 						}
 					} catch (SQLException e) {
 						// TODO Auto-generated catch block
@@ -755,37 +873,37 @@ public class Admin {
 				
 					switch(sc.nextLine()) {
 					case "1":
-						System.out.print("º¯°æÇÒ »õ·Î¿î Depart Airport ID : ");
+						System.out.print("ë³€ê²½í•  ìƒˆë¡œìš´ Depart Airport ID : ");
 						String newDepAirportID = sc.nextLine();
 						sql = "UPDATE LEG SET dep_airportid = '" + newDepAirportID + "' where legid = '" + legid + "'";
 						break;
 					case "2":
-						System.out.print("º¯°æÇÒ »õ·Î¿î Arrive AirportID : ");
+						System.out.print("ë³€ê²½í•  ìƒˆë¡œìš´ Arrive AirportID : ");
 						String newArrAirportID = sc.nextLine();
 						sql = "UPDATE LEG SET arr_airportid = '" + newArrAirportID + "' where legid = '" + legid + "'";
 						break;
 					case "3":
-						System.out.print("º¯°æÇÒ »õ·Î¿î Departure gate : ");
+						System.out.print("ë³€ê²½í•  ìƒˆë¡œìš´ Departure gate : ");
 						String newDepGate = sc.nextLine();
 						sql = "UPDATE LEG SET dep_gate = '" + newDepGate + "' where legid = '" + legid + "'";
 						break;
 					case "4":
-						System.out.print("º¯°æÇÒ »õ·Î¿î Scheduled departure time : ");
+						System.out.print("ë³€ê²½í•  ìƒˆë¡œìš´ Scheduled departure time : ");
 						String newSchedDepTime = sc.nextLine();
 						sql = "UPDATE LEG SET sched_dep_time = '" + newSchedDepTime + "' where legid = '" + legid + "'";
 						break;
 					case "5":
-						System.out.print("º¯°æÇÒ »õ·Î¿î Scheduled arrival time : ");
+						System.out.print("ë³€ê²½í•  ìƒˆë¡œìš´ Scheduled arrival time : ");
 						String newSchedArrTime = sc.nextLine();
 						sql = "UPDATE LEG SET sched_arr_time = '" + newSchedArrTime + "' where legid = '" + legid + "'";
 						break;
 					case "6":
-						System.out.print("º¯°æÇÒ »õ·Î¿î AdminNo : ");
+						System.out.print("ë³€ê²½í•  ìƒˆë¡œìš´ AdminNo : ");
 						String newAdminNo = sc.nextLine();
 						sql = "UPDATE LEG SET adminno = '" + newAdminNo + "' where legid = '" + legid + "'";
 						break;
 					case "7":
-						System.out.print("º¯°æÇÒ »õ·Î¿î Price : ");
+						System.out.print("ë³€ê²½í•  ìƒˆë¡œìš´ Price : ");
 						String newPrice = sc.nextLine();
 						sql = "UPDATE LEG SET price = '" + newPrice + "' where legid = '" + legid + "'";
 						break;
@@ -804,7 +922,7 @@ public class Admin {
 					try {
 						int result = stmt.executeUpdate(sql);
 						conn.commit();
-						System.out.println("[¼º°øÀûÀ¸·Î º¯°æµÇ¾ú½À´Ï´Ù.]");
+						System.out.println("[ì„±ê³µì ìœ¼ë¡œ ë³€ê²½ë˜ì—ˆìŠµë‹ˆë‹¤.]");
 					} catch (SQLException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -814,21 +932,25 @@ public class Admin {
 				
 			case "3": // Delete
 				try {
-					System.out.println("[ DeleteÇÒ LegID Á¤º¸¸¦ ÀÔ·ÂÇÏ½Ã¿À ]");
-					System.out.print("»èÁ¦ÇÒ Leg ID : ");
+					System.out.println("[ Deleteí•  LegID ì •ë³´ë¥¼ ì…ë ¥í•˜ì‹œì˜¤ ]");
+					System.out.print("ì‚­ì œí•  Leg ID : ");
 					legid = sc.nextLine();
 					
 					sql = "delete from leg where legid = '" + legid + "'";
 					int result = stmt.executeUpdate(sql);
 					conn.commit();
-					System.out.println("[ »èÁ¦µÇ¾ú½À´Ï´Ù. ]");
+					System.out.println("[ ì‚­ì œë˜ì—ˆìŠµë‹ˆë‹¤. ]");
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				break;
-				
-			case "4": // Back
+			
+			case "4":
+				lookupLeg();
+				break;
+			
+			case "5": // Back
 				return;
 				
 			default:
@@ -838,9 +960,502 @@ public class Admin {
 		}
 	}
 	
-	
-	
+	public void lookupLeg()
+	{
+		while (true) {
+			System.out.println("+---------------------------------------------+");
+			System.out.println("|                                             |");
+			System.out.println("|              Lookup - Leg                   |");
+			System.out.println("|                                             |");
+			System.out.println("|       1. ì¶œë°œ ê³µí•­ìœ¼ë¡œ ê²€ìƒ‰í•˜ê¸°                   |");
+			System.out.println("|                                             |");
+			System.out.println("|       2. ë¹„í–‰ê¸° íƒ€ì…ìœ¼ë¡œ ê²€ìƒ‰í•˜ê¸°                 |");
+			System.out.println("|                                             |");
+			System.out.println("|       3. ê°€ê²©ìœ¼ë¡œ ê²€ìƒ‰í•˜ê¸°                      |");
+			System.out.println("|                                             |");
+			System.out.println("|       4. Back                               |");
+			System.out.println("|                                             |");
+			System.out.println("+---------------------------------------------+");
+			System.out.print(">> ");
+			
+			switch (sc.nextLine()) {
+			case "1":
+				try {
+					System.out.println("<<<<<< City List >>>>>>");
+					String sql = "SELECT Distinct city from airport";
+					ResultSet rs = stmt.executeQuery(sql);
+					int count = 0;
 
+					while (rs.next()) {
+						String city = rs.getString(1);
+						System.out.print("| " + city + " ");
+						count++;
+						if (count % 10 == 0)
+							System.out.println("|");
+					}
+
+					System.out.println();
+					System.out.print("Please input City Name [referencing above list] : ");
+					String city = sc.nextLine();
+
+					sql = "SELECT LEGID, DEP_AIRPORTID, ARR_AIRPORTID, DEP_GATE, SCHEDULED_DEP_TIME, SCHEDULED_ARR_TIME, PRICE "
+							+ "FROM LEG " + "WHERE DEP_AIRPORTID IN (SELECT AIRPORTID FROM AIRPORT WHERE CITY ='" + city + "')";
+					rs = stmt.executeQuery(sql);
+
+					System.out.println("Leg_id | Dep_airport_id | Arr_airport_id | Dep_gate | Dep_time | Arr_time | Price");
+					System.out.println("---------------------------------------------------------------------------------");
+
+					while (rs.next()) {
+						String leg_id = rs.getString(1);
+						String dep_airport_id = rs.getString(2);
+						String arr_airport_id = rs.getString(3);
+						int dep_gate = rs.getInt(4);
+						Date dep_time = rs.getDate(5);
+						Date arr_time = rs.getDate(6);
+						int price = rs.getInt(7);
+
+						System.out.println(leg_id + "  |  " + dep_airport_id + "  |  " + arr_airport_id + "  |  " + dep_gate
+								+ "  |  " + dep_time + "  |  " + arr_time + "  |  " + price);
+					}
+					rs.close();
+					System.out.println();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				break;
+			case "2":
+				try {
+					String sql = "Select type from airplane";
+					ResultSet rs = stmt.executeQuery(sql);
+					int count = 0;
+
+					while (rs.next()) {
+						String type = rs.getString(1);
+						System.out.print("| " + type + " ");
+						count++;
+						if (count % 6 == 0)
+							System.out.println("|");
+					}
+					System.out.println();
+					System.out.print("Please input Airplane Type(name) [referencing above list] : ");
+					String type = sc.nextLine();
+					sql = "SELECT DEP_AIRPORTID, ARR_AIRPORTID, DEP_GATE, SCHEDULED_DEP_TIME, SCHEDULED_ARR_TIME, PRICE "
+							+ "			      FROM LEG L, ASSIGNED_BY A WHERE L.LEGID = A.LEGID AND A.AIRPLANEID IN "
+							+ "			      (SELECT AIRPLANEID FROM AIRPLANE WHERE TYPE = '" + type + "')";
+					rs = stmt.executeQuery(sql);
+
+					System.out.println("Dep_airport_id | Arr_airport_id | Dep_gate | Dep_time | Arr_time | price");
+					System.out.println("------------------------------------------------------------------------");
+
+					while (rs.next()) {
+						String dep_airport_id = rs.getString(1);
+						String arr_airport_id = rs.getString(2);
+						int dep_gate = rs.getInt(3);
+						Date dep_time = rs.getDate(4);
+						Date arr_time = rs.getDate(5);
+						int price = rs.getInt(6);
+
+						System.out.println(dep_airport_id + "  |  " + arr_airport_id + "  |  " + dep_gate + "  |  " + dep_time
+								+ "  |  " + arr_time + "  |  " + price);
+					}
+					rs.close();
+					System.out.println();
+
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				break;
+			case "3":
+				try {
+					System.out.print("Please input Leg Price [Type 'INT'] >= ");
+					int price = sc.nextInt();
+					sc.nextLine();
+					String sql = "SELECT DEP_AIRPORT, ARR_AIRPORT, DEP_DATE, ARR_DATE FROM ( SELECT DEP_AIRPORTID AS DEP_AIRPORT, ARR_AIRPORTID AS ARR_AIRPORT, SCHEDULED_DEP_TIME AS DEP_DATE, SCHEDULED_ARR_TIME AS ARR_DATE FROM LEG WHERE PRICE >="
+							+ price + ")";
+					ResultSet rs = stmt.executeQuery(sql);
+					
+					System.out.println("Dep_airport_id | Arr_airport_id | Dep_date | Arr_date");
+					System.out.println("-----------------------------------------------------");
+
+					while (rs.next()) {
+						String dep_airport_id = rs.getString(1);
+						String arr_airport_id = rs.getString(2);
+						Date dep_date = rs.getDate(3);
+						Date arr_date = rs.getDate(4);
+
+						System.out.println(dep_airport_id + " | " + arr_airport_id + " | " + dep_date + " | " + arr_date);
+					}
+					rs.close();
+					System.out.println();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				break;
+			case "4":
+				return;
+			default:
+				System.out.println("Wrong input!!");
+				System.exit(1);
+			}
+		}
+	}
+	
+	public void manageAccount() {
+		while (true) {
+			System.out.println("+---------------------------------------------+");
+			System.out.println("|                                             |");
+			System.out.println("|              Manage - Account               |");
+			System.out.println("|                                             |");
+			System.out.println("|                                             |");
+			System.out.println("|       1. Lookup                             |");
+			System.out.println("|                                             |");
+			System.out.println("|       2. Back                               |");
+			System.out.println("|                                             |");
+			System.out.println("+---------------------------------------------+");
+			System.out.print(">> ");
+			
+			switch (sc.nextLine()) {
+			case "1":
+				lookupAccount();
+				break;
+			case "2":
+				return;
+			default:
+				System.out.println("Wrong input!!");
+				System.exit(1);
+			}
+		}
+	}
+	
+	public void lookupAccount() {
+		while (true) {
+			System.out.println("+---------------------------------------------+");
+			System.out.println("|                                             |");
+			System.out.println("|              Lookup - Account               |");
+			System.out.println("|                                             |");
+			System.out.println("|       1. íƒ€ì…ìœ¼ë¡œ ê²€ìƒ‰                         |");
+			System.out.println("|                                             |");
+			System.out.println("|       2. ë©¤ë²„ì‹­ìœ¼ë¡œ ê²€ìƒ‰                        |");
+			System.out.println("|                                             |");
+			System.out.println("|       3. Back                               |");
+			System.out.println("|                                             |");
+			System.out.println("+---------------------------------------------+");
+			System.out.print(">> ");
+			
+			switch (sc.nextLine()) {
+			case "1":
+				try {
+					System.out.print("Please input Account Type >> ['Admin'/'Passenger'] : ");
+					String type = sc.nextLine();
+					String sql = "SELECT Fname, Lname FROM Account Where Type = '" + type + "'";
+					ResultSet rs = stmt.executeQuery(sql);
+
+					System.out.println("Fname\t|\tLname");
+					System.out.println("-------------");
+
+					while (rs.next()) {
+						String fname = rs.getString(1);
+						String lname = rs.getString(2);
+						System.out.println(fname + "\t|\t" + lname);
+					}
+					rs.close();
+					System.out.println();
+
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				break;
+			case "2":
+				lookupAccountMembership();
+				break;
+			case "3":
+				return;
+			default:
+				System.out.println("Wrong input!!");
+				System.exit(1);
+			}
+		}
+	}
+	
+	public void lookupAccountMembership() {
+		while (true) {
+			System.out.println("+---------------------------------------------+");
+			System.out.println("|                                             |");
+			System.out.println("|              Lookup - Membership            |");
+			System.out.println("|                                             |");
+			System.out.println("|       1. ì„±ë³„ë¡œ ì„¸ë¶€ ê²€ìƒ‰í•˜ê¸°                    |");
+			System.out.println("|                                             |");
+			System.out.println("|       2. ì˜ˆì•½í•œ ì‚¬ëŒë“¤ë§Œ ê²€ìƒ‰í•˜ê¸°                 |");
+			System.out.println("|                                             |");
+			System.out.println("|       3. ê·¸ëƒ¥ ê²€ìƒ‰í•˜ê¸°                         |");
+			System.out.println("|                                             |");
+			System.out.println("|       4. ë©¤ë²„ì‹­ ë³„ ì‚¬ëŒ ìˆ˜ì™€ í‰ê·  ì—¬í–‰íšŸìˆ˜ ì¶œë ¥      |");
+			System.out.println("|                                             |");
+			System.out.println("|       5. Back                               |");
+			System.out.println("|                                             |");
+			System.out.println("+---------------------------------------------+");
+			System.out.print(">> ");
+			
+			switch (sc.nextLine()) {
+			case "1":
+				try {
+					System.out.print("Please input Membership Title ['Rubi'/'Diamond'/'Gold'/'Silver'] : ");
+					String title = sc.nextLine();
+					System.out.print("Please input Sex ['M'/'F'] : ");
+					String in_sex = sc.nextLine();
+					String sql = "SELECT A.FName, A.LName, A.Sex " + "FROM ACCOUNT A "
+							+ "WHERE EXISTS( SELECT * FROM MEMBERSHIP M WHERE  M.Title = '" + title
+							+ "' AND M.AccountNo = A.AccountNo ) AND A.Sex = '" + in_sex + "'";
+					ResultSet rs = stmt.executeQuery(sql);
+
+					System.out.println("Fname\t| Lname\t| Sex");
+					System.out.println("-------------------");
+
+					while (rs.next()) {
+						String fname = rs.getString(1);
+						String lname = rs.getString(2);
+						String sex = rs.getString(3);
+						System.out.println(fname + "\t| " + lname + "\t| " + sex);
+					}
+					rs.close();
+					System.out.println();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				break;
+			case "2":
+				try {
+					System.out.print("Please input Membership ['Rubi'/'Diamond'/'Gold'/'Silver'] : ");
+					String title = sc.nextLine();
+					String sql = "SELECT ACCOUNTID, FNAME, LNAME, AGE, PHONE, SEX " + "FROM ACCOUNT A, MEMBERSHIP M "
+							+ "WHERE A.ACCOUNTNO = M.ACCOUNTNO AND TITLE = '" + title + "'  INTERSECT "
+							+ "SELECT ACCOUNTID, FNAME, LNAME, AGE, PHONE, SEX FROM ACCOUNT WHERE ACCOUNTNO IN (SELECT PASSENGERNO FROM ETICKET)";
+					ResultSet rs = stmt.executeQuery(sql);
+
+					System.out.println("AccountID | Fname | Lname | Age | Phone_number | Sex");
+					System.out.println("----------------------------------------------------");
+
+					while (rs.next()) {
+						String account_id = rs.getString(1);
+						String fname = rs.getString(2);
+						String lname = rs.getString(3);
+						int age = rs.getInt(4);
+						String phone = rs.getString(5);
+						String sex = rs.getString(6);
+						System.out.println(
+								account_id + " | " + fname + " | " + lname + " | " + age + " | " + phone + " | " + sex);
+					}
+					rs.close();
+					System.out.println();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				break;
+			case "3":
+				try {
+					System.out.print("Please input Membership Title ['Rubi'/'Diamond'/'Gold'/'Silver'] : ");
+					String title = sc.nextLine();
+					String sql = "SELECT FNAME, LNAME, PHONE FROM ACCOUNT "
+							+ "WHERE ACCOUNTNO IN (SELECT ACCOUNTNO FROM MEMBERSHIP WHERE TITLE = '" + title + "')";
+					ResultSet rs = stmt.executeQuery(sql);
+
+					System.out.println("Fname | Lname | Phone_number");
+					System.out.println("----------------------------");
+
+					while (rs.next()) {
+						String fname = rs.getString(1);
+						String lname = rs.getString(2);
+						String phone = rs.getString(3);
+						System.out.println(fname + " | " + lname + " | " + phone);
+					}
+					rs.close();
+					System.out.println();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				break;
+			case "4":
+				try {
+					String sql = "SELECT M.Title, COUNT(*), AVG(Travel_count) "
+							+ "FROM ((MEMBERSHIP M JOIN ACCOUNT A ON M.AccountNo=A.AccountNo) JOIN ETICKET E ON A.AccountNo=E.PassengerNo) GROUP BY M.Title";
+					ResultSet rs = stmt.executeQuery(sql);
+
+					System.out.println("Membership | Passenger_count | Avg_travel_count");
+					System.out.println("-----------------------------------------------");
+
+					while (rs.next()) {
+						String m_title = rs.getString(1);
+						int passenger_count = rs.getInt(2);
+						float avg_travel_count = rs.getFloat(3);
+						System.out.println(m_title + "  |  " + passenger_count + "  |  " + avg_travel_count);
+					}
+					rs.close();
+					System.out.println();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				break;
+				
+			case "5":
+				return;
+			default:
+				System.out.println("Wrong input!!");
+				System.exit(1);
+			}
+		}
+	}
+
+	public void analysis()
+	{
+		ResultSet rs = null;
+		System.out.println("+---------------------------------------------+");
+		System.out.println("|                                             |");
+		System.out.println("|               Admin - Analysis              |");
+		System.out.println("|                                             |");
+		System.out.println("|                                             |");
+		System.out.println("|     1. ì—¬í–‰ íšŸìˆ˜ê°€ í‰ê· ë³´ë‹¤ ì ì€ ê³„ì • ì •ë³´ ì¡°íšŒí•˜ê¸°    |");
+		System.out.println("|                                             |");
+		System.out.println("|     2. ì˜ˆì•½ëœ í‹°ì¼“ í˜„í™©ì„ ë„ì‹œ ì´ë¦„ìœ¼ë¡œ ì¡°íšŒí•˜ê¸°      |");
+		System.out.println("|                                             |");
+		System.out.println("|     3. íŠ¹ì • ë‚ ì§œ ì´í›„ì— ì¶œë°œí•˜ëŠ” ëª¨ë“  ì‚¬ëŒë“¤ ì¡°íšŒí•˜ê¸°  |");
+		System.out.println("|                                             |");
+		System.out.println("|     4. Nê°œ ì´ìƒ ì˜ˆì•½ëœ í•­ê³µê¶Œ ì •ë³´ ì¡°íšŒí•˜ê¸°          |");
+		System.out.println("|                                             |");
+		System.out.println("|     5. Back                                 |");
+		System.out.println("|                                             |");
+		System.out.println("+---------------------------------------------+");
+		System.out.print(">> ");
+		
+		switch (sc.nextLine()) {
+		case "1":
+			try {
+				String sql = "SELECT M.Title, A.FName, A.Lname FROM ACCOUNT A, MEMBERSHIP M, (SELECT M.Title AS title, AVG(M.Travel_count) AS trv "
+						+ "FROM MEMBERSHIP M GROUP BY M.Title) Avg_Travel "
+						+ "WHERE A.AccountNo = M.AccountNo AND M.Title = Avg_Travel.title AND M.Travel_count < Avg_Travel.trv";
+				rs = stmt.executeQuery(sql);
+				
+				System.out.println("Membership | Fname | Lname");
+				System.out.println("--------------------------");
+
+				while (rs.next()) {
+					String m_title = rs.getString(1);
+					String fname = rs.getString(2);
+					String lname = rs.getString(3);
+					System.out.println(m_title + " | " + fname + " | " + lname);
+				}
+				rs.close();
+				System.out.println();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			break;
+		case "2":
+			try {
+				System.out.println("<<<<<< City List >>>>>>");
+				String sql = "SELECT Distinct city from airport";
+				rs = stmt.executeQuery(sql);
+				int count = 0;
+
+				while (rs.next()) {
+					String city = rs.getString(1);
+					System.out.print("| " + city + " ");
+					count++;
+					if (count % 10 == 0)
+						System.out.println("|");
+				}
+
+				System.out.println();
+				System.out.print("Please input Dep_city [referencing above list] : ");
+				String dep_city = sc.nextLine();
+				System.out.print("Please input Arr_city [referencing above list] : ");
+				String arr_city = sc.nextLine();
+
+				sql = "SELECT E_TICKETID, PASSENGERNO FROM ETICKET E, LEG L "
+						+ "WHERE E.LEGID = L.LEGID AND DEP_AIRPORTID IN (SELECT AIRPORTID FROM AIRPORT WHERE CITY = '"
+						+ dep_city + "') " + "AND ARR_AIRPORTID IN (SELECT AIRPORTID FROM AIRPORT WHERE CITY = '" + arr_city
+						+ "') ORDER BY PASSENGERNO";
+				rs = stmt.executeQuery(sql);
+
+				System.out.println("Eticket_id | Passenger_no");
+				System.out.println("-------------------------");
+
+				while (rs.next()) {
+					String eticket_id = rs.getString(1);
+					int passenger_no = rs.getInt(2);
+					System.out.println(eticket_id + " | " + passenger_no);
+				}
+
+				rs.close();
+				System.out.println();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			break;
+		case "3":
+			try {
+				System.out.print("Please input Dep Time [Format : 20211201 000000] : ");
+				String dep_time = sc.nextLine();
+
+				String sql = "WITH " + "DEP AS" + "(" + "    SELECT L.LEGID, L.DEP_AIRPORTID, L.ARR_AIRPORTID, AP.NAME "
+						+ "    FROM LEG L, AIRPORT AP " + "    WHERE AP.AIRPORTID = L.DEP_AIRPORTID " + "), " + "ARR AS "
+						+ "( " + "    SELECT L.LEGID, L.DEP_AIRPORTID, L.ARR_AIRPORTID, AP.NAME "
+						+ "    FROM LEG L, AIRPORT AP " + "    WHERE AP.AIRPORTID = L.ARR_AIRPORTID " + ") "
+						+ "SELECT A.ACCOUNTID, TO_CHAR(L.SCHEDULED_DEP_TIME, 'YYYY-MM-DD HH24:MI:SS') AS DEP_TIME, DEP.NAME AS DEP_AIRPORT, ARR.NAME AS ARR_AIRPORT "
+						+ "FROM ACCOUNT A, ETICKET E, LEG L, DEP, ARR " + "WHERE L.SCHEDULED_DEP_TIME >= TO_DATE('"
+						+ dep_time + "', 'YYYY-MM-DD HH24:MI:SS')  " + "    AND E.PASSENGERNO = A.ACCOUNTNO  "
+						+ "    AND E.LEGID = L.LEGID  " + "    AND DEP.DEP_AIRPORTID = L.DEP_AIRPORTID "
+						+ "    AND ARR.ARR_AIRPORTID = L.ARR_AIRPORTID " + "    AND DEP.LEGID = L.LEGID "
+						+ "    AND ARR.LEGID = L.LEGID " + "ORDER BY DEP_TIME ASC ";
+				rs = stmt.executeQuery(sql);
+
+				System.out.println("AccountID | dep_time | dep_airport | arr_airport");
+				System.out.println("------------------------------------------------");
+
+				while (rs.next()) {
+					String account_id = rs.getString(1);
+					String dep_time_date = rs.getString(2);
+					String dep_airport = rs.getString(3);
+					String arr_airport = rs.getString(4);
+					System.out.println(account_id + " | " + dep_time_date + " | " + dep_airport + " | " + arr_airport);
+				}
+				rs.close();
+				System.out.println();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			break;
+		case "4":
+			try {
+				System.out.print("Please input Count [Type 'INT'] : ");
+				int group_count = sc.nextInt();
+				sc.nextLine();
+				String sql = "SELECT E.LEGID, COUNT(*) AS NUMTICKETS FROM LEG L, ETICKET E "
+						+ "WHERE L.LEGID = E.LEGID GROUP BY E.LEGID HAVING COUNT(*) >= " + group_count
+						+ " ORDER BY NUMTICKETS DESC";
+				rs = stmt.executeQuery(sql);
+
+				System.out.println("Leg_id | Num_tickets");
+				System.out.println("--------------------");
+
+				while (rs.next()) {
+					String leg_id = rs.getString(1);
+					int num_tickets = rs.getInt(2);
+					System.out.println(leg_id + " | " + num_tickets);
+				}
+				rs.close();
+				System.out.println();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			break;
+		case "5":
+			return;
+		default:
+			System.out.println("Wrong input!!");
+			System.exit(1);
+		}
+	}
+	
 	public void myPage() {
 		String sql = "select fname, lname, age, phone, email, sex, address, type from account where AccountID = '" + id
 				+ "'";
@@ -856,16 +1471,16 @@ public class Admin {
 				String address = rs.getString(7);
 				String type = rs.getString(8);
 
-				System.out.println("[ ³» Á¤º¸ ]");
+				System.out.println("[ ë‚´ ì •ë³´ ]");
 				System.out.println("| ID : " + id);
-				System.out.println("| ¼º : " + lname);
-				System.out.println("| ÀÌ¸§ : " + fname);
-				System.out.println("| ³ªÀÌ : " + age);
-				System.out.println("| ÀüÈ­¹øÈ£ : " + phone);
-				System.out.println("| ÀÌ¸ŞÀÏ : " + email);
-				System.out.println("| ¼ºº° : " + sex);
-				System.out.println("| ÁÖ¼Ò : " + address);
-				System.out.println("| °èÁ¤ À¯Çü : " + type);
+				System.out.println("| ì„± : " + lname);
+				System.out.println("| ì´ë¦„ : " + fname);
+				System.out.println("| ë‚˜ì´ : " + age);
+				System.out.println("| ì „í™”ë²ˆí˜¸ : " + phone);
+				System.out.println("| ì´ë©”ì¼ : " + email);
+				System.out.println("| ì„±ë³„ : " + sex);
+				System.out.println("| ì£¼ì†Œ : " + address);
+				System.out.println("| ê³„ì • ìœ í˜• : " + type);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -930,49 +1545,49 @@ public class Admin {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println("[°èÁ¤ÀÌ »èÁ¦µÇ¾ú½À´Ï´Ù.]");
+		System.out.println("[ê³„ì •ì´ ì‚­ì œë˜ì—ˆìŠµë‹ˆë‹¤.]");
 	}
 
 	public void changeInformation(int cmd) {
 		String sql = "";
 		switch (cmd) {
 		case 1:
-			System.out.print("º¯°æÇÒ ÆĞ½º¿öµå[ÃÖ´ë 15ÀÚ] : ");
+			System.out.print("ë³€ê²½í•  íŒ¨ìŠ¤ì›Œë“œ[ìµœëŒ€ 15ì] : ");
 			String newPassword = sc.nextLine();
 			sql = "update account set pwd = '" + newPassword + "' where accountid = '" + id + "'";
 			break;
 		case 2:
-			System.out.print("º¯°æÇÒ First name[ÃÖ´ë 15ÀÚ] : ");
+			System.out.print("ë³€ê²½í•  First name[ìµœëŒ€ 15ì] : ");
 			String newFname = sc.nextLine();
 			sql = "update account set fname = '" + newFname + "' where accountid = '" + id + "'";
 			break;
 		case 3:
-			System.out.print("º¯°æÇÒ Last name[ÃÖ´ë 15ÀÚ] : ");
+			System.out.print("ë³€ê²½í•  Last name[ìµœëŒ€ 15ì] : ");
 			String newLname = sc.nextLine();
 			sql = "update account set lname = '" + newLname + "' where accountid = '" + id + "'";
 			break;
 		case 4:
-			System.out.print("º¯°æÇÒ ÀüÈ­¹øÈ£[xxx-xxxx-xxxx] : ");
+			System.out.print("ë³€ê²½í•  ì „í™”ë²ˆí˜¸[xxx-xxxx-xxxx] : ");
 			String newPhone = sc.nextLine();
 			sql = "update account set phone = '" + newPhone + "' where accountid = '" + id + "'";
 			break;
 		case 5:
-			System.out.print("º¯°æÇÒ ÀÌ¸ŞÀÏ[ÃÖ´ë 30ÀÚ] : ");
+			System.out.print("ë³€ê²½í•  ì´ë©”ì¼[ìµœëŒ€ 30ì] : ");
 			String newEmail = sc.nextLine();
 			sql = "update account set email = '" + newEmail + "' where accountid = '" + id + "'";
 			break;
 		case 6:
-			System.out.print("º¯°æÇÒ ¼ºº°[M or F] : ");
+			System.out.print("ë³€ê²½í•  ì„±ë³„[M or F] : ");
 			String newSex = sc.nextLine();
 			sql = "update account set sex = '" + newSex + "' where accountid = '" + id + "'";
 			break;
 		case 7:
-			System.out.print("º¯°æÇÒ ÁÖ¼Ò[ÃÖ´ë 50ÀÚ] : ");
+			System.out.print("ë³€ê²½í•  ì£¼ì†Œ[ìµœëŒ€ 50ì] : ");
 			String newAddress = sc.nextLine();
 			sql = "update account set address = '" + newAddress + "' where accountid = '" + id + "'";
 			break;
 		case 8:
-			System.out.print("º¯°æÇÒ ³ªÀÌ : ");
+			System.out.print("ë³€ê²½í•  ë‚˜ì´ : ");
 			String newAge = sc.nextLine();
 			sql = "update account set age = " + newAge + " where accountid = '" + id + "'";
 			break;
@@ -986,7 +1601,7 @@ public class Admin {
 		try {
 			int result = stmt.executeUpdate(sql);
 			conn.commit();
-			System.out.println("[¼º°øÀûÀ¸·Î º¯°æµÇ¾ú½À´Ï´Ù.]");
+			System.out.println("[ì„±ê³µì ìœ¼ë¡œ ë³€ê²½ë˜ì—ˆìŠµë‹ˆë‹¤.]");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
