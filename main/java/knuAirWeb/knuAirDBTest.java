@@ -1,4 +1,4 @@
-package knuAirDB;
+package knuAirWeb;
 
 import java.io.IOException;
 import java.sql.Connection;

@@ -1,4 +1,4 @@
-package knuAirDB;
+package knuAirWeb;
 
 import java.util.Scanner;
 import java.sql.*;
