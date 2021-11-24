@@ -10,6 +10,33 @@
 </head>
 <body>
 	<%
+	String SessionId = "";
+	String Type = "";
+	
+	session = request.getSession();
+	if (session == null || session.getAttribute("id") == null || session.getAttribute("id").equals("")){
+	%>
+	<button type="button" onclick="location.href='loginview.jsp'">Sign In</button><!-- 나나 -->
+	<%
+	}
+	else{
+
+		SessionId = (String)session.getAttribute("id");
+		Type = (String)session.getAttribute("type");
+		
+		out.print(SessionId+"님 환영합니다!");
+		if(Type.equals("Admin")){
+	%>
+			<button type=button onclick="location.href='Management.html'">Management</button>
+	<%
+		}
+	%>
+	<button type=button onclick="location.href='mypageview.jsp'">My Page</button>
+	<button type=button onclick="location.href='logout.jsp'">Logout</button>
+	<%
+	}
+	%>
+	<%
 	String serverIP = "localhost";
 	String strSID = "orcl";
 	String portNum = "1521";
@@ -37,38 +64,45 @@
 	int avail_fir = Integer.parseInt(request.getParameter("avail_first"));
 	int price_all = price_eco + price_bus + price_fir + price_beg;
 	
-	String accountNo = "151";
-	
+	int accountNo = -1;
+	String membershipId = "";
+	int travel_count = -1;
+	String membership_title = "";
 	String disc = "0";
 	
-	String sql = "INSERT INTO ETICKET VALUES ('" + (1000000000 + 155) + "', '" + legid + "', " + accountNo
+	String sql = "select accountNo from account where AccountId = '" + SessionId + "'"; 
+	pstmt = conn.prepareStatement(sql);
+	rs = pstmt.executeQuery();
+	while(rs.next()){
+		accountNo = rs.getInt(1);
+	}
+	
+	sql = "INSERT INTO ETICKET VALUES ('" + (1000000000 + accountNo) + "', '" + legid + "', " + accountNo
 			+ ", " + price_all + ", " + (price_eco + price_bus + price_fir) + ", " + price_beg + ", " + disc + ", " + res_eco + ", "
 			+ res_bus + ", " + res_fir + ")";
 	pstmt = conn.prepareStatement(sql);
-	pstmt.executeUpdate(sql);
-	pstmt.close();
+	pstmt.executeUpdate();
 	
 	sql = "update assigned_by set economy_avail_seats=" + (avail_eco - res_eco) + ", business_avail_seats = " + (avail_bus - res_bus) + ", first_avail_seats=" + (avail_fir - res_fir) + " where legid = '" + legid + "'";
 	pstmt = conn.prepareStatement(sql);
-	pstmt.executeUpdate(sql);
-	pstmt.close();
+	pstmt.executeUpdate();
 	
-/* 	travel_count += 1;
-	if (travel_count == 11) {
-		membership_title = "Gold";
-	} else if (travel_count == 21) {
-		membership_title = "Diamond";
-	} else if (travel_count == 36) {
-		membership_title = "Rubi";
+	sql = "select membershipId, travel_count from membership where accountNo = " + accountNo;
+	pstmt = conn.prepareStatement(sql);
+	rs = pstmt.executeQuery();
+	while(rs.next()){
+		membershipId = rs.getString(1);
+		travel_count = rs.getInt(2);
 	}
 	
 	sql = "update membership set travel_count=" + travel_count + ", title='" + membership_title + "' where membershipid='" + membershipId + "'";
-	stmt.executeUpdate(sql);
-
-	conn.commit();
-	System.out.println("구매를 완료했습니다."); */
+	pstmt = conn.prepareStatement(sql);
+	pstmt.executeUpdate();
 	
-	sql = "select * from eticket where e_ticketid='" + (1000000000 + 155) + "'";
+	conn.commit();
+	System.out.println("Finished Purchase");
+	
+	sql = "select * from eticket where e_ticketid='" + (1000000000 + accountNo) + "'";
 	pstmt = conn.prepareStatement(sql);
 	rs = pstmt.executeQuery(sql);
 	
