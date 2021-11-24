@@ -49,28 +49,31 @@
 		%>
 		
 		<%
-			String query = "select * from airport order by name";
+			out.println("<h2>"+ request.getParameter("airport_name") +"</h2>");
+			String query = "select * from airport where airportid='" + request.getParameter("airport_name") +"'";
 			rs = stmt.executeQuery(query);
 			
 			out.println("<table border=\"1\">");
 			ResultSetMetaData rsmd = rs.getMetaData();
 			int cnt = rsmd.getColumnCount();
-			for(int i = 1; i<= cnt; i++) {
-				out.println("<th>" + rsmd.getColumnName(i) + "</th>");
+			if(rs.next()) {
+				for(int i = 1; i<= cnt; i++) {
+					out.println("<tr>");
+					out.println("<td>" + rsmd.getColumnName(i) + "</td>");
+					out.println("<td>"+rs.getString(i)+"</td>");
+					out.println("<td><input type=\"text\"></input></td>");
+					out.println("</tr>");
+				}
 			}
-			while(rs.next()) {
-				out.println("<tr>");
-				out.println("<td>"+rs.getString(1)+"</td>");
-				out.println("<td>"+rs.getString(2)+"</td>");
-				out.println("<td>"+rs.getString(3)+"</td>");
-				out.println("<td>"+rs.getInt(4)+"</td>");
-				out.println("<td><form action=\"./update.jsp\" method=\"get\"><button type=\"submit\" name=\"airport_name\" value="+rs.getString(1)+">update</button></form></td>");
-				out.println("<td><form action=\"./delete.jsp\" method=\"get\"><button type=\"submit\" name=\"airport_name\" value="+rs.getString(1)+">delete</button></form></td>");
-				out.println("</tr>");
+			else
+			{
+				out.println("<h2>No Data.</h2>");
 			}
 			out.println("</table>");
+			out.println("<button type=\"submit\" name=\"save\" value=\"save\">save</button>");
+			
 		%>
-		
 	</article>
+	
 </body>
 </html>
