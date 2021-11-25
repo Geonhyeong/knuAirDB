@@ -9,6 +9,30 @@
 </head>
 <body>
 	<%
+	session = request.getSession();
+	if (session == null || session.getAttribute("id") == null || session.getAttribute("id").equals("")){
+	%>
+	<button type="button" onclick="location.href='loginview.jsp'">Sign In</button><!-- 나나 -->
+	<%
+	}
+	else{
+
+		String SessionId = (String)session.getAttribute("id");
+		String Type = (String)session.getAttribute("type");
+		
+		out.print(SessionId+"님 환영합니다!");
+		if(Type.equals("Admin")){
+	%>
+			<button type=button onclick="location.href='Management.html'">Management</button>
+	<%
+		}
+	%>
+	<button type=button onclick="location.href='mypageview.jsp'">My Page</button>
+	<button type=button onclick="location.href='logout.jsp'">Logout</button>
+	<%
+	}
+	%>
+	<%
 	String serverIP = "localhost";
 	String strSID = "orcl";
 	String portNum = "1521";
@@ -22,6 +46,7 @@
 	Class.forName("oracle.jdbc.driver.OracleDriver");
 	conn = DriverManager.getConnection(url, user, pass);
 	%>
+	
 	<form action="reservationview.jsp" method="POST">
 	<input type="submit" value="Submit" />
 	<%	
