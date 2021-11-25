@@ -6,7 +6,7 @@
 <head>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
-<link rel="stylesheet" href="./Management.css">
+<link rel="stylesheet" href="../Management.css">
 </head>
 <body>
 	<header>
@@ -49,29 +49,27 @@
 		%>
 		
 		<%
-			out.println("<h2>"+ request.getParameter("airport_name") +"</h2>");
-			String query = "select * from airport where airportid='" + request.getParameter("airport_name") +"'";
+			String query = "select * from airport";
 			rs = stmt.executeQuery(query);
 			
+			out.println("<form action=\"./insert_success.jsp\" method=\"get\">");
 			out.println("<table border=\"1\">");
 			ResultSetMetaData rsmd = rs.getMetaData();
 			int cnt = rsmd.getColumnCount();
-			if(rs.next()) {
-				for(int i = 1; i<= cnt; i++) {
-					out.println("<tr>");
-					out.println("<td>" + rsmd.getColumnName(i) + "</td>");
-					out.println("<td>"+rs.getString(i)+"</td>");
-					out.println("<td><input type=\"text\"></input></td>");
-					out.println("</tr>");
-				}
+			for(int i = 1; i<= cnt; i++) {
+				out.println("<th>" + rsmd.getColumnName(i) + "</th>");
 			}
-			else
-			{
-				out.println("<h2>No Data.</h2>");
+			if(rs.next()) {
+				out.println("<tr>");
+				out.println("<td><input type=\"text\" name=\"airportid\" value=\"\"></input></td>");
+				out.println("<td><input type=\"text\" name=\"name\" value=\"\"></input></td>");
+				out.println("<td><input type=\"text\" name=\"city\" value=\"\"></input></td>");
+				out.println("<td><input type=\"text\" name=\"total_gates\" value=\"\"></input></td>");
+				out.println("</tr>");
 			}
 			out.println("</table>");
-			out.println("<button type=\"submit\" name=\"save\" value=\"save\">save</button>");
-			
+			out.println("<button type=\"submit\">save</button>");
+			out.println("</form>");
 		%>
 	</article>
 	

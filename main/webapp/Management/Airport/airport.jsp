@@ -6,7 +6,7 @@
 <head>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
-<link rel="stylesheet" href="./Management.css">
+<link rel="stylesheet" href="../Management.css">
 </head>
 <body>
 	<header>
@@ -49,11 +49,29 @@
 		%>
 		
 		<%
-			String sql = "delete from airport where airportid='" + request.getParameter("airport_name") + "'";
-			int result = stmt.executeUpdate(sql);
+			String query = "select * from airport order by name";
+			rs = stmt.executeQuery(query);
+			
+			out.println("<button type=\"submit\" onclick=\"location.href='./insert.jsp'\">NEW</button>");
+			out.println("<table border=\"1\">");
+			ResultSetMetaData rsmd = rs.getMetaData();
+			int cnt = rsmd.getColumnCount();
+			for(int i = 1; i<= cnt; i++) {
+				out.println("<th>" + rsmd.getColumnName(i) + "</th>");
+			}
+			while(rs.next()) {
+				out.println("<tr>");
+				out.println("<td>"+rs.getString(1)+"</td>");
+				out.println("<td>"+rs.getString(2)+"</td>");
+				out.println("<td>"+rs.getString(3)+"</td>");
+				out.println("<td>"+rs.getInt(4)+"</td>");
+				out.println("<td><form action=\"./update.jsp\" method=\"get\"><button type=\"submit\" name=\"airport_name\" value="+rs.getString(1)+">UPDATE</button></form></td>");
+				out.println("<td><form action=\"./delete.jsp\" method=\"get\"><button type=\"submit\" name=\"airport_name\" value="+rs.getString(1)+">DELETE</button></form></td>");
+				out.println("</tr>");
+			}
+			out.println("</table>");
 		%>
-		<h2>Delete Successfully.</h2>
+		
 	</article>
-	
 </body>
 </html>

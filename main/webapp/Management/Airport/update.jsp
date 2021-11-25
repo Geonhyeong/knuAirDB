@@ -6,7 +6,7 @@
 <head>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
-<link rel="stylesheet" href="./Management.css">
+<link rel="stylesheet" href="../Management.css">
 </head>
 <body>
 	<header>
@@ -49,28 +49,39 @@
 		%>
 		
 		<%
-			String query = "select * from airport order by name";
+			out.println("<h2>"+ request.getParameter("airport_name") +"</h2>");
+			String query = "select name, city, total_gates from airport where airportid='" + request.getParameter("airport_name") +"'";
 			rs = stmt.executeQuery(query);
 			
+			out.println("<form action=\"./update_success.jsp\" method=\"get\">");
 			out.println("<table border=\"1\">");
 			ResultSetMetaData rsmd = rs.getMetaData();
 			int cnt = rsmd.getColumnCount();
 			for(int i = 1; i<= cnt; i++) {
 				out.println("<th>" + rsmd.getColumnName(i) + "</th>");
 			}
-			while(rs.next()) {
+			if(rs.next()) {
 				out.println("<tr>");
 				out.println("<td>"+rs.getString(1)+"</td>");
 				out.println("<td>"+rs.getString(2)+"</td>");
-				out.println("<td>"+rs.getString(3)+"</td>");
-				out.println("<td>"+rs.getInt(4)+"</td>");
-				out.println("<td><form action=\"./update.jsp\" method=\"get\"><button type=\"submit\" name=\"airport_name\" value="+rs.getString(1)+">update</button></form></td>");
-				out.println("<td><form action=\"./delete.jsp\" method=\"get\"><button type=\"submit\" name=\"airport_name\" value="+rs.getString(1)+">delete</button></form></td>");
+				out.println("<td>"+rs.getInt(3)+"</td>");
+				out.println("</tr>");
+				out.println("<tr>");
+				out.println("<td><input type=\"text\" name=\"name\" value=\""+rs.getString(1)+"\"></input></td>");
+				out.println("<td><input type=\"text\" name=\"city\" value=\""+rs.getString(2)+"\"></input></td>");
+				out.println("<td><input type=\"text\" name=\"total_gates\" value="+rs.getInt(3)+"></input></td>");
 				out.println("</tr>");
 			}
+			else
+			{
+				out.println("<h2>No Data.</h2>");
+			}
 			out.println("</table>");
+			out.println("<button type=\"submit\" name=\"airportid\" value="+request.getParameter("airport_name")+">save</button>");
+			out.println("</form>");
+			
 		%>
-		
 	</article>
+	
 </body>
 </html>
