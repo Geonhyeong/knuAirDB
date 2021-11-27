@@ -50,9 +50,8 @@
 		
 		<%
 			try{				
-				String query = "select * from airport order by name";
+				String query = "select * from account order by accountno";
 				rs = stmt.executeQuery(query);
-				out.println("<button id=\"newBtn\" type=\"submit\" onclick=\"location.href='./insert.jsp'\">NEW</button>");
 				out.println("<table>");
 				ResultSetMetaData rsmd = rs.getMetaData();
 				int cnt = rsmd.getColumnCount();
@@ -64,12 +63,19 @@
 				while(rs.next()) {
 					out.println("<tr>");
 					out.println("<td>"+ count++ +"</td>");
-					out.println("<td>"+rs.getString(1)+"</td>");
+					out.println("<td>"+rs.getInt(1)+"</td>");
 					out.println("<td>"+rs.getString(2)+"</td>");
 					out.println("<td>"+rs.getString(3)+"</td>");
-					out.println("<td>"+rs.getInt(4)+"</td>");
-					out.println("<td><form action=\"./update.jsp\" method=\"get\"><button type=\"submit\" name=\"airlineid\" value="+rs.getString(1)+">UPDATE</button></form></td>");
-					out.println("<td><form action=\"./delete.jsp\" method=\"get\"><button type=\"submit\" name=\"airlineid\" value="+rs.getString(1)+">DELETE</button></form></td>");
+					out.println("<td>"+rs.getString(4)+"</td>");
+					out.println("<td>"+rs.getString(5)+"</td>");
+					out.println("<td>"+rs.getInt(6)+"</td>");
+					out.println("<td>"+rs.getString(7)+"</td>");
+					out.println("<td>"+rs.getString(8)+"</td>");
+					out.println("<td>"+rs.getString(9)+"</td>");
+					out.println("<td>"+rs.getString(10)+"</td>");
+					out.println("<td>"+rs.getString(11)+"</td>");
+					out.println("<td><form action=\"./update.jsp\" method=\"get\"><button type=\"submit\" name=\"accountno\" value="+rs.getInt(1)+">UPDATE</button></form></td>");
+					out.println("<td><form action=\"./delete.jsp\" method=\"get\"><button type=\"submit\" name=\"accountno\" value="+rs.getInt(1)+">DELETE</button></form></td>");
 					out.println("</tr>");
 				}
 				out.println("</table>");

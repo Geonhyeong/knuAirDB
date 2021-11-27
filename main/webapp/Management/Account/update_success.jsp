@@ -49,35 +49,18 @@
 		%>
 		
 		<%
-			try{				
-				String query = "select * from airport order by name";
-				rs = stmt.executeQuery(query);
-				out.println("<button id=\"newBtn\" type=\"submit\" onclick=\"location.href='./insert.jsp'\">NEW</button>");
-				out.println("<table>");
-				ResultSetMetaData rsmd = rs.getMetaData();
-				int cnt = rsmd.getColumnCount();
-				out.println("<th>NO</th>");
-				for(int i = 1; i<= cnt; i++) {
-					out.println("<th>" + rsmd.getColumnName(i) + "</th>");
-				}
-				int count=1;
-				while(rs.next()) {
-					out.println("<tr>");
-					out.println("<td>"+ count++ +"</td>");
-					out.println("<td>"+rs.getString(1)+"</td>");
-					out.println("<td>"+rs.getString(2)+"</td>");
-					out.println("<td>"+rs.getString(3)+"</td>");
-					out.println("<td>"+rs.getInt(4)+"</td>");
-					out.println("<td><form action=\"./update.jsp\" method=\"get\"><button type=\"submit\" name=\"airlineid\" value="+rs.getString(1)+">UPDATE</button></form></td>");
-					out.println("<td><form action=\"./delete.jsp\" method=\"get\"><button type=\"submit\" name=\"airlineid\" value="+rs.getString(1)+">DELETE</button></form></td>");
-					out.println("</tr>");
-				}
-				out.println("</table>");
+			try {
+				String sql = "update account set accountid='" + request.getParameter("accountid") + "', pwd='" + request.getParameter("pwd") + "', fname='" + request.getParameter("fname") + "', lname='" + request.getParameter("lname") + "', age=" + request.getParameter("age") 
+				+ ", phone='" + request.getParameter("phone") + "', email='" + request.getParameter("email") + "', sex='" + request.getParameter("sex") + "', address='" + request.getParameter("address") + "', type='" + request.getParameter("type")
+				+ "' where accountno=" + request.getParameter("accountno");
+				int result = stmt.executeUpdate(sql);
+				
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 		%>
-		
+		<h2>Update Successfully.</h2>
 	</article>
+	
 </body>
 </html>

@@ -50,8 +50,8 @@
 		
 		<%
 			try {
-				out.println("<h2>"+ request.getParameter("airport_name") +"</h2>");
-				String query = "select name, city, total_gates from airport where airportid='" + request.getParameter("airport_name") +"'";
+				out.println("<h2>"+ request.getParameter("accountno") +"</h2>");
+				String query = "select accountid, pwd, fname, lname, age, phone, email, sex, address, type from account where accountno='" + request.getParameter("accountno") +"'";
 				rs = stmt.executeQuery(query);
 				
 				out.println("<form action=\"./update_success.jsp\" method=\"get\">");
@@ -65,12 +65,26 @@
 					out.println("<tr>");
 					out.println("<td>"+rs.getString(1)+"</td>");
 					out.println("<td>"+rs.getString(2)+"</td>");
-					out.println("<td>"+rs.getInt(3)+"</td>");
+					out.println("<td>"+rs.getString(3)+"</td>");
+					out.println("<td>"+rs.getString(4)+"</td>");
+					out.println("<td>"+rs.getInt(5)+"</td>");
+					out.println("<td>"+rs.getString(6)+"</td>");
+					out.println("<td>"+rs.getString(7)+"</td>");
+					out.println("<td>"+rs.getString(8)+"</td>");
+					out.println("<td>"+rs.getString(9)+"</td>");
+					out.println("<td>"+rs.getString(10)+"</td>");
 					out.println("</tr>");
 					out.println("<tr>");
-					out.println("<td><input type=\"text\" name=\"name\" value=\""+rs.getString(1)+"\"></input></td>");
-					out.println("<td><input type=\"text\" name=\"city\" value=\""+rs.getString(2)+"\"></input></td>");
-					out.println("<td><input type=\"text\" name=\"total_gates\" value="+rs.getInt(3)+"></input></td>");
+					out.println("<td><input type=\"text\" name=\"accountid\" value=\""+rs.getString(1)+"\"></input></td>");
+					out.println("<td><input type=\"text\" name=\"pwd\" value=\""+rs.getString(2)+"\"></input></td>");
+					out.println("<td><input type=\"text\" name=\"fname\" value="+rs.getString(3)+"></input></td>");
+					out.println("<td><input type=\"text\" name=\"lname\" value=\""+rs.getString(4)+"\"></input></td>");
+					out.println("<td><input type=\"text\" name=\"age\" value=\""+rs.getInt(5)+"\"></input></td>");
+					out.println("<td><input type=\"text\" name=\"phone\" value="+rs.getString(6)+"></input></td>");
+					out.println("<td><input type=\"text\" name=\"email\" value="+rs.getString(7)+"></input></td>");
+					out.println("<td><input type=\"text\" name=\"sex\" value="+rs.getString(8)+"></input></td>");
+					out.println("<td><input type=\"text\" name=\"address\" value=\""+rs.getString(9)+"\"></input></td>");
+					out.println("<td><input type=\"text\" name=\"type\" value="+rs.getString(10)+"></input></td>");
 					out.println("</tr>");
 				}
 				else
@@ -78,7 +92,7 @@
 					out.println("<h2>No Data.</h2>");
 				}
 				out.println("</table>");
-				out.println("<button id=\"saveBtn\" type=\"submit\" name=\"airportid\" value="+request.getParameter("airport_name")+">save</button>");
+				out.println("<button id=\"saveBtn\" type=\"submit\" name=\"accountno\" value="+request.getParameter("accountno")+">save</button>");
 				out.println("</form>");
 				
 			} catch (SQLException e) {
