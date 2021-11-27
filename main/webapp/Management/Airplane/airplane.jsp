@@ -50,7 +50,7 @@
 		
 		<%
 			try{				
-				String query = "select * from airport order by name";
+				String query = "select * from airplane order by airplaneid";
 				rs = stmt.executeQuery(query);
 				out.println("<button id=\"newBtn\" type=\"submit\" onclick=\"location.href='./insert.jsp'\">NEW</button>");
 				out.println("<table>");
@@ -68,8 +68,10 @@
 					out.println("<td>"+rs.getString(2)+"</td>");
 					out.println("<td>"+rs.getString(3)+"</td>");
 					out.println("<td>"+rs.getInt(4)+"</td>");
-					out.println("<td><form action=\"./update.jsp\" method=\"get\"><button type=\"submit\" name=\"airlineid\" value="+rs.getString(1)+">UPDATE</button></form></td>");
-					out.println("<td><form action=\"./delete.jsp\" method=\"get\"><button type=\"submit\" name=\"airlineid\" value="+rs.getString(1)+">DELETE</button></form></td>");
+					out.println("<td>"+rs.getInt(5)+"</td>");
+					out.println("<td>"+rs.getInt(6)+"</td>");
+					out.println("<td><form action=\"./update.jsp\" method=\"get\"><button type=\"submit\" name=\"airplaneid\" value="+rs.getString(1)+">UPDATE</button></form></td>");
+					out.println("<td><form action=\"./delete.jsp\" method=\"get\"><button type=\"submit\" name=\"airplaneid\" value="+rs.getString(1)+">DELETE</button></form></td>");
 					out.println("</tr>");
 				}
 				out.println("</table>");

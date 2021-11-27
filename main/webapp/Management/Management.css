@@ -48,3 +48,31 @@ nav li a:hover{
 #content {
 	padding:10px;
 }
+
+table {
+	width: 100%;
+	border: 1px solid #444444;
+	border-collapse: collapse;
+}
+
+th, td {
+	border: 1px solid #444444;
+	padding:10px;
+	text-align: center;
+}
+
+button {
+	padding:4px;
+	width:100%;
+}
+
+#newBtn, #saveBtn {
+	margin : 2px;
+	width: 5%;
+	float:right;
+}
+
+input {
+	width:80%;
+	height:100%;
+}

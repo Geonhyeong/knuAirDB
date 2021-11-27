@@ -22,11 +22,11 @@
 		
 		<nav>
 			<ul>
-				<li><a href="./airport.jsp">AIRPORT</a></li>
-				<li><a href="./airline.jsp">AIRLINE</a></li>
-				<li><a href="./airplane.jsp">AIRPLANE</a></li>
-				<li><a href="./leg.jsp">LEG</a></li>
-				<li><a href="./account.jsp">ACCOUNT</a></li>
+				<li><a href="../Airport/airport.jsp">AIRPORT</a></li>
+				<li><a href="../Airline/airline.jsp">AIRLINE</a></li>
+				<li><a href="../Airplane/airplane.jsp">AIRPLANE</a></li>
+				<li><a href="../Leg/leg.jsp">LEG</a></li>
+				<li><a href="../Account/account.jsp">ACCOUNT</a></li>
 			</ul>
 		</nav>
 	</header>
@@ -49,8 +49,12 @@
 		%>
 		
 		<%
-			String sql = "INSERT INTO AIRPORT VALUES ('" + request.getParameter("airportid") + "','" + request.getParameter("name") + "', '" + request.getParameter("city") + "', " + request.getParameter("total_gates") + ")";
-			int result = stmt.executeUpdate(sql);
+			try {				
+				String sql = "INSERT INTO AIRPORT VALUES ('" + request.getParameter("airportid") + "','" + request.getParameter("name") + "', '" + request.getParameter("city") + "', " + request.getParameter("total_gates") + ")";
+				int result = stmt.executeUpdate(sql);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		%>
 		<h2>Insert Successfully.</h2>
 	</article>
