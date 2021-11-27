@@ -6,8 +6,53 @@
 <head>
 	<meta charset="EUC-KR">
 	<style type="text/css">
-	body {
-		background-color: #2D3A4B;
+	ul{list-style: none;}
+	a{text-decoration: none;}
+		 
+	header{
+	    width: 100%;
+	    height:95px;
+	    background-color: #2d3a4b;
+	    position: relative;
+	}
+	 
+	#logo{
+		position: absolute;
+		top:30px;
+		left:30px;
+	}
+	
+	#top_menu{
+	    position: absolute;
+	    top: 20px;
+	    right: 10px;
+	    color: white;
+	}
+	#top_menu a{color: white; font-size: 14px;}
+	 
+	nav{
+	    position:absolute;
+	    bottom: 10px;
+	    left:220px;
+	    font-size:16px;
+	}
+	
+	nav li{
+		display: inline;
+		margin-left:30px;
+	}
+	 
+	nav li a{
+	    color: white;
+	}
+	 
+	nav li a:hover{
+	    background-color: white;
+	    color: black;
+	}
+	
+	#content {
+		padding:10px;
 	}
 	.all {
 		border-radius: 10px;
@@ -99,6 +144,28 @@
 	<title>KnuAir - Search View</title>
 </head>
 <body>
+	<header>
+		<div id="logo">
+			<h1>LOGO</h1>
+		</div>
+		<div id="top_menu">
+			<a href="#">HOME</a> |
+			<a href="#">NOTICE</a> |
+			<a href="#">LOGIN</a> |
+			<a href="#">JOIN</a>
+		</div>
+		
+		<nav>
+			<ul>
+				<!-- 경로 수정 필요 -->
+				<li><a href="./Airport/airport.jsp">AIRPORT</a></li>
+				<li><a href="./Airline/airline.jsp">AIRLINE</a></li>
+				<li><a href="./Airplane/airplane.jsp">AIRPLANE</a></li>
+				<li><a href="./Leg/leg.jsp">LEG</a></li>
+				<li><a href="./Account/account.jsp">ACCOUNT</a></li>
+			</ul>
+		</nav>
+	</header>
 	<%
 	String serverIP = "localhost";
 	String strSID = "orcl";
