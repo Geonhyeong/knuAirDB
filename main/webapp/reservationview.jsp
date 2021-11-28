@@ -253,7 +253,7 @@
 	<form action='ticketview.jsp' method='POST'>
 		<h4>[짐이 있습니까?]</h4>
 		<input type='radio' name='beggage' value='Y'/>Y
-		<input type='radio' name='beggage' value='N'/>N
+		<input type='radio' name='beggage' value='N' checked/>N
 		<br />
 		<input type='hidden' id='hidden_economy' name='hidden_economy' value='0' />
 		<input type='hidden' id='hidden_business' name='hidden_business' value='0' />

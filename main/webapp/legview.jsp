@@ -102,7 +102,7 @@
  			out.println("<td>" + rs.getString(5) + "</td>");
  			out.println("<td>" + rs.getString(6) + "</td>");
  			out.println("<td>" + rs.getString(7) + "</td>");
- 			out.println("<td>" + "<input type='radio' name='leg_radio' value='" + rs.getString(1) + "'/>" + "</td>");
+ 			out.println("<td>" + "<input type='radio' name='leg_radio' value='" + rs.getString(1) + "' checked/>" + "</td>");
  			out.println("</tr>");
  			while (rs.next()) {
  				out.println("<tr>");
@@ -120,6 +120,8 @@
 	 		out.println("</table>");
 	 		rs.close();
 	 		pstmt.close();
+ 		} else {
+ 			out.println("<h3>조회 가능한 항공권이 없습니다! </h3>");
  		}
  	} catch (SQLException e) {
 		// TODO Auto-generated catch block
