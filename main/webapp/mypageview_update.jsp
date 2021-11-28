@@ -71,10 +71,10 @@
 				
 			}
 			out.println("</table>");
-			out.println("</form>");
 	%>
 		<button id="saveBtn" onclick="location.href='mypage_update.jsp'">Save</button>
 	<%
+			out.println("</form>");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
