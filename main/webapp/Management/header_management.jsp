@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <header>
 	<div id="logo">
-		<img src="/knuAirWeb/images/logo2.png" width="150" height="70">
+		<a href="/knuAirWeb/searchview.jsp"><img src="/knuAirWeb/images/logo2.png" width="150" height="70"></a>
 	</div>
 	<div id="top_menu">
 		<%
