@@ -1,11 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
     <%@ page language="java" import="java.text.*, java.sql.*" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<title>Insert title here</title>
+<meta charset="UTF-8">
+<title>KnuAir - Management</title>
 <link rel="stylesheet" href="./Management.css">
 </head>
 <body>
@@ -23,13 +23,13 @@
 			SessionId = (String)session.getAttribute("id");
 			Type = (String)session.getAttribute("type");
 				
-			out.print(SessionId+"´Ô È¯¿µÇÕ´Ï´Ù!");
+			out.print(SessionId+"ë‹˜ í™˜ì˜í•©ë‹ˆë‹¤!");
 		
 			%>
 			<a href="/knuAirWeb/Management/main.jsp">MANAGEMENT</a> | 
-			<a href="../searchview.jsp">HOME</a> | 
-			<a href="../mypageview_info.jsp">MY PAGE</a> | 
-			<a href="../logout.jsp">LOGOUT</a>
+			<a href="/knuAirWeb/searchview.jsp">HOME</a> | 
+			<a href="/knuAirWeb/mypageview_info.jsp">MY PAGE</a> | 
+			<a href="/knuAirWeb/logout.jsp">LOGOUT</a>
 		</div>
 		
 		<nav>
