@@ -48,8 +48,8 @@
 					out.println("<td>"+rs.getString(2)+"</td>");
 					out.println("<td>"+rs.getString(3)+"</td>");
 					out.println("<td>"+rs.getInt(4)+"</td>");
-					out.println("<td><form action=\"./update.jsp\" method=\"get\"><button type=\"submit\" name=\"airlineid\" value="+rs.getString(1)+">UPDATE</button></form></td>");
-					out.println("<td><form action=\"./delete.jsp\" method=\"get\"><button type=\"submit\" name=\"airlineid\" value="+rs.getString(1)+">DELETE</button></form></td>");
+					out.println("<td><form action=\"./update.jsp\" method=\"get\"><button type=\"submit\" name=\"airportid\" value="+rs.getString(1)+">UPDATE</button></form></td>");
+					out.println("<td><form action=\"./delete.jsp\" method=\"get\"><button type=\"submit\" name=\"airportid\" value="+rs.getString(1)+">DELETE</button></form></td>");
 					out.println("</tr>");
 				}
 				out.println("</table>");

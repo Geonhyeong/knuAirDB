@@ -35,7 +35,7 @@
 				rs = stmt.executeQuery(query);
 				
 				out.println("<form action=\"./update_success.jsp\" method=\"get\">");
-				out.println("<table>");
+				out.println("<table id=\"update_table\">");
 				ResultSetMetaData rsmd = rs.getMetaData();
 				int cnt = rsmd.getColumnCount();
 				for(int i = 1; i<= cnt; i++) {

@@ -30,12 +30,12 @@
 		
 		<%
 			try {
-				out.println("<h2>"+ request.getParameter("airport_name") +"</h2>");
-				String query = "select name, city, total_gates from airport where airportid='" + request.getParameter("airport_name") +"'";
+				out.println("<h2>"+ request.getParameter("airportid") +"</h2>");
+				String query = "select name, city, total_gates from airport where airportid='" + request.getParameter("airportid") +"'";
 				rs = stmt.executeQuery(query);
 				
 				out.println("<form action=\"./update_success.jsp\" method=\"get\">");
-				out.println("<table>");
+				out.println("<table id=\"update_table\">");
 				ResultSetMetaData rsmd = rs.getMetaData();
 				int cnt = rsmd.getColumnCount();
 				for(int i = 1; i<= cnt; i++) {
@@ -58,7 +58,7 @@
 					out.println("<h2>No Data.</h2>");
 				}
 				out.println("</table>");
-				out.println("<button id=\"saveBtn\" type=\"submit\" name=\"airportid\" value="+request.getParameter("airport_name")+">save</button>");
+				out.println("<button id=\"saveBtn\" type=\"submit\" name=\"airportid\" value="+request.getParameter("airportid")+">save</button>");
 				out.println("</form>");
 				
 			} catch (SQLException e) {
