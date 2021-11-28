@@ -58,7 +58,7 @@
 </head>
 <body>
 	<div id="logo">
-		<img src="./images/logo2.png" width="150" height="70">
+		<a href="searchview.jsp"><img src="./images/logo2.png" width="150" height="70"></a>
 	</div>
 	
 	<div id="top_menu">
