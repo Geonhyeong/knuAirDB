@@ -8,64 +8,26 @@
 	<style type="text/css">
 	ul{list-style: none;}
 	a{text-decoration: none;}
-		 
-	header{
-	    width: 100%;
-	    height:95px;
-	    background-color: #2d3a4b;
-	    position: relative;
-	}
-	 
-	#logo{
-		position: absolute;
-		top:30px;
-		left:30px;
-	}
-	
-	#top_menu{
-	    position: absolute;
-	    top: 20px;
-	    right: 10px;
-	    color: white;
-	}
-	#top_menu a{color: white; font-size: 14px;}
-	 
-	nav{
-	    position:absolute;
-	    bottom: 10px;
-	    left:220px;
-	    font-size:16px;
-	}
-	
-	nav li{
-		display: inline;
-		margin-left:30px;
-	}
-	 
-	nav li a{
-	    color: white;
-	}
-	 
-	nav li a:hover{
-	    background-color: white;
-	    color: black;
-	}
-	
+
 	#content {
 		padding:10px;
 	}
+	#start_date {
+		width: 100%; 
+		font-family: inherit; /* 폰트 상속 */ 
+		padding: .6em .8em; /* 여백과 높이 결정 */  
+		filter:alpha(opacity=0); /* IE8 숨기기 */ 
+		font-weight: bold;
+		margin-bottom: 10px;
+	}
 	.all {
 		border-radius: 10px;
-		position: absolute;
-		left: 50%;
-		top: 50%;
-		transform: translate(-50%, -50%);
 		padding: 10px;
 		background-color: #FFFFFF;
 	}
 	.selectbox { 
 		position: relative; 
-		width: 500px; /* 너비설정 */ 
+		overflow: hidden;
 		border: 1px solid #999; /* 테두리 설정 */ 
 		z-index: 1; 
 		margin-bottom: 10px;
@@ -106,6 +68,7 @@
 
 	</style>
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 	<script	src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 	<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
 	<script type="text/javascript">
@@ -136,8 +99,7 @@
 									monthNames : [ '1월', '2월', '3월', '4월',
 											'5월', '6월', '7월', '8월', '9월',
 											'10월', '11월', '12월' ],
-									dateFormat : "yymmdd",
-									showOn : "both"
+									dateFormat : "yymmdd"
 								});
 			});
 </script>
@@ -168,6 +130,8 @@
 	String account_type = (String)session.getAttribute("type");
 	
 	%>
+	<div class="container" style="padding:10% 20%;">
+	<div class="jumbotron">
 	<div class="all">
 	<form action="legview.jsp" method="POST">
 		<div class="selectbox">
@@ -221,13 +185,15 @@
 				%>
 			</select>
 		</div> 
-		<input type="text" id="start_date" name="start_date">
+		<input type="text" id="start_date" name="start_date" value="출발 날짜"/>
 		<input type="submit" value="조회" />
 		<%
 		out.println("<input type='hidden' id='account_id' name='account_id' value='" + account_id + "' />");
 		out.println("<input type='hidden' id='account_type' name='account_type' value='" + account_type + "' />");
 		%>
 	</form>
+	</div>
+	</div>
 	</div>
 </body>
 </html>
