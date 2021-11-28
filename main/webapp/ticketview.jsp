@@ -10,23 +10,8 @@
 	ul{list-style: none;}
 	a{text-decoration: none;}
 
-	table {
-		width: 100%;
-		border: 2px solid #000000;
-		border-collapse: collapse;
-		table-layout: fixed;
-	}
-	th, td {
-		word-wrap: break-word;
-		border: 2px solid #000000;
-		padding: 10px;
-		text-align: center;
-		vertical-align: middle;
-	}
-	th {
-		background-color: #CACACA;
-	}	
 	</style>
+	<link rel="stylesheet" href="./styles/styles.css">
 	<title>KnuAir - Ticket View</title>
 </head>
 <body>
@@ -70,6 +55,7 @@
 	
 	if(res_eco == 0 && res_bus == 0 && res_fir == 0) {
 		out.println("<h3>좌석을 선택해주세요</h3>");
+		%> <button onclick="location.href='searchview.jsp'">조회 메뉴로 가기</button> <%
 	} else {
 		/* 계정 Number 조회 */
 		try {
@@ -213,7 +199,7 @@
 				pstmt = conn.prepareStatement(sql);
 				rs = pstmt.executeQuery(sql);
 				
-				out.println("<table>");
+				out.println("<table class='bluetop' class='bluetop'>");
 				ResultSetMetaData rsmd = rs.getMetaData();
 				int cnt = rsmd.getColumnCount();
 				for (int i = 1; i <= cnt; i++) {

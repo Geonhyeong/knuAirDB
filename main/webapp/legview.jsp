@@ -8,33 +8,17 @@
 	<style type="text/css">
 	ul{list-style: none;}
 	a{text-decoration: none;}
-	 
-	table {
-		width: 100%;
-		border: 2px solid #000000;
-		border-collapse: collapse;
-		table-layout: fixed;
-		margin-bottom: 20px;
-	}
-	th, td {
-		word-wrap: break-word;
-		border: 2px solid #000000;
-		padding: 10px;
-		text-align: center;
-		vertical-align: middle;
-	}
-	th {
-		background-color: #CACACA;
-	}	
+	 	
+	body { background: #fff; }
 	</style>
-	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+	<link rel="stylesheet" href="./styles/styles.css">
 	<title>KnuAir - Leg View</title>
 </head>
 <body>
 <header>
 <%@include file ="header.jsp" %>
 </header>
-	<div class="container" style="padding:10% 20%;">
+	<div class="container" style="padding:10% 10%;">
 	<div class="all">
 	<%
 	String serverIP = "localhost";
@@ -84,7 +68,7 @@
  				out.println("<input type='hidden' id='account_id' name='account_id' value='" + account_id + "' />");
  	 			out.println("<input type='hidden' id='account_type' name='account_type' value='" + account_type + "' />");
 
- 	 			out.println("<table>");
+ 	 			out.println("<table class='bluetop'>");
  	 			for (int i = 1; i <= cnt; i++) {
  	 				if(i == 7) {
  	 					out.println("<th>" + rsmd.getColumnName(i) + " (￦)</th>");
