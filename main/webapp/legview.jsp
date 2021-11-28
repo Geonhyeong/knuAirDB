@@ -119,8 +119,14 @@
  		if(rs.next()) {
  			%>
  			<form action="reservationview.jsp" method="POST">
- 			<input type="submit" value="예약" />
  			<%
+ 			if (account_id.compareTo("null") == 0) {	
+ 				out.println("<h3>로그인이 필요합니다.</h3>");
+ 			} else {
+ 				%>
+ 				<input type="submit" value="예약" />
+ 				<%
+ 			}
  			out.println("<input type='hidden' id='account_id' name='account_id' value='" + account_id + "' />");
  			out.println("<input type='hidden' id='account_type' name='account_type' value='" + account_type + "' />");
 
