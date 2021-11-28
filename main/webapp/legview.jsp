@@ -9,59 +9,14 @@
 	ul{list-style: none;}
 	a{text-decoration: none;}
 	 
-	header{
-	    width: 100%;
-	    height:95px;
-	    background-color: #2d3a4b;
-	    position: relative;
-	}
-	 
-	#logo{
-		position: absolute;
-		top:30px;
-		left:30px;
-	}
-	
-	#top_menu{
-	    position: absolute;
-	    top: 20px;
-	    right: 10px;
-	    color: white;
-	}
-	#top_menu a{color: white; font-size: 14px;}
-	 
-	nav{
-	    position:absolute;
-	    bottom: 10px;
-	    left:220px;
-	    font-size:16px;
-	}
-	
-	nav li{
-		display: inline;
-		margin-left:30px;
-	}
-	 
-	nav li a{
-	    color: white;
-	}
-	 
-	nav li a:hover{
-	    background-color: white;
-	    color: black;
-	}
-	.all {
-		position: absolute;
-		left: 50%;
-		top: 50%;
-		transform: translate(-50%, -50%)
-	}
 	table {
 		width: 100%;
 		border: 2px solid #000000;
 		border-collapse: collapse;
+		table-layout: fixed;
 	}
 	th, td {
+		word-wrap: break-word;
 		border: 2px solid #000000;
 		padding: 10px;
 		text-align: center;
@@ -69,7 +24,7 @@
 	}
 	th {
 		background-color: #CACACA;
-	}
+	}	
 	</style>
 	<title>KnuAir - Leg View</title>
 </head>
