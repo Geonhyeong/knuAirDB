@@ -10,12 +10,17 @@
 <header>
 	<%@include file ="../header.jsp" %>
 </header>
-
-<form action="findmytrip.jsp" method="post">
-	Input Your E-Ticket ID: <input type="text" name="findid">
-	
-	<input type="submit" value="확인">
-</form>
+<div class="container" style="padding:10% 20%;">
+	<div class="jumbotron">
+		<form action="findmytrip.jsp" method="post">
+			<h2 style="text-align:center;">Search Your E-Ticket</h2>
+			<div class="form-group">
+					<input type="text" class="form-control" placeholder="E-Ticket ID" name="findid" maxlength="10">
+			</div>
+			<input type="submit" value="확인">
+		</form>
+	</div>
+</div>
 
 </body>
 </html>
