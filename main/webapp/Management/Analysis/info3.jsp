@@ -13,13 +13,6 @@
 	<script type="text/javascript">
 	$(document).ready(
 			function() {
-				var selectTarget = $('.selectbox select');
-				
-				selectTarget.change(function() {
-					var select_name = $(this).children('option:selected').text();
-					$(this).siblings('label').text(select_name);
-				});
-				
 				$.datepicker.setDefaults($.datepicker.regional['ko']);
 				$("#start_date")
 						.datepicker(
@@ -38,8 +31,8 @@
 									monthNames : [ '1월', '2월', '3월', '4월',
 											'5월', '6월', '7월', '8월', '9월',
 											'10월', '11월', '12월' ],
-									dateFormat : "yymmdd",
-									showOn : "both"
+									dateFormat : "yymmdd"
+									
 								});
 			});
 </script>
@@ -61,8 +54,9 @@
 	   conn = DriverManager.getConnection(url, user, pass);
 	   stmt = conn.createStatement();
 	%>
-	<form action="info3.jsp" method="get">
-		<input type="text" id="start_date" name="dep_time">
+	<form action="info3.jsp" method="get" style="margin:8px;">
+		<h3 style="float:left; padding:4px;">날짜를 선택하세요 : </h3>
+		<input type="text" id="start_date" name="dep_time" autocomplete="off">
 		<button type="submit" id="searchBtn">조회</button>
 	</form>
 	<%
@@ -74,7 +68,7 @@
 				+ "    FROM LEG L, AIRPORT AP " + "    WHERE AP.AIRPORTID = L.DEP_AIRPORTID " + "), " + "ARR AS "
 				+ "( " + "    SELECT L.LEGID, L.DEP_AIRPORTID, L.ARR_AIRPORTID, AP.NAME "
 				+ "    FROM LEG L, AIRPORT AP " + "    WHERE AP.AIRPORTID = L.ARR_AIRPORTID " + ") "
-				+ "SELECT A.ACCOUNTID, TO_CHAR(L.SCHEDULED_DEP_TIME, 'YYYY-MM-DD HH24:MI:SS') AS DEP_TIME, DEP.NAME AS DEP_AIRPORT, ARR.NAME AS ARR_AIRPORT "
+				+ "SELECT A.ACCOUNTID, A.fname, A.lname, TO_CHAR(L.SCHEDULED_DEP_TIME, 'YYYY-MM-DD HH24:MI:SS') AS DEP_TIME, DEP.NAME AS DEP_AIRPORT, ARR.NAME AS ARR_AIRPORT "
 				+ "FROM ACCOUNT A, ETICKET E, LEG L, DEP, ARR " + "WHERE L.SCHEDULED_DEP_TIME >= TO_DATE('"
 				+ dep_time + " 000000', 'YYYY-MM-DD HH24:MI:SS')  " + "    AND E.PASSENGERNO = A.ACCOUNTNO  "
 				+ "    AND E.LEGID = L.LEGID  " + "    AND DEP.DEP_AIRPORTID = L.DEP_AIRPORTID "
@@ -97,6 +91,8 @@
 			out.println("<td>"+rs.getString(2)+"</td>");
 			out.println("<td>"+rs.getString(3)+"</td>");
 			out.println("<td>"+rs.getString(4)+"</td>");
+			out.println("<td>"+rs.getString(5)+"</td>");
+			out.println("<td>"+rs.getString(6)+"</td>");
 			out.println("</tr>");
 		}
 		out.println("</table>");

@@ -78,11 +78,23 @@ input {
 }
 
 #analysis_table {
-	width : 80%;
+	width : 70%;
 	position: absolute;
-		left: 50%;
-		top: 20%;
-		transform: translate(-50%, -50%);
+	left: 50%;
+	top: 20%;
+	transform: translate(-50%, -50%);
+}
+
+#analysis_table a{color: black; font-size: 16px;}
+
+#start_date, #text_count {
+	width: 100px; 
+	font-family: inherit; /* 폰트 상속 */ 
+	padding: 4px 80px; /* 여백과 높이 결정 */  
+	filter:alpha(opacity=0); /* IE8 숨기기 */ 
+	font-weight: bold;
+	float:left;
+	
 }
 
 .selectbox { 
@@ -131,5 +143,21 @@ input {
 	width: 50px;
 	float: left;
 }
-	
-	
+
+#resetBtn {
+	margin: 2px;
+	width: 80px;
+	float: left;
+}
+
+#avg_by_membership {
+	width: 400px;
+	position: absolute;
+	top: 100px;
+}
+
+#result_table {
+	width: 100%;
+	position: absolute;
+	top: 320px;
+}

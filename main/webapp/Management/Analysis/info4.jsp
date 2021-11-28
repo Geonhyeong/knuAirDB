@@ -27,12 +27,14 @@
 	%>
 	
 	<form action="info4.jsp" method="get">
-		<input type="text" class="form-control" placeholder="N개 이상" name="count" maxlength="3">
+		<input type="text" id="text_count" placeholder="N개 이상" name="count" autocomplete="off" style="margin:2px;">
 		<button type="submit" id="searchBtn">조회</button>
 	</form>
 
 	<%
 		String group_count = request.getParameter("count");
+		if (group_count == null || group_count == "")
+			group_count = "0";
 	
 		String sql = "SELECT E.LEGID, COUNT(*) AS NUMTICKETS FROM LEG L, ETICKET E "
 				+ "WHERE L.LEGID = E.LEGID GROUP BY E.LEGID HAVING COUNT(*) >= " + group_count

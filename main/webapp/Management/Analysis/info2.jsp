@@ -4,9 +4,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet" href="../Management.css">
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<link rel="stylesheet" href="../Management.css">
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<script	src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(
+			function() {
+				var selectTarget = $('.selectbox select');
+				
+				selectTarget.change(function() {
+					var select_name = $(this).children('option:selected').text();
+					$(this).siblings('label').text(select_name);
+				});
+			});
+	</script>
 </head>
 <body>
 	<%@include file ="../header_management.jsp" %>
@@ -80,12 +94,27 @@
 		</div>
 		<button type="submit" id="searchBtn">조회</button>
 	</form>
+		<button type="submit" id="resetBtn" onclick="location.href='./info2.jsp'">초기화</button>
 
 	<%
-		String sql = "SELECT E_TICKETID, PASSENGERNO FROM ETICKET E, LEG L "
+		String departure_airport = request.getParameter("departure_airport");
+		String arrival_airport = request.getParameter("arrival_airport");
+		String sql = "";
+		
+		if (departure_airport == null || arrival_airport == null)
+		{
+			sql = "SELECT E_TICKETID, PASSENGERNO, L.dep_airportid, L.arr_airportid, L.dep_gate, L.scheduled_dep_time, L.scheduled_arr_time FROM ETICKET E, LEG L "
+				+ "WHERE E.LEGID = L.LEGID ORDER BY PASSENGERNO"; 	
+		}
+		else
+		{
+			sql = "SELECT E_TICKETID, PASSENGERNO, L.dep_airportid, L.arr_airportid, L.dep_gate, L.scheduled_dep_time, L.scheduled_arr_time FROM ETICKET E, LEG L "
 				+ "WHERE E.LEGID = L.LEGID AND DEP_AIRPORTID IN (SELECT AIRPORTID FROM AIRPORT WHERE airportid = '"
-				+ request.getParameter("departure_airport") + "') " + "AND ARR_AIRPORTID IN (SELECT AIRPORTID FROM AIRPORT WHERE airportid = '" + request.getParameter("arrival_airport")
-				+ "') ORDER BY PASSENGERNO";
+				+ departure_airport + "') " + "AND ARR_AIRPORTID IN (SELECT AIRPORTID FROM AIRPORT WHERE airportid = '" + arrival_airport
+				+ "') ORDER BY PASSENGERNO";	
+		}
+		
+		
 		rs = stmt.executeQuery(sql);
 		
 		out.println("<table>");
@@ -101,6 +130,11 @@
 			out.println("<td>"+ count++ +"</td>");
 			out.println("<td>"+rs.getString(1)+"</td>");
 			out.println("<td>"+rs.getInt(2)+"</td>");
+			out.println("<td>"+rs.getString(3)+"</td>");
+			out.println("<td>"+rs.getString(4)+"</td>");
+			out.println("<td>"+rs.getInt(5)+"</td>");
+			out.println("<td>"+rs.getString(6)+"</td>");
+			out.println("<td>"+rs.getString(7)+"</td>");
 			out.println("</tr>");
 		}
 		out.println("</table>");
