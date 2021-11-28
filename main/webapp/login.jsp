@@ -1,11 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ page language="java" import="java.text.*, java.sql.*"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<title>Login</title>
+<meta charset="UTF-8">
+<title>KnuAir - Login</title>
 </head>
 <body>
 <%
@@ -44,9 +44,9 @@
 				pageContext.forward("searchview.jsp");
 			}
 			else {
-				out.println("È¸¿øÁ¤º¸°¡ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù!!!");
+				out.println("íšŒì›ì •ë³´ê°€ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤!!!");
 %>
-			<button type="button" onclick="location.href='loginview.jsp'">È®ÀÎ</button>
+			<button type="button" onclick="location.href='loginview.jsp'">í™•ì¸</button>
 <%
 			}
 		}

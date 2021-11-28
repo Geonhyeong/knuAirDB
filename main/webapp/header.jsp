@@ -1,9 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <style type="text/css">
 	*{margin: 0px; padding: 0px;}
 	ul{list-style: none;}
@@ -80,7 +79,7 @@
 			SessionId = (String)session.getAttribute("id");
 			Type = (String)session.getAttribute("type");
 			
-			out.print(SessionId+"´Ô È¯¿µÇÕ´Ï´Ù!");
+			out.print(SessionId+"ë‹˜ í™˜ì˜í•©ë‹ˆë‹¤!");
 
 			if(Type.equals("Admin")){
 		%>

@@ -1,10 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page language="java" import="java.text.*, java.sql.*" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <style type="text/css">
 	table {
 		width: 100%;
@@ -18,7 +17,7 @@
 		text-align: center;
 	}
 </style>
-<title>Insert title here</title>
+<title>KnuAir - Mypage</title>
 </head>
 <body>
 <header>
@@ -45,7 +44,7 @@
 			String query = "select accountid, pwd, fname, lname, age, phone, email, sex, address from account where accountId ='" + SessionId + "'";
 			rs = stmt.executeQuery(query);
 			
-			out.println("<form action=\"./mypage_update.jsp\" method=\"post\" accept-charset=\"EUC-KR\">");
+			out.println("<form action=\"./mypage_update.jsp\" method=\"post\" accept-charset=\"UTF-8\">");
 			out.println("<table>");
 			ResultSetMetaData rsmd = rs.getMetaData();
 			int cnt = rsmd.getColumnCount();

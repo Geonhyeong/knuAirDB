@@ -1,11 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ page language="java" import="java.text.*, java.sql.*"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<title>Join</title>
+<meta charset="UTF-8">
+<title>KnuAir - Join</title>
 </head>
 <body>
 <%
@@ -69,9 +69,9 @@
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
-	out.println("È¸¿ø°¡ÀÔÀÌ ¿Ï·áµÇ¾ú½À´Ï´Ù!!!");
+	out.println("íšŒì›ê°€ì…ì´ ì™„ë£Œë˜ì—ˆìŠµë‹ˆë‹¤!!!");
 %>
-	<button type="button" onclick="location.href='searchview.jsp'">È®ÀÎ</button>
+	<button type="button" onclick="location.href='searchview.jsp'">í™•ì¸</button>
 
 </body>
 </html>

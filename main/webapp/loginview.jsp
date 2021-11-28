@@ -1,10 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<title>Login</title>
+<meta charset="UTF-8">
+<title>KnuAir - Login</title>
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 </head>
 <body>
@@ -18,13 +18,13 @@
 			<h2 style="text-align:center;">Login</h2>
 			
 			<div class="form-group">
-					<input type="text" class="form-control" placeholder="¾ÆÀÌµð" name="id" maxlength="15">
+					<input type="text" class="form-control" placeholder="ì•„ì´ë””" name="id" maxlength="15">
 			</div>
 			<div class="form-group">
-				<input type="text" class="form-control" placeholder="ºñ¹Ð¹øÈ£" name="pwd" maxlength="15">
+				<input type="password" class="form-control" placeholder="ë¹„ë°€ë²ˆí˜¸" name="pwd" maxlength="15">
 			</div>
 			
-			<input type="submit" class="btn btn-primary form-control" value="·Î±×ÀÎ">
+			<input type="submit" class="btn btn-primary form-control" value="ë¡œê·¸ì¸">
 		</form>
 		<div style="text-align:center; padding-top:10px">
 			<h5>Don't have an account?<br><a href="joinview.jsp">Create Account</a></h5>

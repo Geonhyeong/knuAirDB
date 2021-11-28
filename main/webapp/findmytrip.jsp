@@ -1,10 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page language="java" import="java.text.*, java.sql.*" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <style type="text/css">
 	.ticket-container {
 		width: 60%;
@@ -18,7 +17,7 @@
 		text-align: center;
 	}
 </style>
-<title>Find My Trip</title>
+<title>KnuAir - FindMyTrip</title>
 </head>
 <body>
 <header>
