@@ -39,6 +39,7 @@
 				<li><a href="/knuAirWeb/Management/Airplane/airplane.jsp">AIRPLANE</a></li>
 				<li><a href="/knuAirWeb/Management/Leg/leg.jsp">LEG</a></li>
 				<li><a href="/knuAirWeb/Management/Account/account.jsp">ACCOUNT</a></li>
+				<li><a href="/knuAirWeb/Management/Analysis/analysis.jsp">ANALYSIS</a></li>
 			</ul>
 		</nav>
 	</header>
