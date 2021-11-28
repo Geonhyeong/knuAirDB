@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>Insert title here</title>
+<title>Join</title>
 </head>
 <body>
 <h1>Join</h1>
