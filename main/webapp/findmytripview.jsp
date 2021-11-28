@@ -1,11 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page language="java" import="java.text.*, java.sql.*" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<title>Find My Trip</title>
+<meta charset="UTF-8">
+<title>KnuAir - FindMyTrip</title>
 </head>
 <body>
 <header>
@@ -15,7 +14,7 @@
 <form action="findmytrip.jsp" method="post">
 	Input Your E-Ticket ID: <input type="text" name="findid">
 	
-	<input type="submit" value="확인">
+	<input type="submit" value="�솗�씤">
 </form>
 
 </body>
