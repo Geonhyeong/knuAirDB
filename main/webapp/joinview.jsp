@@ -4,45 +4,57 @@
 <html>
 <head>
 <meta charset="EUC-KR">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <title>Join</title>
 </head>
 <body>
-<h1>Join</h1>
-<form action="join.jsp" method="post">
-	<label for="id">ID: </label>
-	<input type="text" id="id" name="id"><br>
-	
-	<label for="pwd">PW: </label> 
-	<input type="text" id="pwd" name="pwd"><br>
-	
-	<label for="fname">Fname(15자 이내): </label>
-	<input type="text" id="fname" name="fname"><br>
-	
-	<label for="lname">Lname(15자 이내): </label> 
-	<input type="text" id="lname" name="lname"><br>
-	
-	<label for="age">Age: </label>
-	<input type="text" id="age" name="age"><br>
-	
-	<label for="phone">Phone Number[xxx-xxxx-xxxx]: </label> 
-	<input type="text" id="phone" name="phone"><br>
-	
-	<label for="email">Email: </label>
-	<input type="text" id="email" name="email"><br>
-	
-	<label for="sex">Sex </label> 
-	<input type="radio" name="sex" value="M" checked>Male
-	<input type="radio" name="sex" value="F" checked>Female<br>
-	
-	<label for="address">Address(50자 이내): </label> 
-	<input type="text" id="address" name="address"><br>
-	
-	<label for="type">Type </label> 
-	<input type="radio" name="type" value="Passenger" checked>Passenger
-	<input type="radio" name="type" value="Admin" checked>Admin<br>
-	
-	<input type="submit" value="Join"><br>
-	
-</form>
+<header>
+<%@include file ="header.jsp" %>
+</header>
+
+<div class="container" style="padding:10% 20%;">
+	<div class="jumbotron">
+		<form action="join.jsp" method="post">
+			<h2 style="text-align:center;">Join</h2>
+			
+			<div class="form-group">
+					<input type="text" class="form-control" placeholder="ID" name="id" maxlength="15">
+			</div>
+			<div class="form-group">
+				<input type="text" class="form-control" placeholder="Password" name="pwd" maxlength="15">
+			</div>
+			<div class="form-group">
+				<input type="text" class="form-control" placeholder="First Name" name="fname" maxlength="15">
+			</div>
+			<div class="form-group">
+				<input type="text" class="form-control" placeholder="Last Name" name="lname" maxlength="15">
+			</div>
+			<div class="form-group">
+				<input type="text" class="form-control" placeholder="Age" name="age" maxlength="3">
+			</div>
+			<div class="form-group">
+				<input type="text" class="form-control" placeholder="Phone number(xxx-xxxx-xxxx)" name="phone" maxlength="15">
+			</div>
+			<div class="form-group">
+				<input type="text" class="form-control" placeholder="Email" name="email" maxlength="30">
+			</div>
+			<div class="form-group">
+				Sex :
+				<input type="radio" name="sex" value="M" checked>Male
+				<input type="radio" name="sex" value="F" checked>Female
+			</div>
+			<div class="form-group">
+				<input type="text" class="form-control" placeholder="Address" name="address" maxlength="50">
+			</div>
+			<div class="form-group">
+				Type :
+				<input type="radio" name="type" value="Passenger" checked>Passenger
+				<input type="radio" name="type" value="Admin" checked>Admin
+			</div>
+			
+			<input type="submit" class="btn btn-primary form-control" value="Sign In">
+		</form>
+	</div>
+</div>
 </body>
 </html>
