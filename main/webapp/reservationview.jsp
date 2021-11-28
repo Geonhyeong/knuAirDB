@@ -27,7 +27,7 @@
 	}	
 	</style>
 	<title>KnuAir - Reservation View</title>
-
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 	<script>
 		function count(type, result, eco_price, diff_seat)  {
 		  // 결과를 표시할 element
@@ -72,6 +72,7 @@
 <header>
 <%@include file ="header.jsp" %>
 </header>
+	<div class="container" style="padding:10% 20%;">
 	<div class="all">
 	<%
 	String serverIP = "localhost";
@@ -265,12 +266,13 @@
 		out.println("<input type='hidden' id='legid' name='legid' value='" + legid + "' />");
 		%>
 		<br />
-		<input type="submit" value="구매" />
+		<input type="submit" value="구매" class="btn btn-primary btn-lg btn-block"/>
 		<%
 		out.println("<input type='hidden' id='account_id' name='account_id' value='" + account_id + "' />");
 		out.println("<input type='hidden' id='account_type' name='account_type' value='" + account_type + "' />");
 		 %>
 	</form>
+	</div>
 	</div>
 </body>
 </html>

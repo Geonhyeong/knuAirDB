@@ -14,6 +14,7 @@
 		border: 2px solid #000000;
 		border-collapse: collapse;
 		table-layout: fixed;
+		margin-bottom: 20px;
 	}
 	th, td {
 		word-wrap: break-word;
@@ -26,12 +27,14 @@
 		background-color: #CACACA;
 	}	
 	</style>
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 	<title>KnuAir - Leg View</title>
 </head>
 <body>
 <header>
 <%@include file ="header.jsp" %>
 </header>
+	<div class="container" style="padding:10% 20%;">
 	<div class="all">
 	<%
 	String serverIP = "localhost";
@@ -78,48 +81,49 @@
  			if (account_id.compareTo("null") == 0) {	
  				out.println("<h3>로그인이 필요합니다.</h3>");
  			} else {
+ 				out.println("<input type='hidden' id='account_id' name='account_id' value='" + account_id + "' />");
+ 	 			out.println("<input type='hidden' id='account_type' name='account_type' value='" + account_type + "' />");
+
+ 	 			out.println("<table>");
+ 	 			for (int i = 1; i <= cnt; i++) {
+ 	 				if(i == 7) {
+ 	 					out.println("<th>" + rsmd.getColumnName(i) + " (￦)</th>");
+ 	 				} else {
+ 	 					out.println("<th>" + rsmd.getColumnName(i) + "</th>");				
+ 	 				}
+ 	 			}
+ 	 			out.println("<th> RESERVATION </th>");
+ 	 			out.println("<tr>");
+ 	 			out.println("<td>" + rs.getString(1) + "</td>");
+ 	 			out.println("<td>" + rs.getString(2) + "</td>");
+ 	 			out.println("<td>" + rs.getString(3) + "</td>");
+ 	 			out.println("<td>" + rs.getString(4) + "</td>");
+ 	 			out.println("<td>" + rs.getString(5) + "</td>");
+ 	 			out.println("<td>" + rs.getString(6) + "</td>");
+ 	 			out.println("<td>" + rs.getString(7) + "</td>");
+ 	 			out.println("<td>" + "<input type='radio' name='leg_radio' value='" + rs.getString(1) + "' checked/>" + "</td>");
+ 	 			out.println("</tr>");
+ 	 			while (rs.next()) {
+ 	 				out.println("<tr>");
+ 	 				out.println("<td>" + rs.getString(1) + "</td>");
+ 	 				out.println("<td>" + rs.getString(2) + "</td>");
+ 	 				out.println("<td>" + rs.getString(3) + "</td>");
+ 	 				out.println("<td>" + rs.getString(4) + "</td>");
+ 	 				out.println("<td>" + rs.getString(5) + "</td>");
+ 	 				out.println("<td>" + rs.getString(6) + "</td>");
+ 	 				out.println("<td>" + rs.getString(7) + "</td>");
+ 	 				out.println("<td>" + "<input type='radio' name='leg_radio' value='" + rs.getString(1) + "'/>" + "</td>");
+ 	 				out.println("</tr>");
+ 	 			}
+ 	 		
+ 		 		out.println("</table>");
+ 		 		rs.close();
+ 		 		pstmt.close();
  				%>
- 				<input type="submit" value="예약" />
+ 				<input type="submit" value="예약" class="btn btn-primary btn-lg btn-block"/>
  				<%
  			}
- 			out.println("<input type='hidden' id='account_id' name='account_id' value='" + account_id + "' />");
- 			out.println("<input type='hidden' id='account_type' name='account_type' value='" + account_type + "' />");
-
- 			out.println("<table>");
- 			for (int i = 1; i <= cnt; i++) {
- 				if(i == 7) {
- 					out.println("<th>" + rsmd.getColumnName(i) + " (￦)</th>");
- 				} else {
- 					out.println("<th>" + rsmd.getColumnName(i) + "</th>");				
- 				}
- 			}
- 			out.println("<th> RESERVATION </th>");
- 			out.println("<tr>");
- 			out.println("<td>" + rs.getString(1) + "</td>");
- 			out.println("<td>" + rs.getString(2) + "</td>");
- 			out.println("<td>" + rs.getString(3) + "</td>");
- 			out.println("<td>" + rs.getString(4) + "</td>");
- 			out.println("<td>" + rs.getString(5) + "</td>");
- 			out.println("<td>" + rs.getString(6) + "</td>");
- 			out.println("<td>" + rs.getString(7) + "</td>");
- 			out.println("<td>" + "<input type='radio' name='leg_radio' value='" + rs.getString(1) + "' checked/>" + "</td>");
- 			out.println("</tr>");
- 			while (rs.next()) {
- 				out.println("<tr>");
- 				out.println("<td>" + rs.getString(1) + "</td>");
- 				out.println("<td>" + rs.getString(2) + "</td>");
- 				out.println("<td>" + rs.getString(3) + "</td>");
- 				out.println("<td>" + rs.getString(4) + "</td>");
- 				out.println("<td>" + rs.getString(5) + "</td>");
- 				out.println("<td>" + rs.getString(6) + "</td>");
- 				out.println("<td>" + rs.getString(7) + "</td>");
- 				out.println("<td>" + "<input type='radio' name='leg_radio' value='" + rs.getString(1) + "'/>" + "</td>");
- 				out.println("</tr>");
- 			}
- 		
-	 		out.println("</table>");
-	 		rs.close();
-	 		pstmt.close();
+ 			
  		} else {
  			out.println("<h3>조회 가능한 항공권이 없습니다! </h3>");
  		}
@@ -130,5 +134,7 @@
 	%>
 	</form>
 	</div>
+	</div>
+
 </body>
 </html>

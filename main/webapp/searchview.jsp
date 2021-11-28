@@ -186,7 +186,7 @@
 			</select>
 		</div> 
 		<input type="text" id="start_date" name="start_date" value="출발 날짜"/>
-		<input type="submit" value="조회" />
+		<input type="submit" value="조회"  class="btn btn-primary btn-lg btn-block" />
 		<%
 		out.println("<input type='hidden' id='account_id' name='account_id' value='" + account_id + "' />");
 		out.println("<input type='hidden' id='account_type' name='account_type' value='" + account_type + "' />");
