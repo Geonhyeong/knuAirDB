@@ -9,27 +9,7 @@
 <link rel="stylesheet" href="../Management.css">
 </head>
 <body>
-	<header>
-		<div id="logo">
-			<h1>LOGO</h1>
-		</div>
-		<div id="top_menu">
-			<a href="#">HOME</a> |
-			<a href="#">NOTICE</a> |
-			<a href="#">LOGIN</a> |
-			<a href="#">JOIN</a>
-		</div>
-		
-		<nav>
-			<ul>
-				<li><a href="../Airport/airport.jsp">AIRPORT</a></li>
-				<li><a href="../Airline/airline.jsp">AIRLINE</a></li>
-				<li><a href="../Airplane/airplane.jsp">AIRPLANE</a></li>
-				<li><a href="../Leg/leg.jsp">LEG</a></li>
-				<li><a href="../Account/account.jsp">ACCOUNT</a></li>
-			</ul>
-		</nav>
-	</header>
+	<%@include file ="../header_management.jsp" %>
 	
 	<article id="content">
 		<%

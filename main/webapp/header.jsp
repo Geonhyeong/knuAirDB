@@ -84,7 +84,7 @@
 
 			if(Type.equals("Admin")){
 		%>
-				<a href="./Management/main.html">MANAGEMENT</a> | 
+				<a href="./Management/main.jsp">MANAGEMENT</a> | 
 				<a href="./searchview.jsp">HOME</a> | 
 				<a href="./mypageview_info.jsp">MY PAGE</a> | 
 				<a href="./logout.jsp">LOGOUT</a>
