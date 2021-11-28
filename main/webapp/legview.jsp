@@ -1,10 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ page language="java" import="java.text.*, java.sql.*"%>
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="EUC-KR">
+	<meta charset="UTF-8">
 	<style type="text/css">
 	ul{list-style: none;}
 	a{text-decoration: none;}
@@ -102,7 +102,7 @@
 	String arr_port = request.getParameter("arrival_airport");
 	String date = request.getParameter("start_date");
 
-	/* Leg¸¦ Á¶È¸ */
+	/* Legë¥¼ ì¡°íšŒ */
  	try {
  		sql = "(select legid, dep_airportid as dep, arr_airportid as arr, dep_gate as gate, scheduled_dep_time as dep_time, scheduled_arr_time as arr_time, price from leg, airport where city = '"
  				+ dep_port + "' and airportid=dep_airportid)\r\n" + "intersect\r\n"
@@ -121,10 +121,10 @@
  			<form action="reservationview.jsp" method="POST">
  			<%
  			if (account_id.compareTo("null") == 0) {	
- 				out.println("<h3>·Î±×ÀÎÀÌ ÇÊ¿äÇÕ´Ï´Ù.</h3>");
+ 				out.println("<h3>ë¡œê·¸ì¸ì´ í•„ìš”í•©ë‹ˆë‹¤.</h3>");
  			} else {
  				%>
- 				<input type="submit" value="¿¹¾à" />
+ 				<input type="submit" value="ì˜ˆì•½" />
  				<%
  			}
  			out.println("<input type='hidden' id='account_id' name='account_id' value='" + account_id + "' />");
@@ -133,7 +133,7 @@
  			out.println("<table>");
  			for (int i = 1; i <= cnt; i++) {
  				if(i == 7) {
- 					out.println("<th>" + rsmd.getColumnName(i) + " (£Ü)</th>");
+ 					out.println("<th>" + rsmd.getColumnName(i) + " (ï¿¦)</th>");
  				} else {
  					out.println("<th>" + rsmd.getColumnName(i) + "</th>");				
  				}

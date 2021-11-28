@@ -9,55 +9,15 @@
 	<style type="text/css">
 	ul{list-style: none;}
 	a{text-decoration: none;}
-	 
-	header{
-	    width: 100%;
-	    height:95px;
-	    background-color: #2d3a4b;
-	    position: relative;
-	}
-	 
-	#logo{
-		position: absolute;
-		top:30px;
-		left:30px;
-	}
-	
-	#top_menu{
-	    position: absolute;
-	    top: 20px;
-	    right: 10px;
-	    color: white;
-	}
-	#top_menu a{color: white; font-size: 14px;}
-	 
-	nav{
-	    position:absolute;
-	    bottom: 10px;
-	    left:220px;
-	    font-size:16px;
-	}
-	
-	nav li{
-		display: inline;
-		margin-left:30px;
-	}
-	 
-	nav li a{
-	    color: white;
-	}
-	 
-	nav li a:hover{
-	    background-color: white;
-	    color: black;
-	}
-	
+
 	table {
 		width: 100%;
 		border: 2px solid #000000;
 		border-collapse: collapse;
-		}
+		table-layout: fixed;
+	}
 	th, td {
+		word-wrap: break-word;
 		border: 2px solid #000000;
 		padding: 10px;
 		text-align: center;
@@ -243,7 +203,7 @@
 		
 		/* 구매한 티켓 View */
 		try {
-			sql = "select e_ticketid, leg_price as total_price, NUMBER_OF_ECONOMY, NUMBER_OF_BUSINESS, NUMBER_OF_FIRST, dep_airportid, arr_airportid, dep_gate, SCHEDULED_DEP_TIME, SCHEDULED_ARR_TIME "
+			sql = "select e_ticketid, leg_price as total_price, NUMBER_OF_ECONOMY as economy, NUMBER_OF_BUSINESS as business, NUMBER_OF_FIRST as first, dep_airportid as dep, arr_airportid as arr, dep_gate as gate, SCHEDULED_DEP_TIME as dep_time, SCHEDULED_ARR_TIME as arr_time "
 				+ "from eticket e, leg l where e_ticketid='" + eticket_id + "' and l.legid='" + legid + "' and e.legid = l.legid";
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery(sql);
