@@ -1,10 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ page language="java" import="java.text.*, java.sql.*"%>
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="EUC-KR">
+	<meta charset="UTF-8">
 	<style type="text/css">
 	ul{list-style: none;}
 	a{text-decoration: none;}
@@ -69,13 +69,13 @@
 
 	<script>
 		function count(type, result, eco_price, diff_seat)  {
-		  // °á°ú¸¦ Ç¥½ÃÇÒ element
+		  // ê²°ê³¼ë¥¼ í‘œì‹œí•  element
 		  const resultElement = document.getElementById(result);
 		  
-		  // ÇöÀç È­¸é¿¡ Ç¥½ÃµÈ °ª
+		  // í˜„ì¬ í™”ë©´ì— í‘œì‹œëœ ê°’
 		  let number = resultElement.innerText;
 		  
-		  // ´õÇÏ±â/»©±â
+		  // ë”í•˜ê¸°/ë¹¼ê¸°
 		  if(type === 'plus') {
 		    number = parseInt(number) + 1;
 		  }else if(type === 'minus')  {
@@ -98,7 +98,7 @@
 			  document.getElementById('price_first').innerText = parseInt(number * eco_price * diff_seat * diff_seat);
 		  }
 		  
-		  // °á°ú Ãâ·Â
+		  // ê²°ê³¼ ì¶œë ¥
 		  document.getElementById('price_total').innerText = parseInt(document.getElementById('price_economy').innerText) 
 		  	+  parseInt(document.getElementById('price_business').innerText)
 		  	+  parseInt(document.getElementById('price_first').innerText);
@@ -134,14 +134,15 @@
 	String legid = request.getParameter("leg_radio");
 
 	String eco_price = "";
-	/* ¼±ÅÃÇÑ legÀÇ Á¤º¸¸¦ Ãâ·Â */
+	
+	/* ì„ íƒí•œ legì˜ ì •ë³´ë¥¼ ì¶œë ¥ */
 	try {
 		sql = "(select legid, dep_airportid as dep, arr_airportid as arr, dep_gate as gate, scheduled_dep_time as dep_time, scheduled_arr_time as arr_time, price from leg, airport " 
 	 			+ "where legid = '" + legid + "' and airportid=dep_airportid)\r\n" + "intersect\r\n"
 				+ "(select legid, dep_airportid as dep, arr_airportid as arr, dep_gate as gate, scheduled_dep_time as dep_time, scheduled_arr_time as arr_time, price from leg, airport where legid = '" + legid + "' and airportid=arr_airportid)";
 		pstmt = conn.prepareStatement(sql);
 		rs = pstmt.executeQuery();
-		out.println("<h4>[¼±ÅÃÇÑ Æ¼ÄÏ]</h4>");
+		out.println("<h4>[ì„ íƒí•œ í‹°ì¼“]</h4>");
 		out.println("<table>");
 		rsmd = rs.getMetaData();
 		cnt = rsmd.getColumnCount();
@@ -171,9 +172,9 @@
 	}
  	
 	out.println("<br/>");
-	out.println("<h4>[³²Àº ÁÂ¼® ¼ö]</h4>");
+	out.println("<h4>[ë‚¨ì€ ì¢Œì„ ìˆ˜]</h4>");
 	String avail_economy = "", avail_business = "", avail_first = "";
-	/* ¼±ÅÃÇÑ legÀÇ ³²Àº ÁÂ¼® ¼ö¸¦ Ãâ·Â */
+	/* ì„ íƒí•œ legì˜ ë‚¨ì€ ì¢Œì„ ìˆ˜ë¥¼ ì¶œë ¥ */
 	try {
 		sql = "select economy_avail_seats as Economy, business_avail_seats as Business, first_avail_seats as First from assigned_by where legid = '"
 				+ legid + "'";
@@ -206,7 +207,7 @@
 		e.printStackTrace();
 	}
 	
-	/* ¼±ÅÃÇÑ legÀÇ ºñÇà±â Á¤º¸ Áß ³²Àº ÁÂ¼® ¼ö¸¦ °¡Á®¿À±â À§ÇØ airplain id¸¦ °Ë»ö */
+	/* ì„ íƒí•œ legì˜ ë¹„í–‰ê¸° ì •ë³´ ì¤‘ ë‚¨ì€ ì¢Œì„ ìˆ˜ë¥¼ ê°€ì ¸ì˜¤ê¸° ìœ„í•´ airplain idë¥¼ ê²€ìƒ‰ */
 	String airplaneid = "";
 	try {
 		sql = "select airplaneid from assigned_by where legid = '" + legid + "'";
@@ -226,7 +227,7 @@
 
 	float diff_seat = 0;
 	float diff_beggage = 0;
-	/* airplain id·Î ³²Àº ÁÂ¼® ¼ö¸¦ °Ë»ö */
+	/* airplain idë¡œ ë‚¨ì€ ì¢Œì„ ìˆ˜ë¥¼ ê²€ìƒ‰ */
 	try {
 		sql = "select diff_seat, diff_beggage from airline al, airplane ap where airplaneid = '" + airplaneid
 				+ "' and al.airlineid = ap.airlineid";
@@ -245,7 +246,7 @@
 	}
 	%>
 	<br />
-	<h4>[ÁÂ¼® ¼ö ¼±ÅÃ]</h4>
+	<h4>[ì¢Œì„ ìˆ˜ ì„ íƒ]</h4>
 	<table>
 		<tr>
 			<td> Economy </td>
@@ -274,7 +275,7 @@
 	</table>
 	
 	<br />
-	<h4>[°¡°İ]</h4>
+	<h4>[ê°€ê²©]</h4>
 	
 	<table>
 		<th>ECONOMY</th>		
@@ -289,7 +290,7 @@
 		</tr>
 	</table>
 	<form action='ticketview.jsp' method='POST'>
-		<h4>[ÁüÀÌ ÀÖ½À´Ï±î?]</h4>
+		<h4>[ì§ì´ ìˆìŠµë‹ˆê¹Œ?]</h4>
 		<input type='radio' name='beggage' value='Y'/>Y
 		<input type='radio' name='beggage' value='N'/>N
 		<br />
@@ -303,7 +304,7 @@
 		out.println("<input type='hidden' id='legid' name='legid' value='" + legid + "' />");
 		%>
 		<br />
-		<input type="submit" value="±¸¸Å" />
+		<input type="submit" value="êµ¬ë§¤" />
 		<%
 		out.println("<input type='hidden' id='account_id' name='account_id' value='" + account_id + "' />");
 		out.println("<input type='hidden' id='account_type' name='account_type' value='" + account_type + "' />");

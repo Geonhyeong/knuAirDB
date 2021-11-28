@@ -1,10 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ page language="java" import="java.text.*, java.sql.*"%>
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="EUC-KR">
+	<meta charset="UTF-8">
 	<style type="text/css">
 	ul{list-style: none;}
 	a{text-decoration: none;}
@@ -65,12 +65,12 @@
 	}
 	.selectbox { 
 		position: relative; 
-		width: 500px; /* ³Êºñ¼³Á¤ */ 
-		border: 1px solid #999; /* Å×µÎ¸® ¼³Á¤ */ 
+		width: 500px; /* ë„ˆë¹„ì„¤ì • */ 
+		border: 1px solid #999; /* í…Œë‘ë¦¬ ì„¤ì • */ 
 		z-index: 1; 
 		margin-bottom: 10px;
 	} 
-	.selectbox:before { /* È­»ìÇ¥ ´ëÃ¼ */ 
+	.selectbox:before { /* í™”ì‚´í‘œ ëŒ€ì²´ */ 
 		content: ""; 
 		position: absolute; 
 		top: 50%; 
@@ -84,22 +84,22 @@
 	} 
 	.selectbox label { 
 		position: absolute; 
-		top: 1px; /* À§Ä¡Á¤·Ä */ 
-		left: 5px; /* À§Ä¡Á¤·Ä */ 
-		padding: .8em .5em; /* selectÀÇ ¿©¹é Å©±â ¸¸Å­ */ 
+		top: 1px; /* ìœ„ì¹˜ì •ë ¬ */ 
+		left: 5px; /* ìœ„ì¹˜ì •ë ¬ */ 
+		padding: .8em .5em; /* selectì˜ ì—¬ë°± í¬ê¸° ë§Œí¼ */ 
 		color: #000; 
-		z-index: -1; /* IE8¿¡¼­ labelÀÌ À§Ä¡ÇÑ °÷ÀÌ Å¬¸¯µÇÁö ¾Ê´Â °Í ÇØ°á */ 
+		z-index: -1; /* IE8ì—ì„œ labelì´ ìœ„ì¹˜í•œ ê³³ì´ í´ë¦­ë˜ì§€ ì•ŠëŠ” ê²ƒ í•´ê²° */ 
 	} 
 	.selectbox select { 
 		width: 100%; 
-		height: auto; /* ³ôÀÌ ÃÊ±âÈ­ */ 
-		line-height: normal; /* line-height ÃÊ±âÈ­ */ 
-		font-family: inherit; /* ÆùÆ® »ó¼Ó */ 
-		padding: .8em .5em; /* ¿©¹é°ú ³ôÀÌ °áÁ¤ */ 
+		height: auto; /* ë†’ì´ ì´ˆê¸°í™” */ 
+		line-height: normal; /* line-height ì´ˆê¸°í™” */ 
+		font-family: inherit; /* í°íŠ¸ ìƒì† */ 
+		padding: .8em .5em; /* ì—¬ë°±ê³¼ ë†’ì´ ê²°ì • */ 
 		border: 0; 
-		opacity: 0; /* ¼û±â±â */ 
-		filter:alpha(opacity=0); /* IE8 ¼û±â±â */ 
-		-webkit-appearance: none; /* ³×ÀÌÆ¼ºê ¿ÜÇü °¨Ãß±â */ 
+		opacity: 0; /* ìˆ¨ê¸°ê¸° */ 
+		filter:alpha(opacity=0); /* IE8 ìˆ¨ê¸°ê¸° */ 
+		-webkit-appearance: none; /* ë„¤ì´í‹°ë¸Œ ì™¸í˜• ê°ì¶”ê¸° */ 
 		-moz-appearance: none; 
 		appearance: none; 
 	}
@@ -124,18 +124,18 @@
 								{
 									changeMonth : true,
 									changeYear : true,
-									nextText : '´ÙÀ½ ´Ş',
-									prevText : 'ÀÌÀü ´Ş',
-									dayNames : [ 'ÀÏ¿äÀÏ', '¿ù¿äÀÏ', 'È­¿äÀÏ', '¼ö¿äÀÏ',
-											'¸ñ¿äÀÏ', '±İ¿äÀÏ', 'Åä¿äÀÏ' ],
-									dayNamesMin : [ 'ÀÏ', '¿ù', 'È­', '¼ö', '¸ñ',
-											'±İ', 'Åä' ],
-									monthNamesShort : [ '1¿ù', '2¿ù', '3¿ù', '4¿ù',
-											'5¿ù', '6¿ù', '7¿ù', '8¿ù', '9¿ù',
-											'10¿ù', '11¿ù', '12¿ù' ],
-									monthNames : [ '1¿ù', '2¿ù', '3¿ù', '4¿ù',
-											'5¿ù', '6¿ù', '7¿ù', '8¿ù', '9¿ù',
-											'10¿ù', '11¿ù', '12¿ù' ],
+									nextText : 'ë‹¤ìŒ ë‹¬',
+									prevText : 'ì´ì „ ë‹¬',
+									dayNames : [ 'ì¼ìš”ì¼', 'ì›”ìš”ì¼', 'í™”ìš”ì¼', 'ìˆ˜ìš”ì¼',
+											'ëª©ìš”ì¼', 'ê¸ˆìš”ì¼', 'í† ìš”ì¼' ],
+									dayNamesMin : [ 'ì¼', 'ì›”', 'í™”', 'ìˆ˜', 'ëª©',
+											'ê¸ˆ', 'í† ' ],
+									monthNamesShort : [ '1ì›”', '2ì›”', '3ì›”', '4ì›”',
+											'5ì›”', '6ì›”', '7ì›”', '8ì›”', '9ì›”',
+											'10ì›”', '11ì›”', '12ì›”' ],
+									monthNames : [ '1ì›”', '2ì›”', '3ì›”', '4ì›”',
+											'5ì›”', '6ì›”', '7ì›”', '8ì›”', '9ì›”',
+											'10ì›”', '11ì›”', '12ì›”' ],
 									dateFormat : "yymmdd",
 									showOn : "both"
 								});
@@ -171,10 +171,10 @@
 	<div class="all">
 	<form action="legview.jsp" method="POST">
 		<div class="selectbox">
-			<label for="departure_airport">Ãâ¹ß °øÇ×</label>
+			<label for="departure_airport">ì¶œë°œ ê³µí•­</label>
 			<select name="departure_airport" id="departure_airport">
 				<%
-				/* Ãâ¹ß °øÇ×ÀÇ Á¤º¸¸¦ select boxÀÇ optionÀ¸·Î Ãâ·Â */
+				/* ì¶œë°œ ê³µí•­ì˜ ì •ë³´ë¥¼ select boxì˜ optionìœ¼ë¡œ ì¶œë ¥ */
 				try {
 					sql = "select city, name, airportid from airport order by city";
 					pstmt = conn.prepareStatement(sql);
@@ -196,10 +196,10 @@
 			</select>
 		</div>
 		<div class="selectbox">
-			<label for="arrival_airport">µµÂø °øÇ×</label>
+			<label for="arrival_airport">ë„ì°© ê³µí•­</label>
 			<select name="arrival_airport" id="arrival_airport">
 				<%
-				/* µµÂø °øÇ×ÀÇ Á¤º¸¸¦ select boxÀÇ optionÀ¸·Î Ãâ·Â */
+				/* ë„ì°© ê³µí•­ì˜ ì •ë³´ë¥¼ select boxì˜ optionìœ¼ë¡œ ì¶œë ¥ */
 				try {
 					sql = "select city, name, airportid from airport order by city";
 					pstmt = conn.prepareStatement(sql);
@@ -222,8 +222,7 @@
 			</select>
 		</div> 
 		<input type="text" id="start_date" name="start_date">
-		<input type="reset" value="ÃÊ±âÈ­" /> 
-		<input type="submit" value="Á¶È¸" />
+		<input type="submit" value="ì¡°íšŒ" />
 		<%
 		out.println("<input type='hidden' id='account_id' name='account_id' value='" + account_id + "' />");
 		out.println("<input type='hidden' id='account_type' name='account_type' value='" + account_type + "' />");
