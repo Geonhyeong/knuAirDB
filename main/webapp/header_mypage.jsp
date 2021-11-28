@@ -91,6 +91,7 @@
 	<nav>
 		<ul>
 			<li><a href="./mypageview_info.jsp">MY INFO</a></li>
+			<li><a href="./mypageview_ticket.jsp">MY TICKET</a></li>
 		</ul>
 	</nav>
 			
