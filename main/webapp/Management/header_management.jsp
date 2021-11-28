@@ -11,7 +11,7 @@
 <body>
 	<header>
 		<div id="logo">
-			<h1>LOGO</h1>
+			<img src="./images/logo2.png" width="150" height="70">
 		</div>
 		<div id="top_menu">
 			<%
