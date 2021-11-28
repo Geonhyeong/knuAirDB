@@ -9,7 +9,14 @@
 	<style type="text/css">
 	ul{list-style: none;}
 	a{text-decoration: none;}
-
+	.ticket-container {
+		width: 70%;
+		display:block;
+		padding: 10px 15px;
+		margin: 5% auto;
+		border: 1.5px solid #555555;
+		border-collapse: collapse;
+	}
 	</style>
 	<link rel="stylesheet" href="./styles/styles.css">
 	<title>KnuAir - Ticket View</title>
@@ -29,15 +36,20 @@
 
 	Connection conn = null;
 	PreparedStatement pstmt;
+	Statement stmt;
+	
 	ResultSet rs;
 	String sql = "";
 	Class.forName("oracle.jdbc.driver.OracleDriver");
 	conn = DriverManager.getConnection(url, user, pass);
+	 stmt= conn.createStatement();
 	
 	String account_id = request.getParameter("account_id");
 	String account_type = request.getParameter("account_type");
 	String account_no = "";
 	String eticket_id = "";
+	String fname = "";
+	String lname = "";
 	
 	String legid = request.getParameter("legid");
 	int res_eco = Integer.parseInt(request.getParameter("hidden_economy"));
@@ -192,35 +204,92 @@
 				e.printStackTrace();
 			}
 			
-			/* 구매한 티켓 View */
-			try {
-				sql = "select e_ticketid, leg_price as total_price, NUMBER_OF_ECONOMY as economy, NUMBER_OF_BUSINESS as business, NUMBER_OF_FIRST as first, dep_airportid as dep, arr_airportid as arr, dep_gate as gate, SCHEDULED_DEP_TIME as dep_time, SCHEDULED_ARR_TIME as arr_time "
-					+ "from eticket e, leg l where e_ticketid='" + eticket_id + "' and l.legid='" + legid + "' and e.legid = l.legid";
-				pstmt = conn.prepareStatement(sql);
-				rs = pstmt.executeQuery(sql);
-				
-				out.println("<table class='bluetop' class='bluetop'>");
+			/* 구매한 티켓 View */			
+			try{				
+				String query = "select fname, lname from account where accountId ='" + account_id + "'";
+				rs = stmt.executeQuery(query);
+				while(rs.next()){
+					fname = rs.getString(1);
+					lname = rs.getString(2);
+				}
+					
+				query = "select l.dep_airportid, l.arr_airportid, l.dep_gate, l.scheduled_dep_time, l.scheduled_arr_time,"
+						+ " e.e_ticketid, e.leg_price, e.seat_price, e.beggage_price, e.membership_disc, e.number_of_economy, e.number_of_business, e.number_of_first"
+						+ " from leg l, eticket e"
+						+ " where l.legid = e.legid and e.e_ticketid ='" + eticket_id + "'";
+				rs = stmt.executeQuery(query);
+
 				ResultSetMetaData rsmd = rs.getMetaData();
 				int cnt = rsmd.getColumnCount();
-				for (int i = 1; i <= cnt; i++) {
-					out.println("<th>" + rsmd.getColumnName(i) + "</th>");
+				while(rs.next()){
+					String dep_airportid = rs.getString(1);
+					String arr_airportid = rs.getString(2);
+					int dep_gate = rs.getInt(3);
+					String scheduled_dep_time = rs.getString(4);
+					String scheduled_arr_time = rs.getString(5);
+					String e_ticketid = rs.getString(6);
+					int leg_price = rs.getInt(7);
+					int seat_price = rs.getInt(8);
+					int beggage_price = rs.getInt(9);
+					int membership_disc = rs.getInt(10);
+					int number_of_economy = rs.getInt(11);
+					int number_of_business = rs.getInt(12);
+					int number_of_first = rs.getInt(13);
+					int total_price = (leg_price + seat_price + beggage_price) * (1 - membership_disc / 100);
+				%>
+				<div class="ticket-container">
+					<div style="display:flex; ">
+						<div style="flex:3; border: 1.5px dotted #808080;">
+							<div style="display:block; overflow:auto;">
+								<div style="display:inline; float:left; margin-left:10px;">
+									<h5>E-TICKETID : <%=e_ticketid %></h5>
+								</div>
+								<div style="display:inline; float:right; margin-right:10px;">
+									<h5>PASSENGER NAME : <%=fname %> <%= lname %></h5>
+								</div>
+							</div>
+							<div style="display:flex;margin-top:30px;">
+								<div style="flex:auto; text-align:center;">
+									<img src="./images/plane_takeoff.png" width="50" height="50">
+									<div>
+										<h3><%=dep_airportid %></h3>
+										<h4>Depart Time: <%=scheduled_dep_time %></h4>
+										<h4>Gate No: <%=dep_gate%></h4>
+									</div>
+								</div>
+								<div style="flex:auto;text-align:center;">
+									<img src="./images/arrow.png" width="25" height="25">
+								</div>
+								<div style="flex:auto;text-align:center;">
+									<img src="./images/plane_landon.png" width="50" height="50">
+									<div>
+										<h3><%=arr_airportid %></h3>
+										<h4>Arrival Time: <%=scheduled_arr_time %></h4>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div style="flex:1; border: 1.5px dotted #808080; margin-left:10px;">
+							<div style="text-align:center;">
+								<h5>[ NUMBER OF SEATS ]</h5>
+								<h5>ECONOMY : <%=number_of_economy%></h5>
+								<h5>BUSINESS : <%=number_of_business%></h5>
+								<h5>FIRST : <%=number_of_first%></h5>
+								<h5>--------------------------------</h5>
+								<h5>[ FEE COMPOSITION ]</h5>
+								<h5>LEG PRICE: <%=leg_price%></h5>
+								<h5>SEAT PRICE: <%=seat_price%></h5>
+								<h5>BEGGAGE PRICE: <%=beggage_price%></h5>
+								<h5>TOTAL FEE: <%=total_price%></h5>
+
+							</div>
+						</div>
+					</div>
+				</div>
+				<% 
 				}
-				while(rs.next()) {
-					out.println("<tr>");
-					out.println("<td>" + rs.getString(1) + "</td>");
-					out.println("<td>" + rs.getString(2) + "</td>");
-					out.println("<td>" + rs.getString(3) + "</td>");
-					out.println("<td>" + rs.getString(4) + "</td>");
-					out.println("<td>" + rs.getString(5) + "</td>");
-					out.println("<td>" + rs.getString(6) + "</td>");
-					out.println("<td>" + rs.getString(7) + "</td>");
-					out.println("<td>" + rs.getString(8) + "</td>");
-					out.println("<td>" + rs.getString(9) + "</td>");
-					out.println("<td>" + rs.getString(10) + "</td>");
-					out.println("</tr>");
-				} 	
+
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
