@@ -1,11 +1,11 @@
-<!-- loginÀÌ¶û ¿¬µ¿ÇØ¼­ Ãß°¡ ÀÛ¾÷ÇØ¾ßÇÔ, travel_count¶û ¸â¹ö½Ê ÇÒÀÎ °°Àº°Å -->
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<!-- loginì´ë‘ ì—°ë™í•´ì„œ ì¶”ê°€ ì‘ì—…í•´ì•¼í•¨, travel_countë‘ ë©¤ë²„ì‹­ í• ì¸ ê°™ì€ê±° -->
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ page language="java" import="java.text.*, java.sql.*"%>
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="EUC-KR">
+	<meta charset="UTF-8">
 	<style type="text/css">
 	ul{list-style: none;}
 	a{text-decoration: none;}
@@ -68,7 +68,7 @@
 	int avail_fir = 0;
 	int price_all = price_eco + price_bus + price_fir + price_beg;
 	
-	/* °èÁ¤ Number Á¶È¸ */
+	/* ê³„ì • Number ì¡°íšŒ */
 	try {
 		sql = "select accountno from account where accountid = '" + account_id + "'";
 		pstmt = conn.prepareStatement(sql);
@@ -84,7 +84,7 @@
 		e.printStackTrace();
 	}
 
-	/* Membership Á¤º¸ °¡Á®¿À±â */
+	/* Membership ì •ë³´ ê°€ì ¸ì˜¤ê¸° */
 	int travel_count = 0;
 	String membership_title = "";
 	try {
@@ -103,7 +103,7 @@
 		e.printStackTrace();
 	} 
 	
-	/* Concurrency control - ³²¾ÆÀÖ´Â ÁÂ¼® ¼ö ÇÑ¹ø ´õ Ã¼Å©*/
+	/* Concurrency control - ë‚¨ì•„ìˆëŠ” ì¢Œì„ ìˆ˜ í•œë²ˆ ë” ì²´í¬*/
 	try {
 		sql = "select ECONOMY_AVAIL_SEATS, BUSINESS_AVAIL_SEATS, FIRST_AVAIL_SEATS from assigned_by where legid = '" + legid + "'";
 		pstmt = conn.prepareStatement(sql);
@@ -123,14 +123,14 @@
 	}
 	
 	if(avail_eco - res_eco < 0 || avail_bus - res_bus < 0 || avail_fir - res_fir < 0) {
-		out.println("<h3>ÁÂ¼®ÀÌ ºÎÁ·ÇÕ´Ï´Ù!</h3>");
+		out.println("<h3>ì¢Œì„ì´ ë¶€ì¡±í•©ë‹ˆë‹¤!</h3>");
 		out.println("<form action='searchview.jsp' method='POST'>");
-		out.println("<input type='submit' value='Ç×°ø±Ç ´Ù½Ã Á¶È¸ÇÏ±â' />");
+		out.println("<input type='submit' value='í•­ê³µê¶Œ ë‹¤ì‹œ ì¡°íšŒí•˜ê¸°' />");
 		out.println("<input type='hidden' id='account_id' name='account_id' value='" + account_id + "' />");
 		out.println("<input type='hidden' id='account_type' name='account_type' value='" + account_type + "' />");
 		out.println("</form>");
 	} else {
-		/* e_ticketid¸¦ Á¤ÇÏ±â À§ÇØ¼­ ÇöÀç e_ticketid Áß °¡Àå Å« °ª °¡Á®¿È */
+		/* e_ticketidë¥¼ ì •í•˜ê¸° ìœ„í•´ì„œ í˜„ì¬ e_ticketid ì¤‘ ê°€ì¥ í° ê°’ ê°€ì ¸ì˜´ */
 		try {
 			sql = "select max(e_ticketid) from eticket";
 			pstmt = conn.prepareStatement(sql);
@@ -156,7 +156,9 @@
 			disc = 0.20f;
 		};
 		
-		/* Æ¼ÄÏ ±¸¸Å - Insert */
+		price_all *= (1-disc);
+		
+		/* í‹°ì¼“ êµ¬ë§¤ - Insert */
 		try {
 			sql = "INSERT INTO ETICKET VALUES ('" + eticket_id + "', '" + legid + "', " + account_no
 					+ ", " + price_all + ", " + (price_eco + price_bus + price_fir) + ", " + price_beg + ", " + disc * 100 + ", " + res_eco + ", "
@@ -169,7 +171,7 @@
 				e.printStackTrace();
 		}
 			
-		/* ³²¾ÆÀÖ´Â ÁÂ¼® ¼ö Update */
+		/* ë‚¨ì•„ìˆëŠ” ì¢Œì„ ìˆ˜ Update */
 		try {
 			sql = "update assigned_by set economy_avail_seats=" + (avail_eco - res_eco) + ", business_avail_seats = " + (avail_bus - res_bus) + ", first_avail_seats=" + (avail_fir - res_fir) + " where legid = '" + legid + "'";
 			pstmt = conn.prepareStatement(sql);
@@ -180,7 +182,7 @@
 			e.printStackTrace();
 		}
 		
-		/* travel_count 1È¸ Áõ°¡ÇÏ°í ½Â±Ş ½É»ç */
+		/* travel_count 1íšŒ ì¦ê°€í•˜ê³  ìŠ¹ê¸‰ ì‹¬ì‚¬ */
 		travel_count++;
 		
 		if (travel_count == 11) {
@@ -201,7 +203,7 @@
 			e.printStackTrace();
 		}
 		
-		/* ±¸¸ÅÇÑ Æ¼ÄÏ View */
+		/* êµ¬ë§¤í•œ í‹°ì¼“ View */
 		try {
 			sql = "select e_ticketid, leg_price as total_price, NUMBER_OF_ECONOMY as economy, NUMBER_OF_BUSINESS as business, NUMBER_OF_FIRST as first, dep_airportid as dep, arr_airportid as arr, dep_gate as gate, SCHEDULED_DEP_TIME as dep_time, SCHEDULED_ARR_TIME as arr_time "
 				+ "from eticket e, leg l where e_ticketid='" + eticket_id + "' and l.legid='" + legid + "' and e.legid = l.legid";
