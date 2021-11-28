@@ -9,11 +9,11 @@
 	ul{list-style: none;}
 	a{text-decoration: none;}
 	 
-	table {
+	table class='bluetop' {
 		width: 100%;
 		border: 2px solid #000000;
 		border-collapse: collapse;
-		table-layout: fixed;
+		table class='bluetop'-layout: fixed;
 	}
 	th, td {
 		word-wrap: break-word;
@@ -27,7 +27,7 @@
 	}	
 	</style>
 	<title>KnuAir - Reservation View</title>
-	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+	<link rel="stylesheet" href="./styles/styles.css">
 	<script>
 		function count(type, result, eco_price, diff_seat)  {
 		  // 결과를 표시할 element
@@ -72,7 +72,7 @@
 <header>
 <%@include file ="header.jsp" %>
 </header>
-	<div class="container" style="padding:10% 20%;">
+	<div class="container" style="padding:10% 10%;">
 	<div class="all">
 	<%
 	String serverIP = "localhost";
@@ -105,7 +105,7 @@
 		pstmt = conn.prepareStatement(sql);
 		rs = pstmt.executeQuery();
 		out.println("<h4>[선택한 티켓]</h4>");
-		out.println("<table>");
+		out.println("<table class='bluetop'>");
 		rsmd = rs.getMetaData();
 		cnt = rsmd.getColumnCount();
 		for (int i = 1; i <= cnt; i++) {
@@ -125,7 +125,7 @@
 			eco_price = rs.getString(7);
 		}
 		
-		out.println("</table>");
+		out.println("</table class='bluetop'>");
 		rs.close();
 		pstmt.close();
 	} catch (SQLException e) {
@@ -143,7 +143,7 @@
 		pstmt = conn.prepareStatement(sql);
 		rs = pstmt.executeQuery();
 
-		out.println("<table border=\"1\">");
+		out.println("<table class='bluetop' border=\"1\">");
 		rsmd = rs.getMetaData();
 		cnt = rsmd.getColumnCount();
 		for (int i = 1; i <= cnt; i++) {
@@ -161,7 +161,7 @@
 			avail_first = rs.getString(3);
 		}
 		
-		out.println("</table>");
+		out.println("</table class='bluetop'>");
 		rs.close();
 		pstmt.close();
 	} catch (SQLException e) {
@@ -209,7 +209,7 @@
 	%>
 	<br />
 	<h4>[좌석 수 선택]</h4>
-	<table>
+	<table class='bluetop'>
 		<tr>
 			<td> Economy </td>
 			<%
@@ -234,12 +234,12 @@
 			out.println("<td> <input type='button' onclick='count(\"plus\", \"num_first\", \"" + eco_price + "\", \"" + diff_seat + "\")' value='+'/> </td>");
 			%>
 		</tr>
-	</table>
+	</table class='bluetop'>
 	
 	<br />
 	<h4>[가격]</h4>
 	
-	<table>
+	<table class='bluetop'>
 		<th>ECONOMY</th>		
 		<th>BUSINESS</th>		
 		<th>FIRST</th>
@@ -250,7 +250,7 @@
 			<td> <div id='price_first'>0</div> </td>
 			<td> <div id='price_total'>0</div> </td>
 		</tr>
-	</table>
+	</table class='bluetop'>
 	<form action='ticketview.jsp' method='POST'>
 		<h4>[짐이 있습니까?]</h4>
 		<input type='radio' name='beggage' value='Y'/>Y
