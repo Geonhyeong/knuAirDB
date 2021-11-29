@@ -9,8 +9,8 @@
 <link rel="stylesheet" href="../Management.css">
 </head>
 <body>
-	<%@include file ="../header_management.jsp" %>
-	
+	<%@include file ="./header_management.jsp" %>
+
 	<article id="content">
 		<%
 		   String serverIP = "localhost";

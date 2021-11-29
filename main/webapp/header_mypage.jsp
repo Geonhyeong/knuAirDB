@@ -91,7 +91,6 @@
 	<nav>
 		<ul>
 			<li><a href="./mypageview_info.jsp">MY INFO</a></li>
-			<li><a href="./mypageview_ticket.jsp">MY TICKET</a></li>
 		</ul>
 	</nav>
 			
@@ -102,7 +101,6 @@
 		<a href="./searchview.jsp">HOME</a> | 
 		<a href="mypageview_info.jsp">MY PAGE</a> | 
 		<a href="./logout.jsp">LOGOUT</a>
-	</div>
 	<nav>
 		<ul>
 			<li><a href="./mypageview_info.jsp">MY INFO</a></li>

@@ -23,7 +23,8 @@
 	</script>
 </head>
 <body>
-	<%@include file ="../header_management.jsp" %>
+	<%@include file ="./header_management.jsp" %>
+	<div class="container" style="padding:5% 10%;">
 	<%
 	   String serverIP = "localhost";
 	   String strSID = "orcl";
@@ -40,6 +41,7 @@
 	   stmt = conn.createStatement();
 	%>
 
+	<div style='margin-bottom:10px;'>
 	<form action="info2.jsp" method="get">
 		<div class="selectbox">
 			<label for="departure_airport">출발 공항</label>
@@ -92,10 +94,10 @@
 				%>
 			</select>
 		</div>
-		<button type="submit" id="searchBtn">조회</button>
+		<button type="submit" class='bluebuttonverybig'>조회</button>
 	</form>
-		<button type="submit" id="resetBtn" onclick="location.href='./info2.jsp'">초기화</button>
-
+		<button type="submit" class='bluebuttonverybig' onclick="location.href='./info2.jsp'">초기화</button>
+	</div>
 	<%
 		String departure_airport = request.getParameter("departure_airport");
 		String arrival_airport = request.getParameter("arrival_airport");
@@ -117,7 +119,7 @@
 		
 		rs = stmt.executeQuery(sql);
 		
-		out.println("<table>");
+		out.println("<table class='bluetop'>");
 		ResultSetMetaData rsmd = rs.getMetaData();
 		int cnt = rsmd.getColumnCount();
 		out.println("<th>NO</th>");
@@ -139,5 +141,6 @@
 		}
 		out.println("</table>");
 	%>
+	</div>
 </body>
 </html>

@@ -9,7 +9,8 @@
 <link rel="stylesheet" href="../Management.css">
 </head>
 <body>
-	<%@include file ="../header_management.jsp" %>
+	<%@include file ="./header_management.jsp" %>
+	<div class="container" style="padding:5% 10%;">
 	<%
 	   String serverIP = "localhost";
 	   String strSID = "orcl";
@@ -28,7 +29,7 @@
 	
 	<form action="info4.jsp" method="get">
 		<input type="text" id="text_count" placeholder="N개 이상" name="count" autocomplete="off" style="margin:2px;">
-		<button type="submit" id="searchBtn">조회</button>
+		<button type="submit" class='bluebuttonbig' style='margin-bottom: 10px;'>조회</button>
 	</form>
 
 	<%
@@ -41,7 +42,7 @@
 				+ " ORDER BY NUMTICKETS DESC";
 		rs = stmt.executeQuery(sql);
 		
-		out.println("<table>");
+		out.println("<table class='bluetop'>");
 		ResultSetMetaData rsmd = rs.getMetaData();
 		int cnt = rsmd.getColumnCount();
 		out.println("<th>NO</th>");
@@ -58,5 +59,6 @@
 		}
 		out.println("</table>");
 	%>
+	</div>
 </body>
 </html>

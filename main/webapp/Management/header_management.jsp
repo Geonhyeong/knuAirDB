@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <header>
 	<div id="logo">
-		<a href="/knuAirWeb/searchview.jsp"><img src="/knuAirWeb/images/logo2.png" width="150" height="70"></a>
+		<a href="../searchview.jsp"><img src="../images/logo2.png" width="150" height="70"></a>
 	</div>
 	<div id="top_menu">
 		<%
@@ -17,20 +17,20 @@
 		out.print(SessionId+"님 환영합니다!");
 	
 		%>
-		<a href="/knuAirWeb/Management/main.jsp">MANAGEMENT</a> | 
-		<a href="/knuAirWeb/searchview.jsp">HOME</a> | 
-		<a href="/knuAirWeb/mypageview_info.jsp">MY PAGE</a> | 
-		<a href="/knuAirWeb/logout.jsp">LOGOUT</a>
+		<a href="../Management/main.jsp">MANAGEMENT</a> | 
+		<a href="../searchview.jsp">HOME</a> | 
+		<a href="../mypageview_info.jsp">MY PAGE</a> | 
+		<a href="../logout.jsp">LOGOUT</a>
 	</div>
 	
 	<nav>
 		<ul>
-			<li><a href="/knuAirWeb/Management/Airport/airport.jsp">AIRPORT</a></li>
-			<li><a href="/knuAirWeb/Management/Airline/airline.jsp">AIRLINE</a></li>
-			<li><a href="/knuAirWeb/Management/Airplane/airplane.jsp">AIRPLANE</a></li>
-			<li><a href="/knuAirWeb/Management/Leg/leg.jsp">LEG</a></li>
-			<li><a href="/knuAirWeb/Management/Account/account.jsp">ACCOUNT</a></li>
-			<li><a href="/knuAirWeb/Management/Analysis/analysis.jsp">ANALYSIS</a></li>
+			<li><a href="../Management/Airport/airport.jsp">AIRPORT</a></li>
+			<li><a href="../Management/Airline/airline.jsp">AIRLINE</a></li>
+			<li><a href="../Management/Airplane/airplane.jsp">AIRPLANE</a></li>
+			<li><a href="../Management/Leg/leg.jsp">LEG</a></li>
+			<li><a href="../Management/Account/account.jsp">ACCOUNT</a></li>
+			<li><a href="../Management/Analysis/analysis.jsp">ANALYSIS</a></li>
 		</ul>
 	</nav>
 </header>

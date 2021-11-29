@@ -9,8 +9,8 @@
 <link rel="stylesheet" href="../Management.css">
 </head>
 <body>
-	<%@include file ="../header_management.jsp" %>
-	
+	<%@include file ="./header_management.jsp" %>
+	<div class="container" style="padding:5% 10%;">
 	<article id="content">
 		<%
 		   String serverIP = "localhost";
@@ -34,7 +34,7 @@
 				rs = stmt.executeQuery(query);
 				
 				out.println("<form action=\"./insert_success.jsp\" method=\"get\">");
-				out.println("<table>");
+				out.println("<table class='bluetop'>");
 				ResultSetMetaData rsmd = rs.getMetaData();
 				int cnt = rsmd.getColumnCount();
 				for(int i = 1; i<= cnt; i++) {
@@ -51,7 +51,7 @@
 					out.println("</tr>");
 				}
 				out.println("</table>");
-				out.println("<button id=\"saveBtn\" type=\"submit\">save</button>");
+				out.println("<button class='bluebuttonbig' sytle='margin-top:10px;' type=\"submit\">save</button>");
 				out.println("</form>");
 				
 			}  catch (SQLException e) {
@@ -59,6 +59,6 @@
 			}
 		%>
 	</article>
-	
+	</div>
 </body>
 </html>

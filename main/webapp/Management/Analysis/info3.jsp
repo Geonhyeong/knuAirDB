@@ -38,7 +38,8 @@
 </script>
 </head>
 <body>
-	<%@include file ="../header_management.jsp" %>
+	<%@include file ="./header_management.jsp" %>
+	<div class="container" style="padding:5% 10%;">
 	<%
 	   String serverIP = "localhost";
 	   String strSID = "orcl";
@@ -57,7 +58,7 @@
 	<form action="info3.jsp" method="get" style="margin:8px;">
 		<h3 style="float:left; padding:4px;">날짜를 선택하세요 : </h3>
 		<input type="text" id="start_date" name="dep_time" autocomplete="off">
-		<button type="submit" id="searchBtn">조회</button>
+		<button type="submit" class='bluebuttonbig' style='margin-left: 10px;'>조회</button>
 	</form>
 	<%
 		String dep_time = request.getParameter("dep_time");
@@ -76,7 +77,7 @@
 				+ "    AND ARR.LEGID = L.LEGID " + "ORDER BY DEP_TIME ASC ";
 		rs = stmt.executeQuery(sql);
 		
-		out.println("<table>");
+		out.println("<table class='bluetop'>");
 		ResultSetMetaData rsmd = rs.getMetaData();
 		int cnt = rsmd.getColumnCount();
 		out.println("<th>NO</th>");
@@ -97,5 +98,6 @@
 		}
 		out.println("</table>");
 	%>
+	</div>
 </body>
 </html>

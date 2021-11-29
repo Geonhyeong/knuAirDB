@@ -9,7 +9,8 @@
 <link rel="stylesheet" href="../Management.css">
 </head>
 <body>
-	<%@include file ="../header_management.jsp" %>
+	<%@include file ="./header_management.jsp" %>
+	<div class="container" style="padding:5% 10%;">
 	<%
 	   String serverIP = "localhost";
 	   String strSID = "orcl";
@@ -31,7 +32,7 @@
 				+ "FROM MEMBERSHIP M GROUP BY M.Title";
 		rs = stmt.executeQuery(sql);
 		
-		out.println("<table id=\"avg_by_membership\">");
+		out.println("<table class='bluetop'>");
 		ResultSetMetaData rsmd = rs.getMetaData();
 		int cnt = rsmd.getColumnCount();
 		for(int i = 1; i<= cnt; i++) {
@@ -45,7 +46,8 @@
 		}
 		out.println("</table>");
 	%>
-	
+		<br />
+		<br />
 
 	<%
 		sql = "SELECT M.Title, A.FName, A.Lname, M.travel_count FROM ACCOUNT A, MEMBERSHIP M, (SELECT M.Title AS title, AVG(M.Travel_count) AS trv "
@@ -53,7 +55,7 @@
 				+ "WHERE A.AccountNo = M.AccountNo AND M.Title = Avg_Travel.title AND M.Travel_count < Avg_Travel.trv";
 		rs = stmt.executeQuery(sql);
 		
-		out.println("<table id=\"result_table\">");
+		out.println("<table class='bluetop'>");
 		rsmd = rs.getMetaData();
 		cnt = rsmd.getColumnCount();
 		out.println("<th>NO</th>");
@@ -72,5 +74,6 @@
 		}
 		out.println("</table>");
 	%>
+	</div>
 </body>
 </html>

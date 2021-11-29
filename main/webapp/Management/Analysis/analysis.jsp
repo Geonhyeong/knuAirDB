@@ -9,9 +9,10 @@
 <link rel="stylesheet" href="../Management.css">
 </head>
 <body>
-	<%@include file ="../header_management.jsp" %>
-	
-	<table id="analysis_table">
+	<%@include file ="./header_management.jsp" %>
+	<h2>Management - Analysis</h2>
+	<div class="container" style="padding:5% 10%;">
+	<table class='bluetop'>
 		<th>Information</th>
 		
 		<tr>
@@ -27,7 +28,7 @@
 			<td><a href="info4.jsp">N개 이상 예약된 항공권 정보 조회</a></td>
 		</tr>
 	</table>
-		
+	</div>
 	
 </body>
 </html>

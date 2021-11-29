@@ -9,9 +9,10 @@
 <link rel="stylesheet" href="../Management.css">
 </head>
 <body>
-	<%@include file ="../header_management.jsp" %>
+	<%@include file ="./header_management.jsp" %>
 	
 	<article id="content">
+	<h2>Management - Account</h2>
 		<%
 		   String serverIP = "localhost";
 		   String strSID = "orcl";
@@ -32,7 +33,7 @@
 			try{				
 				String query = "select * from account order by accountno";
 				rs = stmt.executeQuery(query);
-				out.println("<table>");
+				out.println("<table class='bluetop'>");
 				ResultSetMetaData rsmd = rs.getMetaData();
 				int cnt = rsmd.getColumnCount();
 				out.println("<th>NO</th>");
@@ -40,6 +41,8 @@
 					out.println("<th>" + rsmd.getColumnName(i) + "</th>");
 				}
 				int count=1;
+				out.println("<th>UPDATE</th>");
+				out.println("<th>DELETE</th>");
 				while(rs.next()) {
 					out.println("<tr>");
 					out.println("<td>"+ count++ +"</td>");
@@ -54,8 +57,8 @@
 					out.println("<td>"+rs.getString(9)+"</td>");
 					out.println("<td>"+rs.getString(10)+"</td>");
 					out.println("<td>"+rs.getString(11)+"</td>");
-					out.println("<td><form action=\"./update.jsp\" method=\"get\"><button type=\"submit\" name=\"accountno\" value="+rs.getInt(1)+">UPDATE</button></form></td>");
-					out.println("<td><form action=\"./delete.jsp\" method=\"get\"><button type=\"submit\" name=\"accountno\" value="+rs.getInt(1)+">DELETE</button></form></td>");
+					out.println("<td><form action=\"./update.jsp\" method=\"get\"><button type=\"submit\" class='bluebutton' name=\"accountno\" value="+rs.getInt(1)+">UPDATE</button></form></td>");
+					out.println("<td><form action=\"./delete.jsp\" method=\"get\"><button type=\"submit\" class='bluebutton' name=\"accountno\" value="+rs.getInt(1)+">DELETE</button></form></td>");
 					out.println("</tr>");
 				}
 				out.println("</table>");

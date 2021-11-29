@@ -9,8 +9,8 @@
 <link rel="stylesheet" href="../Management.css">
 </head>
 <body>
-	<%@include file ="../header_management.jsp" %>
-	
+	<%@include file ="./header_management.jsp" %>
+	<div class="container" style="padding:5% 10%;">
 	<article id="content">
 		<%
 		   String serverIP = "localhost";
@@ -30,12 +30,12 @@
 		
 		<%
 			try {
-				out.println("<h2>"+ request.getParameter("airplaneid") +"</h2>");
+				out.println("<h2>Airplane ID : "+ request.getParameter("airplaneid") +"</h2>");
 				String query = "select airlineid, type, economy_seats, business_seats, first_seats from airplane where airplaneid='" + request.getParameter("airplaneid") +"'";
 				rs = stmt.executeQuery(query);
 				
 				out.println("<form action=\"./update_success.jsp\" method=\"get\">");
-				out.println("<table id=\"update_table\">");
+				out.println("<table class='bluetop'>");
 				ResultSetMetaData rsmd = rs.getMetaData();
 				int cnt = rsmd.getColumnCount();
 				for(int i = 1; i<= cnt; i++) {
@@ -62,7 +62,7 @@
 					out.println("<h2>No Data.</h2>");
 				}
 				out.println("</table>");
-				out.println("<button id=\"saveBtn\" type=\"submit\" name=\"airplaneid\" value="+request.getParameter("airplaneid")+">save</button>");
+				out.println("<button class='bluebuttonbig' sytle='margin-top:10px;' type=\"submit\" name=\"airplaneid\" value="+request.getParameter("airplaneid")+">save</button>");
 				out.println("</form>");
 				
 			} catch (SQLException e) {
@@ -71,6 +71,6 @@
 			
 		%>
 	</article>
-	
+	</div>
 </body>
 </html>
