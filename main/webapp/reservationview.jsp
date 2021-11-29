@@ -8,23 +8,6 @@
 	<style type="text/css">
 	ul{list-style: none;}
 	a{text-decoration: none;}
-	 
-	table class='bluetop' {
-		width: 100%;
-		border: 2px solid #000000;
-		border-collapse: collapse;
-		table class='bluetop'-layout: fixed;
-	}
-	th, td {
-		word-wrap: break-word;
-		border: 2px solid #000000;
-		padding: 10px;
-		text-align: center;
-		vertical-align: middle;
-	}
-	th {
-		background-color: #CACACA;
-	}	
 	</style>
 	<title>KnuAir - Reservation View</title>
 	<link rel="stylesheet" href="./styles/styles.css">
@@ -72,7 +55,7 @@
 <header>
 <%@include file ="header.jsp" %>
 </header>
-	<div class="container" style="padding:10% 10%;">
+	<div class="container" style="padding:5% 10%;">
 	<div class="all">
 	<%
 	String serverIP = "localhost";
@@ -125,7 +108,7 @@
 			eco_price = rs.getString(7);
 		}
 		
-		out.println("</table class='bluetop'>");
+		out.println("</table>");
 		rs.close();
 		pstmt.close();
 	} catch (SQLException e) {
@@ -161,7 +144,7 @@
 			avail_first = rs.getString(3);
 		}
 		
-		out.println("</table class='bluetop'>");
+		out.println("</table>");
 		rs.close();
 		pstmt.close();
 	} catch (SQLException e) {
@@ -213,28 +196,28 @@
 		<tr>
 			<td> Economy </td>
 			<%
-			out.println("<td> <input type='button' onclick='count(\"minus\", \"num_economy\", \"" + eco_price + "\", \"" + diff_seat + "\")' value='-'/> </td>");
+			out.println("<td> <input type='button' onclick='count(\"minus\", \"num_economy\", \"" + eco_price + "\", \"" + diff_seat + "\")' value='-' class='bluebutton-circle'/> </td>");
 			out.println("<td> <div id='num_economy'>0</div> </td>");
-			out.println("<td> <input type='button' onclick='count(\"plus\", \"num_economy\", \"" + eco_price + "\", \"" + diff_seat + "\")' value='+'/> </td>");
+			out.println("<td> <input type='button' onclick='count(\"plus\", \"num_economy\", \"" + eco_price + "\", \"" + diff_seat + "\")' value='+' class='bluebutton-circle'/> </td>");
 			%>
 		</tr>
 		<tr>
 			<td> Business </td>
 			<%
-			out.println("<td> <input type='button' onclick='count(\"minus\", \"num_business\", \"" + eco_price + "\", \"" + diff_seat + "\")' value='-'/> </td>");
+			out.println("<td> <input type='button' onclick='count(\"minus\", \"num_business\", \"" + eco_price + "\", \"" + diff_seat + "\")' value='-' class='bluebutton-circle'/> </td>");
 			out.println("<td> <div id='num_business'>0</div> </td>");
-			out.println("<td> <input type='button' onclick='count(\"plus\", \"num_business\", \"" + eco_price + "\", \"" + diff_seat + "\")' value='+'/> </td>");
+			out.println("<td> <input type='button' onclick='count(\"plus\", \"num_business\", \"" + eco_price + "\", \"" + diff_seat + "\")' value='+' class='bluebutton-circle'/> </td>");
 			%>
 		</tr>
 		<tr>
 			<td> First </td>
 			<%
-			out.println("<td> <input type='button' onclick='count(\"minus\", \"num_first\", \"" + eco_price + "\", \"" + diff_seat + "\")' value='-'/> </td>");
+			out.println("<td> <input type='button' onclick='count(\"minus\", \"num_first\", \"" + eco_price + "\", \"" + diff_seat + "\")' value='-' class='bluebutton-circle'/> </td>");
 			out.println("<td> <div id='num_first'>0</div> </td>");
-			out.println("<td> <input type='button' onclick='count(\"plus\", \"num_first\", \"" + eco_price + "\", \"" + diff_seat + "\")' value='+'/> </td>");
+			out.println("<td> <input type='button' onclick='count(\"plus\", \"num_first\", \"" + eco_price + "\", \"" + diff_seat + "\")' value='+' class='bluebutton-circle'/> </td>");
 			%>
 		</tr>
-	</table class='bluetop'>
+	</table>
 	
 	<br />
 	<h4>[가격]</h4>
@@ -250,7 +233,9 @@
 			<td> <div id='price_first'>0</div> </td>
 			<td> <div id='price_total'>0</div> </td>
 		</tr>
-	</table class='bluetop'>
+	</table>
+	<br />
+	
 	<form action='ticketview.jsp' method='POST'>
 		<h4>[짐이 있습니까?]</h4>
 		<input type='radio' name='beggage' value='Y'/>Y
@@ -266,7 +251,7 @@
 		out.println("<input type='hidden' id='legid' name='legid' value='" + legid + "' />");
 		%>
 		<br />
-		<input type="submit" value="구매" class="btn btn-primary btn-lg btn-block"/>
+		<input type="submit" value="구매" class="bluebutton" style='float: right; margin-top: 10px;'/>
 		<%
 		out.println("<input type='hidden' id='account_id' name='account_id' value='" + account_id + "' />");
 		out.println("<input type='hidden' id='account_type' name='account_type' value='" + account_type + "' />");

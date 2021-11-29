@@ -1,4 +1,3 @@
-<!-- login이랑 연동해서 추가 작업해야함, travel_count랑 멤버십 할인 같은거 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page language="java" import="java.text.*, java.sql.*"%>
@@ -228,15 +227,15 @@
 					String scheduled_dep_time = rs.getString(4);
 					String scheduled_arr_time = rs.getString(5);
 					String e_ticketid = rs.getString(6);
-					int leg_price = rs.getInt(7);
+					int total_price = rs.getInt(7);
 					int seat_price = rs.getInt(8);
 					int beggage_price = rs.getInt(9);
 					int membership_disc = rs.getInt(10);
 					int number_of_economy = rs.getInt(11);
 					int number_of_business = rs.getInt(12);
 					int number_of_first = rs.getInt(13);
-					int total_price = (leg_price + seat_price + beggage_price) * (1 - membership_disc / 100);
 				%>
+				
 				<div class="ticket-container">
 					<div style="display:flex; ">
 						<div style="flex:3; border: 1.5px dotted #808080;">
@@ -277,11 +276,10 @@
 								<h5>FIRST : <%=number_of_first%></h5>
 								<h5>--------------------------------</h5>
 								<h5>[ FEE COMPOSITION ]</h5>
-								<h5>LEG PRICE: <%=leg_price%></h5>
 								<h5>SEAT PRICE: <%=seat_price%></h5>
 								<h5>BEGGAGE PRICE: <%=beggage_price%></h5>
+								<h5>DISCOUNT: <%=membership_disc%>%</h5>
 								<h5>TOTAL FEE: <%=total_price%></h5>
-
 							</div>
 						</div>
 					</div>

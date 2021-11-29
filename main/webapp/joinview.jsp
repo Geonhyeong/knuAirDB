@@ -14,7 +14,7 @@
 
 <div class="container" style="padding:10% 20%;">
 	<div class="jumbotron">
-		<form action="join.jsp" method="post">
+		<form action="join.jsp" method="get">
 			<h2 style="text-align:center;">Join</h2>
 			
 			<div class="form-group">

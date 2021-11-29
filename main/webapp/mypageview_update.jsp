@@ -17,12 +17,14 @@
 		text-align: center;
 	}
 </style>
+<link rel="stylesheet" href="./styles/styles.css">
 <title>KnuAir - Mypage</title>
 </head>
 <body>
 <header>
 <%@include file ="../header_mypage.jsp" %>
 </header>
+<div class="container" style="padding:5% 10%;">
 <article id="content">
 	<%
 		String serverIP = "localhost";
@@ -44,8 +46,8 @@
 			String query = "select accountid, pwd, fname, lname, age, phone, email, sex, address from account where accountId ='" + SessionId + "'";
 			rs = stmt.executeQuery(query);
 			
-			out.println("<form action=\"./mypage_update.jsp\" method=\"post\" accept-charset=\"UTF-8\">");
-			out.println("<table>");
+			out.println("<form action=\"./mypage_update.jsp\" method=\"get\" accept-charset=\"UTF-8\">");
+			out.println("<table class='bluetop'>");
 			ResultSetMetaData rsmd = rs.getMetaData();
 			int cnt = rsmd.getColumnCount();
 			out.println("<th>Category</th><th>Value</th>");
@@ -68,11 +70,10 @@
 				out.println("<td><input type=\"text\" name=\"sex\" value=\""+rs.getString(8)+"\"></input></tr>");
 				out.println("<tr><td>" + rsmd.getColumnName(9) + "</td>");
 				out.println("<td><input type=\"text\" name=\"address\" value=\""+rs.getString(9)+"\"></input></tr>");
-				
 			}
 			out.println("</table>");
 	%>
-		<button id="saveBtn" onclick="location.href='mypage_update.jsp'">Save</button>
+		<input type='submit' id="saveBtn" value='저장' class='bluebutton' style='margin:10px; float: right;'/>
 	<%
 			out.println("</form>");
 		} catch (SQLException e) {
@@ -80,5 +81,6 @@
 		}
 	%>
 </article>
+</div>
 </body>
 </html>

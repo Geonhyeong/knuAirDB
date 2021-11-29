@@ -28,7 +28,7 @@
 	%>
 	<%
 		try {
-			String sql = "delete from account where accountid =" + SessionId;
+			String sql = "delete from account where accountid ='" + SessionId + "'";
 			int result = stmt.executeUpdate(sql);				
 		} catch (SQLException e) {
 			e.printStackTrace();

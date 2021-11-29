@@ -16,6 +16,7 @@
 		text-align: center;
 	}
 </style>
+<link rel="stylesheet" href="./styles/styles.css">
 <meta charset="UTF-8">
 <title>KnuAir - Mypage</title>
 </head>
@@ -23,6 +24,7 @@
 <header>
 	<%@include file ="../header_mypage.jsp" %>
 </header>
+	<div class="container" style="padding:5% 10%;">
 	<article id="content">
 	<%
 		String serverIP = "localhost";
@@ -39,12 +41,13 @@
 		conn = DriverManager.getConnection(url, user, pass);
 		stmt = conn.createStatement();
 	%>
+	<h1>[Personal information]</h1>
 	<%
 		int accoutNo = -1;
 		try{				
 			String query = "select accountNo, accountid, pwd, fname, lname, age, phone, email, sex, address from account where accountId ='" + SessionId + "'";
 			rs = stmt.executeQuery(query);
-			out.println("<table>");
+			out.println("<table class='bluetop'>");
 			ResultSetMetaData rsmd = rs.getMetaData();
 			int cnt = rsmd.getColumnCount();
 			out.println("<th>Category</th><th>Value</th>");
@@ -59,8 +62,8 @@
 			}
 			out.println("</table>");
 	%>
-		<button onclick="location.href='mypageview_update.jsp'">Update</button>
-		<button onclick="location.href='mypage_delete.jsp'">Delete</button>
+		<button onclick="location.href='mypageview_update.jsp'" class='bluebutton' style='margin:10px;'>수정</button>
+		<button onclick="location.href='mypage_delete.jsp'" class='bluebutton' style='margin:10px; float: right;'>탈퇴</button>
 	<%
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -70,13 +73,16 @@
 		if(Type.equals("Passenger")){
 			
 	%>
+		<br/>
+		<br/>
+		
 		<h1>[Membership]</h1>
 
 	<%
 			try{				
 				String query = "select * from membership where accountNo ='" + accoutNo + "'";
 				rs = stmt.executeQuery(query);
-				out.println("<table>");
+				out.println("<table class='bluetop'>");
 				ResultSetMetaData rsmd = rs.getMetaData();
 				int cnt = rsmd.getColumnCount();
 				for(int i = 1; i<= cnt-1; i++) {
@@ -98,7 +104,6 @@
 
 	%>
 </article>
-
-
+</div>
 </body>
 </html>

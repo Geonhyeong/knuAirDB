@@ -53,7 +53,6 @@
 			query = "INSERT INTO ACCOUNT VALUES ('" + accountNo + "','" + id + "', '" + pwd + "', '" + fname + "','" + lname
 					+ "','" + age + "', '" + phone + "','" + email + "', '" + sex + "', '" + address + "','" + type + "')";
 			int result = stmt.executeUpdate(query);
-			conn.commit();
 		} else if(type.compareTo("Passenger") == 0) {
 			query = "INSERT INTO ACCOUNT VALUES ('" + accountNo + "','" + id + "', '" + pwd + "', '" + fname + "','" + lname
 					+ "','" + age + "', '" + phone + "','" + email + "', '" + sex + "', '" + address + "','" + type + "')";
@@ -63,13 +62,16 @@
 			stmt.addBatch(query);
 			
 			int count[] = stmt.executeBatch();
-			conn.commit();	
 		}
+		out.println("회원가입이 완료되었습니다!!!");
 	} catch (SQLException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
+		out.println("회원가입에 실패하였습니다..");
+		out.println("<br />");
+		out.println("사유 - 글자 수 길이 초과 or 비어있는 값 존재 or 이미 존재하는 ID");
 	}
-	out.println("회원가입이 완료되었습니다!!!");
+	out.println("<br />");
 %>
 	<button type="button" onclick="location.href='searchview.jsp'">확인</button>
 

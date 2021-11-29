@@ -18,7 +18,7 @@
 <header>
 <%@include file ="header.jsp" %>
 </header>
-	<div class="container" style="padding:10% 10%;">
+	<div class="container" style="padding:5% 10%;">
 	<div class="all">
 	<%
 	String serverIP = "localhost";
@@ -64,6 +64,8 @@
  			<%
  			if (account_id.compareTo("null") == 0) {	
  				out.println("<h3>로그인이 필요합니다.</h3>");
+ 			} else if(account_type.compareTo("Admin") == 0) {
+ 				out.println("<h3>Admin은 예약할 수 없습니다.</h3>");
  			} else {
  				out.println("<input type='hidden' id='account_id' name='account_id' value='" + account_id + "' />");
  	 			out.println("<input type='hidden' id='account_type' name='account_type' value='" + account_type + "' />");
@@ -104,7 +106,7 @@
  		 		rs.close();
  		 		pstmt.close();
  				%>
- 				<input type="submit" value="예약" class="btn btn-primary btn-lg btn-block"/>
+ 				<input type="submit" value="예약" class="bluebutton" style='float: right; margin-top: 10px;'/>
  				<%
  			}
  			

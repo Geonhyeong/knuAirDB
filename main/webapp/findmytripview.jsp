@@ -5,6 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>KnuAir - FindMyTrip</title>
+<link rel="stylesheet" href="./styles/styles.css">
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 </head>
 <body>
 <header>
@@ -16,8 +18,8 @@
 			<h2 style="text-align:center;">Search Your E-Ticket</h2>
 			<div class="form-group">
 					<input type="text" class="form-control" placeholder="E-Ticket ID" name="findid" maxlength="10">
+					<input type="submit" value="확인" class='bluebutton' style='margin: 10px; float: right;'>
 			</div>
-			<input type="submit" value="확인">
 		</form>
 	</div>
 </div>
