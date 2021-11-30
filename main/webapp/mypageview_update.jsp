@@ -53,7 +53,7 @@
 			out.println("<th>Category</th><th>Value</th>");
 			while(rs.next()){
 				out.println("<tr><td>" + rsmd.getColumnName(1) + "</td>");
-				out.println("<td><input type=\"text\" name=\"accountid\" value=\""+rs.getString(1)+"\"></input></tr>");
+				out.println("<td><input type=\"hidden\" name=\"accountid\" value=\""+rs.getString(1)+"\"></input>"+rs.getString(1)+"</tr>");
 				out.println("<tr><td>" + rsmd.getColumnName(2) + "</td>");
 				out.println("<td><input type=\"text\" name=\"pwd\" value=\""+rs.getString(2)+"\"></input></tr>");
 				out.println("<tr><td>" + rsmd.getColumnName(3) + "</td>");
