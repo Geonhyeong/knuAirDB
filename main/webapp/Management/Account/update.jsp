@@ -55,7 +55,7 @@
 					out.println("<td>"+rs.getString(10)+"</td>");
 					out.println("</tr>");
 					out.println("<tr>");
-					out.println("<td><input type=\"text\" name=\"accountid\" value=\""+rs.getString(1)+"\"></input></td>");
+					out.println("<td><input type=\"hidden\" name=\"accountid\" value=\""+rs.getString(1)+"\"></input>"+rs.getString(1)+"</td>");
 					out.println("<td><input type=\"text\" name=\"pwd\" value=\""+rs.getString(2)+"\"></input></td>");
 					out.println("<td><input type=\"text\" name=\"fname\" value="+rs.getString(3)+"></input></td>");
 					out.println("<td><input type=\"text\" name=\"lname\" value=\""+rs.getString(4)+"\"></input></td>");
