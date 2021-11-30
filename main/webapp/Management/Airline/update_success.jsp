@@ -10,7 +10,7 @@
 </head>
 <body>
 	<%@include file ="./header_management.jsp" %>
-
+	<div class="container" style="padding:5% 10%;">
 	<article id="content">
 		<%
 		   String serverIP = "localhost";
@@ -29,16 +29,27 @@
 		%>
 		
 		<%
-			try {
-				String sql = "update airline set name='" + request.getParameter("name") + "', diff_seat=" + request.getParameter("diff_seat") + ", diff_beggage=" + request.getParameter("diff_beggage") + " where airlineid='" + request.getParameter("airlineid") + "'";
-				int result = stmt.executeUpdate(sql);
-				
-			} catch (SQLException e) {
-				e.printStackTrace();
+			// name만 NULL check
+			String name = request.getParameter("name");
+			
+			if(name == "") {
+				out.println("수정 실패하였습니다..");
+				out.println("<br />");
+				out.println("사유 - 비어있는 값 존재 (name을 입력해주세요.)");
+				%><button type="button" class='bluebutton' onclick="location.href='airline.jsp'">돌아가기</button><%
+			}  else {
+				try {
+					String sql = "update airline set name='" + request.getParameter("name") + "', diff_seat=" + request.getParameter("diff_seat") + ", diff_beggage=" + request.getParameter("diff_beggage") + " where airlineid='" + request.getParameter("airlineid") + "'";
+					int result = stmt.executeUpdate(sql);
+					
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				out.println("<h2>Update Successfully.</h2>");
+				response.sendRedirect("airline.jsp");
 			}
 		%>
-		<h2>Update Successfully.</h2>
 	</article>
-	
+	</div>
 </body>
 </html>

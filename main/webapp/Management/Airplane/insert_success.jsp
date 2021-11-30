@@ -10,7 +10,7 @@
 </head>
 <body>
 	<%@include file ="./header_management.jsp" %>
-
+	<div class="container" style="padding:5% 10%;">
 	<article id="content">
 		<%
 		   String serverIP = "localhost";
@@ -29,15 +29,32 @@
 		%>
 		
 		<%
+		// type만 NULL check 안함
+		String airplaneid = request.getParameter("airplaneid");
+		String airlineid = request.getParameter("airlineid");
+		String type = request.getParameter("type");
+		String economy_seats = request.getParameter("economy_seats");
+		String business_seats = request.getParameter("business_seats");
+		String first_seats = request.getParameter("first_seats");
+		
+		if(airplaneid == "" || airlineid == "" || economy_seats == "" || business_seats == "" || first_seats == "") {
+			out.println("생성 실패하였습니다..");
+			out.println("<br />");
+			out.println("사유 - 비어있는 값 존재 (type 빼고 다 입력해주세요.)");
+			%><button type="button" class='bluebutton' onclick="location.href='airplane.jsp'">돌아가기</button><%
+		}  else {
 			try {				
-				String sql = "INSERT INTO airplane VALUES ('" + request.getParameter("airplaneid") + "','" + request.getParameter("airlineid") + "', '" + request.getParameter("type") + "', " + request.getParameter("economy_seats") + ", " + request.getParameter("business_seats") + ", " + request.getParameter("first_seats") + ")";
+				String sql = "INSERT INTO airplane VALUES ('" + airplaneid + "','" + airlineid + "', '" + type + "', " + economy_seats + ", " + business_seats + ", " + first_seats + ")";
 				int result = stmt.executeUpdate(sql);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
+			out.println("<h2>Insert Successfully.</h2>");
+			response.sendRedirect("airplane.jsp");
+		}
+			
 		%>
-		<h2>Insert Successfully.</h2>
 	</article>
-	
+	</div>
 </body>
 </html>

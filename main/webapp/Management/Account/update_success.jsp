@@ -10,7 +10,7 @@
 </head>
 <body>
 	<%@include file ="./header_management.jsp" %>
-
+	<div class="container" style="padding:5% 10%;">
 	<article id="content">
 		<%
 		   String serverIP = "localhost";
@@ -29,19 +29,39 @@
 		%>
 		
 		<%
+		// lname이랑 address는 NULL 가능이라 체크안함
+		String id = request.getParameter("accountid");
+		String pwd = request.getParameter("pwd");
+		String fname = request.getParameter("fname");
+		String lname = request.getParameter("lname");
+		String age = request.getParameter("age");
+		String phone = request.getParameter("phone");
+		String email = request.getParameter("email");
+		String sex = request.getParameter("sex");
+		String address = request.getParameter("address");
+		String type = request.getParameter("type");
+		
+		if(id == "" || pwd == "" || fname == "" || age == "" || phone == "" || email == "" || sex == "" || type == "") {
+			out.println("수정 실패하였습니다..");
+			out.println("<br />");
+			out.println("사유 - 비어있는 값 존재 (Last name과 Address 빼고는 다 입력해주세요.)");
+			%><button type="button" class='bluebutton' onclick="location.href='account.jsp'">돌아가기</button><%
+		}  else {
 			try {
-				String sql = "update account set accountid='" + request.getParameter("accountid") + "', pwd='" + request.getParameter("pwd") + "', fname='" + request.getParameter("fname") + "', lname='" + request.getParameter("lname") + "', age=" + request.getParameter("age") 
-				+ ", phone='" + request.getParameter("phone") + "', email='" + request.getParameter("email") + "', sex='" + request.getParameter("sex") + "', address='" + request.getParameter("address") + "', type='" + request.getParameter("type")
-				+ "' where accountno=" + request.getParameter("accountno");
+				String sql = "update account set accountid='" + id + "', pwd='" + pwd + "', fname='" + fname + "', lname='" + lname + "', age=" + age 
+				+ ", phone='" + phone + "', email='" + email + "', sex='" + sex + "', address='" + address + "', type='" + type + "' where accountno=" + request.getParameter("accountno");
 				int result = stmt.executeUpdate(sql);
 				
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 			response.sendRedirect("account.jsp");
+			%>
+			<h2>Update Successfully.</h2>
+			<%
+		}
 		%>
-		<h2>Update Successfully.</h2>
 	</article>
-	
+	</div>
 </body>
 </html>

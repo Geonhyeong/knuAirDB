@@ -8,6 +8,7 @@
 <title>KnuAir - Join</title>
 </head>
 <body>
+	<div class="container" style="padding:5% 10%;">
 <%
 	String serverIP = "localhost";
 	String strSID = "orcl";
@@ -98,5 +99,6 @@
 	%>
 		<button type="button" onclick="location.href='searchview.jsp'">확인</button>
 	<% } %>
+	</div>
 </body>
 </html>

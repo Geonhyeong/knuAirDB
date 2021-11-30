@@ -10,7 +10,7 @@
 </head>
 <body>
 	<%@include file ="./header_management.jsp" %>
-	
+	<div class="container" style="padding:5% 10%;">
 	<article id="content">
 		<%
 		   String serverIP = "localhost";
@@ -29,15 +29,29 @@
 		%>
 		
 		<%
+		// NULL check 다함
+		String airportid = request.getParameter("airportid");
+		String name = request.getParameter("airlineid");
+		String city = request.getParameter("type");
+		String total_gates = request.getParameter("economy_seats");
+		
+		if(airportid == "" || name == "" || city == "" || total_gates == "") {
+			out.println("생성 실패하였습니다..");
+			out.println("<br />");
+			out.println("사유 - 비어있는 값 존재 (모두 다 입력해주세요.)");
+			%><button type="button" class='bluebutton' onclick="location.href='airport.jsp'">돌아가기</button><%
+		}  else {
 			try {				
-				String sql = "INSERT INTO AIRPORT VALUES ('" + request.getParameter("airportid") + "','" + request.getParameter("name") + "', '" + request.getParameter("city") + "', " + request.getParameter("total_gates") + ")";
+				String sql = "INSERT INTO airport VALUES ('" + airportid + "','" + name + "', '" + city + "', " + total_gates + ")";
 				int result = stmt.executeUpdate(sql);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
+			out.println("<h2>Insert Successfully.</h2>");
+			response.sendRedirect("airport.jsp");
+		}
 		%>
-		<h2>Insert Successfully.</h2>
 	</article>
-	
+	</div>
 </body>
 </html>

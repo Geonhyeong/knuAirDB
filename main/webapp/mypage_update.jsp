@@ -11,6 +11,7 @@
 <header>
 <%@include file ="../header_mypage.jsp" %>
 </header>
+<div class="container" style="padding:5% 10%;">
 <article id="content">
 	<%
 		String serverIP = "localhost";
@@ -28,17 +29,35 @@
 		stmt = conn.createStatement();
 	%>
 	<%
-	try {
-		String sql = "update account set accountid='" + request.getParameter("accountid") + "', pwd='" + request.getParameter("pwd") + "', fname='" + request.getParameter("fname") + "', lname='" + request.getParameter("lname") + "', age=" + request.getParameter("age") 
-		+ ", phone='" + request.getParameter("phone") + "', email='" + request.getParameter("email") + "', sex='" + request.getParameter("sex") + "', address='" + request.getParameter("address") + "' where accountid='" + SessionId+"'";
-		int result = stmt.executeUpdate(sql);
-		
-	} catch (SQLException e) {
-		e.printStackTrace();
-	}
+	// lname이랑 address는 NULL 가능이라 체크안함
+	String id = request.getParameter("accountid");
+	String pwd = request.getParameter("pwd");
+	String fname = request.getParameter("fname");
+	String lname = request.getParameter("lname");
+	String age = request.getParameter("age");
+	String phone = request.getParameter("phone");
+	String email = request.getParameter("email");
+	String sex = request.getParameter("sex");
+	String address = request.getParameter("address");
 	
-	response.sendRedirect("mypageview_info.jsp");
+	if(id == "" || pwd == "" || fname == "" || age == "" || phone == "" || email == "" || sex == "") {
+		out.println("수정 실패하였습니다..");
+		out.println("<br />");
+		out.println("사유 - 비어있는 값 존재 (Last name과 Address 빼고는 다 입력해주세요.)");
+		%><button type="button" onclick="location.href='mypageview_update.jsp'">돌아가기</button><%
+	}  else {
+		try {
+			String sql = "update account set accountid='" + id + "', pwd='" + pwd + "', fname='" + fname + "', lname='" + lname + "', age=" + age 
+			+ ", phone='" + phone + "', email='" + email + "', sex='" + sex + "', address='" + address + "' where accountid='" + SessionId+"'";
+			int result = stmt.executeUpdate(sql);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		response.sendRedirect("mypageview_info.jsp");
+	}
 	%>
 </article>
+</div>
 </body>
 </html>
