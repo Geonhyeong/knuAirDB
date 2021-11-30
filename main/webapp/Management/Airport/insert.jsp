@@ -42,10 +42,10 @@
 				}
 				if(rs.next()) {
 					out.println("<tr>");
-					out.println("<td><input type=\"text\" name=\"airportid\" value=\"\"></input></td>");
-					out.println("<td><input type=\"text\" name=\"name\" value=\"\"></input></td>");
-					out.println("<td><input type=\"text\" name=\"city\" value=\"\"></input></td>");
-					out.println("<td><input type=\"text\" name=\"total_gates\" value=\"\"></input></td>");
+					out.println("<td><input type=\"text\" name=\"airportid\" value=\"\" placeholder=\"ex) AAV\"></input></td>");
+					out.println("<td><input type=\"text\" name=\"name\" value=\"\" placeholder=\"ex) Allah Valley Airport\"></input></td>");
+					out.println("<td><input type=\"text\" name=\"city\" value=\"\" placeholder=\"ex) Surallah\"></input></td>");
+					out.println("<td><input type=\"text\" name=\"total_gates\" value=\"\" placeholder=\"ex) 9\"></input></td>");
 					out.println("</tr>");
 				}
 				out.println("</table>");
