@@ -42,10 +42,10 @@
 				}
 				if(rs.next()) {
 					out.println("<tr>");
-					out.println("<td><input type=\"text\" name=\"airlineid\" value=\"\"></input></td>");
-					out.println("<td><input type=\"text\" name=\"name\" value=\"\"></input></td>");
-					out.println("<td><input type=\"text\" name=\"diff_seat\" value=\"\"></input></td>");
-					out.println("<td><input type=\"text\" name=\"diff_beggage\" value=\"\"></input></td>");
+					out.println("<td><input type=\"text\" name=\"airlineid\" value=\"\" placeholder=\"ex) AL0000\"></input></td>");
+					out.println("<td><input type=\"text\" name=\"name\" value=\"\" placeholder=\"ex) Korean Air\"></input></td>");
+					out.println("<td><input type=\"text\" name=\"diff_seat\" value=\"\" placeholder=\"ex) 1.20\"></input></td>");
+					out.println("<td><input type=\"text\" name=\"diff_beggage\" value=\"\" placeholder=\"ex) 0.031\"></input></td>");
 					out.println("</tr>");
 				}
 				out.println("</table>");

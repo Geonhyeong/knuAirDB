@@ -42,14 +42,14 @@
 				}
 				if(rs.next()) {
 					out.println("<tr>");
-					out.println("<td><input type=\"text\" name=\"legid\" value=\"\"></input></td>");
-					out.println("<td><input type=\"text\" name=\"dep_airportid\" value=\"\"></input></td>");
-					out.println("<td><input type=\"text\" name=\"arr_airportid\" value=\"\"></input></td>");
-					out.println("<td><input type=\"text\" name=\"dep_gate\" value=\"\"></input></td>");
-					out.println("<td><input type=\"text\" name=\"scheduled_dep_time\" value=\"\"></input></td>");
-					out.println("<td><input type=\"text\" name=\"scheduled_arr_time\" value=\"\"></input></td>");
-					out.println("<td><input type=\"text\" name=\"adminno\" value=\"\"></input></td>");
-					out.println("<td><input type=\"text\" name=\"price\" value=\"\"></input></td>");
+					out.println("<td><input type=\"text\" name=\"legid\" value=\"\" placeholder=\"ex) LEG00000\"></input></td>");
+					out.println("<td><input type=\"text\" name=\"dep_airportid\" value=\"\" placeholder=\"ex) AAV\"></input></td>");
+					out.println("<td><input type=\"text\" name=\"arr_airportid\" value=\"\" placeholder=\"ex) MMV\"></input></td>");
+					out.println("<td><input type=\"text\" name=\"dep_gate\" value=\"\" placeholder=\"ex) 6\"></input></td>");
+					out.println("<td><input type=\"text\" name=\"scheduled_dep_time\" value=\"\" placeholder=\"ex) 2021-12-07 11:23:50\"></input></td>");
+					out.println("<td><input type=\"text\" name=\"scheduled_arr_time\" value=\"\" placeholder=\"ex) 2021-12-07 11:23:50\"></input></td>");
+					out.println("<td><input type=\"text\" name=\"adminno\" value=\"\" placeholder=\"ex) 50\"></input></td>");
+					out.println("<td><input type=\"text\" name=\"price\" value=\"\" placeholder=\"ex) 1512300\"></input></td>");
 					out.println("</tr>");
 				}
 				out.println("</table>");

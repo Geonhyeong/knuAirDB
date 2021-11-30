@@ -42,12 +42,12 @@
 				}
 				if(rs.next()) {
 					out.println("<tr>");
-					out.println("<td><input type=\"text\" name=\"airplaneid\" value=\"\"></input></td>");
-					out.println("<td><input type=\"text\" name=\"airlineid\" value=\"\"></input></td>");
-					out.println("<td><input type=\"text\" name=\"type\" value=\"\"></input></td>");
-					out.println("<td><input type=\"text\" name=\"economy_seats\" value=\"\"></input></td>");
-					out.println("<td><input type=\"text\" name=\"business_seats\" value=\"\"></input></td>");
-					out.println("<td><input type=\"text\" name=\"first_seats\" value=\"\"></input></td>");
+					out.println("<td><input type=\"text\" name=\"airplaneid\" value=\"\" placeholder=\"ex) APL00000\"></input></td>");
+					out.println("<td><input type=\"text\" name=\"airlineid\" value=\"\" placeholder=\"ex) AL0000\"></input></td>");
+					out.println("<td><input type=\"text\" name=\"type\" value=\"\" placeholder=\"ex) AII AVA-202\"></input></td>");
+					out.println("<td><input type=\"text\" name=\"economy_seats\" value=\"\" placeholder=\"ex) 150\"></input></td>");
+					out.println("<td><input type=\"text\" name=\"business_seats\" value=\"\" placeholder=\"ex) 100\"></input></td>");
+					out.println("<td><input type=\"text\" name=\"first_seats\" value=\"\" placeholder=\"ex) 50\"></input></td>");
 					out.println("</tr>");
 				}
 				out.println("</table>");
